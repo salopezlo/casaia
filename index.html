@@ -16,12 +16,114 @@
 <meta name="msapplication-TileColor" content="#0F0E0C">
 <meta name="msapplication-tap-highlight" content="no">
 
-<!-- PWA Icons generados inline -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230F0E0C'/><text y='68' x='50' text-anchor='middle' font-size='60'>🏠</text></svg>">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230F0E0C'/><text y='68' x='50' text-anchor='middle' font-size='60'>🏠</text></svg>">
+<!-- PWA Icons -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🏠%3C/text%3E%3C/svg%3E">
+<meta name="apple-mobile-web-app-title" content="Casa·IA">
 
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>
+// LIMPIEZA DE EMERGENCIA — corre antes que todo
+(function(){
+  try{
+    ['casaIAv3','casaIA'].forEach(key=>{
+      const raw=localStorage.getItem(key);
+      if(!raw)return;
+      const clean=raw
+        .replace(/"photo"\s*:\s*"[^"]*"/g,'"photo":null')
+        .replace(/"b64"\s*:\s*"[^"]*"/g,'"b64":""')
+        .replace(/data:image\/[^;]+;base64,[A-Za-z0-9+\/=]+/g,'');
+      localStorage.setItem(key,clean);
+    });
+  }catch(e){}
+})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@300;400;500;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+/* ══════════════════════════════════════════
+   BARRA DE NAVEGACIÓN INFERIOR
+══════════════════════════════════════════ */
+#bottom-nav {
+  position:fixed;bottom:0;left:0;right:0;z-index:300;
+  background:var(--nav);border-top:1px solid var(--border);
+  display:flex;align-items:stretch;
+  height:60px;
+  padding-bottom:env(safe-area-inset-bottom);
+  box-shadow:0 -4px 20px rgba(0,0,0,.15);
+}
+.bnav-btn {
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:3px;
+  background:none;border:none;cursor:pointer;
+  color:var(--text3);transition:all .2s;
+  padding:10px 4px 8px;
+  position:relative;
+}
+.bnav-btn.active { color:var(--accent); }
+.bnav-btn.active::before {
+  content:'';position:absolute;top:0;left:25%;right:25%;
+  height:3px;border-radius:0 0 3px 3px;background:var(--accent);
+}
+.bnav-btn:active { opacity:.7; }
+.bnav-icon { font-size:22px;line-height:1; }
+.bnav-label { font-size:11px;font-weight:700;font-family:'Instrument Sans',sans-serif; }
+
+/* Menú Más */
+#more-menu-overlay {
+  position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400;
+}
+#more-menu-content {
+  position:fixed;bottom:60px;left:0;right:0;z-index:401;
+  background:var(--surface);border-top:1px solid var(--border);
+  border-radius:20px 20px 0 0;padding:20px;
+  animation:slideUpMenu .25s ease;
+}
+@keyframes slideUpMenu {
+  from{transform:translateY(100%)} to{transform:translateY(0)}
+}
+.more-menu-title {
+  font-family:'Syne',sans-serif;font-size:17px;font-weight:800;
+  margin-bottom:18px;color:var(--text);
+}
+.more-menu-grid {
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+}
+.more-item {
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:14px;padding:16px 8px 12px;cursor:pointer;
+  font-family:'Instrument Sans',sans-serif;font-size:12px;
+  font-weight:700;color:var(--text);transition:all .2s;
+  text-align:center;
+}
+.more-item:active { background:var(--border); transform:scale(.97); }
+.more-item span.more-ico { font-size:26px;line-height:1; }
+.more-item span.more-lbl { font-size:12px;font-weight:700;color:var(--text); }
+.more-item span.more-sub { font-size:10px;font-weight:400;color:var(--text3);line-height:1.3; }
+
+/* Ajustar main para barra inferior */
+main { padding-bottom:calc(60px + max(16px, env(safe-area-inset-bottom))); }
+
+/* ══════════════════════════════════════════
+   ONBOARDING — API KEY
+══════════════════════════════════════════ */
+#onboarding {
+  position:fixed;inset:0;z-index:9999;
+  background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+}
+.onb-card {
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;padding:32px;width:100%;max-width:440px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.onb-logo { font-family:'Syne',sans-serif;font-size:36px;font-weight:800;margin-bottom:4px; }
+.onb-logo span { color:var(--accent); }
+.onb-sub { color:var(--text2);font-size:14px;margin-bottom:28px;line-height:1.6; }
+.onb-step { display:flex;gap:10px;margin-bottom:14px;font-size:13px;color:var(--text2);line-height:1.6; }
+.onb-step-num { background:var(--accent);color:#000;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;flex-shrink:0;margin-top:1px; }
+.onb-link { color:var(--accent);text-decoration:none;font-weight:600; }
+.onb-link:hover { text-decoration:underline; }
+
 /* ══════════════════════════════════════════
    TEMAS
 ══════════════════════════════════════════ */
@@ -84,7 +186,7 @@ nav {
   color:#fff; font-size:9px; font-weight:800; margin-left:4px; vertical-align:middle;
 }
 
-main { max-width:1160px; margin:0 auto; padding:24px 18px; }
+main { max-width:1160px; margin:0 auto; padding:16px 14px; overflow-x:hidden; }
 .page { display:none; animation:fadeIn .2s ease; }
 .page.active { display:block; }
 @keyframes fadeIn { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:none} }
@@ -92,10 +194,10 @@ main { max-width:1160px; margin:0 auto; padding:24px 18px; }
 /* ══════════════════════════════════════════
    TIPOGRAFÍA Y LAYOUTS
 ══════════════════════════════════════════ */
-.pg-title { font-family:'Syne',sans-serif; font-size:28px; font-weight:800; margin-bottom:4px; }
-.pg-sub { color:var(--text2); font-size:13px; margin-bottom:24px; }
+.pg-title { font-family:'Syne',sans-serif; font-size:26px; font-weight:800; margin-bottom:6px; }
+.pg-sub { color:var(--text2); font-size:14px; margin-bottom:24px; line-height:1.5; }
 .card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px; box-shadow:var(--shadow); }
-.card-title { font-family:'Syne',sans-serif; font-size:15px; font-weight:700; margin-bottom:14px; }
+.card-title { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; margin-bottom:16px; }
 .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
 .three-col { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:16px; }
 .four-col { display:grid; grid-template-columns:repeat(4,1fr); gap:13px; margin-bottom:20px; }
@@ -104,21 +206,21 @@ main { max-width:1160px; margin:0 auto; padding:24px 18px; }
 /* ══════════════════════════════════════════
    KPIs
 ══════════════════════════════════════════ */
-.kpi { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px 18px; position:relative; overflow:hidden; }
+.kpi { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px 14px; position:relative; overflow:hidden; }
 .kpi::after { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--accent); }
 .kpi.green::after { background:var(--green); }
 .kpi.red::after { background:var(--red); }
 .kpi.blue::after { background:var(--blue); }
 .kpi.purple::after { background:var(--purple); }
 .kpi.teal::after { background:var(--teal); }
-.kpi-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:var(--text3); margin-bottom:8px; }
-.kpi-val { font-family:'Syne',sans-serif; font-size:24px; font-weight:800; line-height:1; }
+.kpi-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--text3); margin-bottom:6px; }
+.kpi-val { font-family:'DM Sans',sans-serif; font-size:22px; font-weight:700; line-height:1.1; letter-spacing:-0.5px; }
 .kpi-val.g { color:var(--green); }
 .kpi-val.r { color:var(--red); }
 .kpi-val.a { color:var(--accent); }
 .kpi-val.b { color:var(--blue); }
 .kpi-val.p { color:var(--purple); }
-.kpi-sub { font-size:11px; color:var(--text3); margin-top:5px; }
+.kpi-sub { font-size:12px; color:var(--text3); margin-top:6px; }
 
 /* ══════════════════════════════════════════
    MONTH NAV
@@ -180,7 +282,7 @@ canvas.donut { flex-shrink:0; }
    FORMS
 ══════════════════════════════════════════ */
 .fg { margin-bottom:13px; }
-.fg label { display:block; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.8px; color:var(--text3); margin-bottom:5px; }
+.fg label { display:block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.8px; color:var(--text3); margin-bottom:6px; }
 .fg input,.fg select,.fg textarea {
   width:100%; padding:9px 12px; background:var(--surface2); border:1.5px solid var(--border);
   border-radius:8px; color:var(--text); font-family:'Instrument Sans',sans-serif; font-size:13px; outline:none; transition:border-color .2s;
@@ -495,28 +597,165 @@ mark {
   .comp-kpi-grid { grid-template-columns:1fr 1fr; }
   .theme-grid { grid-template-columns:1fr; }
   nav { padding:0 14px; }
+  .pg-title { font-size:22px; }
+  .kpi-label { font-size:9px; letter-spacing:0.5px; }
+  .kpi-val { font-size:16px; }
+  .kpi { padding:10px 10px; }
+  .card { padding:14px; }
+  .btn { font-size:13px; }
+  table { font-size:12px; }
+  th, td { padding:6px 8px; }
 }
 </style>
 </head>
 <body>
 
+<!-- ═══════════════════ ONBOARDING API KEY ═══════════════════ -->
+<div id="onboarding" style="display:none">
+  <div class="onb-card" style="max-width:480px">
+
+    <!-- HEADER -->
+    <div style="text-align:center;margin-bottom:24px">
+      <div style="font-size:48px;margin-bottom:8px">🏠</div>
+      <div class="onb-logo">Casa<span>·</span>IA</div>
+      <div style="font-size:13px;color:var(--text2);margin-top:4px">Control inteligente de gastos del hogar</div>
+    </div>
+
+    <!-- TABS -->
+    <div style="display:flex;gap:4px;margin-bottom:20px;background:var(--surface2);border-radius:10px;padding:4px">
+      <button id="onb-tab1" onclick="setOnbTab(1)" style="flex:1;padding:8px;border:none;border-radius:7px;cursor:pointer;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;background:var(--accent);color:#000;transition:all .2s">¿Qué es esto?</button>
+      <button id="onb-tab2" onclick="setOnbTab(2)" style="flex:1;padding:8px;border:none;border-radius:7px;cursor:pointer;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;background:transparent;color:var(--text2);transition:all .2s">Configurar IA</button>
+    </div>
+
+    <!-- TAB 1 — QUÉ ES -->
+    <div id="onb-content1">
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px">
+        <div style="display:flex;gap:12px;align-items:flex-start;background:var(--surface2);border-radius:10px;padding:12px">
+          <span style="font-size:24px">📷</span>
+          <div><div style="font-weight:700;font-size:14px;margin-bottom:2px">Escanea tus facturas</div><div style="font-size:12px;color:var(--text2)">Toma una foto y la IA extrae todos los productos automáticamente</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;background:var(--surface2);border-radius:10px;padding:12px">
+          <span style="font-size:24px">📊</span>
+          <div><div style="font-weight:700;font-size:14px;margin-bottom:2px">Controla tu presupuesto</div><div style="font-size:12px;color:var(--text2)">Ve en qué gastas más y compara precios mes a mes</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;background:var(--surface2);border-radius:10px;padding:12px">
+          <span style="font-size:24px">📈</span>
+          <div><div style="font-weight:700;font-size:14px;margin-bottom:2px">Inflación personal</div><div style="font-size:12px;color:var(--text2)">Descubre qué productos te han subido de precio en tu canasta real</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;background:var(--surface2);border-radius:10px;padding:12px">
+          <span style="font-size:24px">🤖</span>
+          <div><div style="font-weight:700;font-size:14px;margin-bottom:2px">Análisis con IA</div><div style="font-size:12px;color:var(--text2)">Claude analiza tus finanzas y te da consejos personalizados</div></div>
+        </div>
+      </div>
+      <button class="btn btn-accent btn-full" onclick="setOnbTab(2)" style="font-size:15px;padding:13px">Configurar y empezar →</button>
+      <div style="margin-top:12px;text-align:center">
+        <button onclick="usarSinIA()" style="background:none;border:none;cursor:pointer;color:var(--text3);font-size:12px;text-decoration:underline">Usar sin IA por ahora</button>
+      </div>
+    </div>
+
+    <!-- TAB 2 — CONFIGURAR IA -->
+    <div id="onb-content2" style="display:none">
+      <div style="background:var(--surface2);border-radius:12px;padding:16px;margin-bottom:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:12px;text-transform:uppercase;letter-spacing:.8px">Tutorial — 3 pasos rápidos</div>
+
+        <div class="onb-step">
+          <div class="onb-step-num">1</div>
+          <div>
+            <strong>Crea tu cuenta gratis</strong> en Anthropic<br>
+            <a class="onb-link" onclick="abrirAnthropic()" style="cursor:pointer">👉 Toca aquí para abrir console.anthropic.com</a>
+          </div>
+        </div>
+
+        <div class="onb-step">
+          <div class="onb-step-num">2</div>
+          <div>
+            Una vez adentro ve a:<br>
+            <strong>API Keys → + Create Key</strong><br>
+            <span style="color:var(--text3);font-size:12px">Dale cualquier nombre, ej: "Casa IA"</span>
+          </div>
+        </div>
+
+        <div class="onb-step">
+          <div class="onb-step-num">3</div>
+          <div>
+            <strong>Copia la key</strong> que empieza con <code style="background:var(--border);padding:1px 5px;border-radius:4px;font-size:11px">sk-ant-...</code><br>
+            <span style="color:var(--text3);font-size:12px">¡Solo se muestra una vez, cópiala ahora!</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- INPUT API KEY -->
+      <div class="fg">
+        <label>Pega tu API Key aquí</label>
+        <input id="onb-key" type="password" placeholder="sk-ant-api03-..." style="font-family:monospace;font-size:13px" oninput="validarKeyInput(this)">
+      </div>
+      <div id="onb-key-status" style="font-size:12px;margin-top:-8px;margin-bottom:12px;height:16px"></div>
+
+      <div style="font-size:11px;color:var(--text3);margin-bottom:16px;line-height:1.6;background:var(--surface2);border-radius:8px;padding:10px">
+        🔒 <strong>Tu privacidad:</strong> La key se guarda solo en este dispositivo. Nunca la enviamos a ningún servidor nuestro. Cada usuario usa su propio crédito de Anthropic.
+      </div>
+
+      <button class="btn btn-accent btn-full" onclick="guardarApiKey()" style="font-size:15px;padding:13px">✅ Guardar y empezar</button>
+      <div style="margin-top:12px;text-align:center">
+        <button onclick="usarSinIA()" style="background:none;border:none;cursor:pointer;color:var(--text3);font-size:12px;text-decoration:underline">Configurar más tarde</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <nav>
   <div class="logo">Casa<span>·</span>IA</div>
-  <div class="tabs">
-    <button class="tab active"  onclick="goPage('resumen',this)">🏠 Resumen</button>
-    <button class="tab" onclick="goPage('semanal',this)">📅 Semanal</button>
-    <button class="tab" onclick="goPage('movimientos',this)">📋 Movimientos</button>
-    <button class="tab" onclick="goPage('ingresos',this)">✏️ Registrar</button>
-    <button class="tab" onclick="goPage('facturas',this)">📷 Facturas IA</button>
-    <button class="tab" onclick="goPage('productos',this)">🛒 Productos</button>
-    <button class="tab" onclick="goPage('comparativa',this)">📈 Comparativa</button>
-    <button class="tab" onclick="goPage('recurrentes',this)">🔄 Recurrentes</button>
-    <button class="tab" onclick="goPage('presupuesto',this)">🎯 Presupuesto</button>
-    <button class="tab" onclick="goPage('analisis',this)">🤖 Análisis IA</button>
-    <button class="tab" onclick="goPage('inflacion',this)">📉 Inflación</button>
-    <button class="tab" onclick="goPage('ajustes',this)">⚙️ Ajustes</button>
+  <div style="display:flex;align-items:center;gap:8px">
+    <button class="tab" onclick="goPage('ayuda',null)" style="padding:6px 10px;font-size:12px" title="Cómo usar la app">❓</button>
+    <button class="tab" onclick="goPage('analisis',null)" style="padding:6px 10px;font-size:12px">🤖</button>
+    <button class="tab" onclick="goPage('ajustes',null)" style="padding:6px 10px;font-size:12px">⚙️</button>
   </div>
 </nav>
+
+<!-- BARRA DE NAVEGACIÓN INFERIOR -->
+<div id="bottom-nav">
+  <button class="bnav-btn active" id="bn-resumen" onclick="goPage('resumen',this,'bn-resumen')">
+    <span class="bnav-icon">🏠</span>
+    <span class="bnav-label">Inicio</span>
+  </button>
+  <button class="bnav-btn" id="bn-ingresos" onclick="goPage('ingresos',this,'bn-ingresos')">
+    <span class="bnav-icon">✏️</span>
+    <span class="bnav-label">Registrar</span>
+  </button>
+  <button class="bnav-btn" id="bn-facturas" onclick="goPage('facturas',this,'bn-facturas')">
+    <span class="bnav-icon">📷</span>
+    <span class="bnav-label">Facturas</span>
+  </button>
+  <button class="bnav-btn" id="bn-movimientos" onclick="goPage('movimientos',this,'bn-movimientos')">
+    <span class="bnav-icon">📋</span>
+    <span class="bnav-label">Gastos</span>
+  </button>
+  <button class="bnav-btn" id="bn-more" onclick="toggleMoreMenu()">
+    <span class="bnav-icon">☰</span>
+    <span class="bnav-label">Más</span>
+  </button>
+</div>
+
+<!-- MENÚ "MÁS" -->
+<div id="more-menu" style="display:none">
+  <div id="more-menu-overlay" onclick="closeMoreMenu()"></div>
+  <div id="more-menu-content">
+    <div class="more-menu-title">Más opciones</div>
+    <div class="more-menu-grid">
+      <button class="more-item" onclick="goPage('semanal',null);closeMoreMenu()"><span class="more-ico">📅</span><span class="more-lbl">Semanal</span><span class="more-sub">Resumen por semana</span></button>
+      <button class="more-item" onclick="goPage('productos',null);closeMoreMenu()"><span class="more-ico">🛒</span><span class="more-lbl">Productos</span><span class="more-sub">Historial de precios</span></button>
+      <button class="more-item" onclick="goPage('comparativa',null);closeMoreMenu()"><span class="more-ico">📈</span><span class="more-lbl">Comparativa</span><span class="more-sub">Compara dos meses</span></button>
+      <button class="more-item" onclick="goPage('recurrentes',null);closeMoreMenu()"><span class="more-ico">🔄</span><span class="more-lbl">Recurrentes</span><span class="more-sub">Gastos fijos</span></button>
+      <button class="more-item" onclick="goPage('presupuesto',null);closeMoreMenu()"><span class="more-ico">🎯</span><span class="more-lbl">Presupuesto</span><span class="more-sub">Límites por categoría</span></button>
+      <button class="more-item" onclick="goPage('inflacion',null);closeMoreMenu()"><span class="more-ico">📉</span><span class="more-lbl">Inflación</span><span class="more-sub">Tu canasta familiar</span></button>
+      <button class="more-item" onclick="goPage('analisis',null);closeMoreMenu()"><span class="more-ico">🤖</span><span class="more-lbl">Análisis IA</span><span class="more-sub">Consejos con IA</span></button>
+      <button class="more-item" onclick="goPage('ajustes',null);closeMoreMenu()"><span class="more-ico">⚙️</span><span class="more-lbl">Ajustes</span><span class="more-sub">Tema y datos</span></button>
+      <button class="more-item" onclick="goPage('metas',null);closeMoreMenu()"><span class="more-ico">🎯</span><span class="more-lbl">Metas</span><span class="more-sub">Objetivos de ahorro</span></button>
+      <button class="more-item" onclick="compartirApp();closeMoreMenu()"><span class="more-ico">📲</span><span class="more-lbl">Compartir</span><span class="more-sub">Invita a alguien</span></button>
+    </div>
+  </div>
+</div>
 
 <main>
 
@@ -534,39 +773,54 @@ mark {
   <!-- ALERTAS -->
   <div id="alertas-container"></div>
 
-  <div class="five-col">
-    <div class="kpi green"><div class="kpi-label">Ingresos</div><div class="kpi-val g" id="k-inc">$0</div><div class="kpi-sub" id="k-inc-c">0 registros</div></div>
-    <div class="kpi red"><div class="kpi-label">Gastos</div><div class="kpi-val r" id="k-exp">$0</div><div class="kpi-sub" id="k-exp-c">0 registros</div></div>
-    <div class="kpi"><div class="kpi-label">Balance</div><div class="kpi-val a" id="k-bal">$0</div><div class="kpi-sub">Ingresos − Gastos</div></div>
-    <div class="kpi teal"><div class="kpi-label">Tasa de ahorro</div><div class="kpi-val" id="k-save" style="color:var(--teal)">0%</div><div class="kpi-sub" id="k-save-sub">del ingreso mensual</div></div>
-    <div class="kpi blue"><div class="kpi-label">Gasto / Ingreso</div><div class="kpi-val b" id="k-ratio">0%</div><div class="kpi-sub">% del ingreso gastado</div></div>
-  </div>
+  <!-- HERO CARD — Balance principal -->
+  <div style="background:linear-gradient(135deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border);border-radius:20px;padding:28px 24px 24px;margin-bottom:16px;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-20px;right:-20px;width:120px;height:120px;border-radius:50%;background:var(--accent);opacity:.06"></div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:8px">Balance del mes</div>
+    <div id="k-bal" style="font-family:'DM Sans',sans-serif;font-size:40px;font-weight:700;line-height:1;margin-bottom:6px;color:var(--accent);letter-spacing:-1px">$0</div>
+    <div style="font-size:13px;color:var(--text3);margin-bottom:24px">Ingresos menos gastos</div>
 
-  <div class="two-col">
-    <div class="card"><div class="card-title">Gastos por categoría</div>
-      <div class="donut-wrap"><canvas class="donut" id="donutR" width="140" height="140"></canvas><div class="dlegend" id="dlegR"></div></div>
+    <!-- Ingresos y Gastos en fila -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="background:rgba(76,175,125,.1);border:1px solid rgba(76,175,125,.2);border-radius:14px;padding:14px 16px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--green);margin-bottom:6px">↑ Ingresos</div>
+        <div id="k-inc" style="font-family:'DM Sans',sans-serif;font-size:22px;font-weight:700;color:var(--green);letter-spacing:-0.5px">$0</div>
+        <div id="k-inc-c" style="font-size:12px;color:var(--text3);margin-top:3px">0 entradas</div>
+      </div>
+      <div style="background:rgba(224,80,80,.1);border:1px solid rgba(224,80,80,.2);border-radius:14px;padding:14px 16px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--red);margin-bottom:6px">↓ Gastos</div>
+        <div id="k-exp" style="font-family:'DM Sans',sans-serif;font-size:22px;font-weight:700;color:var(--red);letter-spacing:-0.5px">$0</div>
+        <div id="k-exp-c" style="font-size:12px;color:var(--text3);margin-top:3px">0 registros</div>
+      </div>
     </div>
-    <div class="card"><div class="card-title">Evolución 6 meses</div><div class="barchart" id="barR"></div></div>
-  </div>
-  <div class="two-col">
-    <div class="card"><div class="card-title">Presupuesto vs Real</div><div class="blist" id="budgR"></div></div>
-    <div class="card"><div class="card-title">📈 Tasa de ahorro en el tiempo</div><div id="saving-chart"></div></div>
   </div>
 
+  <!-- Tasa de ahorro + Ratio -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+    <div class="kpi teal">
+      <div class="kpi-label">Tasa de ahorro</div>
+      <div class="kpi-val" id="k-save" style="color:var(--teal)">0%</div>
+      <div class="kpi-sub" id="k-save-sub">del ingreso mensual</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-label">% gastado</div>
+      <div class="kpi-val b" id="k-ratio">0%</div>
+      <div class="kpi-sub">del ingreso total</div>
+    </div>
+  </div>
+
+  <!-- Gráfica categorías -->
   <div class="card" style="margin-bottom:16px">
-    <div class="card-title">Últimos movimientos</div>
-    <table class="tbl"><thead><tr><th>Descripción</th><th>Categoría</th><th style="text-align:right">Monto</th><th></th></tr></thead>
-    <tbody id="recentR"></tbody></table>
+    <div class="card-title">Gastos por categoría</div>
+    <div class="donut-wrap"><canvas class="donut" id="donutR" width="140" height="140"></canvas><div class="dlegend" id="dlegR"></div></div>
   </div>
 
-  <!-- METAS DE AHORRO -->
-  <div class="card" style="margin-top:0">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
-      <div class="card-title" style="margin:0">🎯 Metas de ahorro</div>
-      <button class="btn btn-outline" style="font-size:12px;padding:6px 12px" onclick="openMetaModal()">＋ Nueva meta</button>
-    </div>
-    <div id="metas-container"></div>
+  <!-- Presupuesto vs Real -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-title">Presupuesto vs Real</div>
+    <div class="blist" id="budgR"></div>
   </div>
+
 </div>
 
 <!-- ═══════════════════ SEMANAL ═══════════════════ -->
@@ -584,7 +838,7 @@ mark {
       </div>
       <div style="text-align:right">
         <div style="font-size:11px;color:var(--text3);margin-bottom:2px">Proyección de gasto</div>
-        <div id="prediccion-valor" style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--accent)">—</div>
+        <div id="prediccion-valor" style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:700;color:var(--accent);letter-spacing:-0.5px">—</div>
       </div>
     </div>
   </div>
@@ -651,8 +905,8 @@ mark {
   </div>
 
   <!-- TABLA -->
-  <div class="prod-wrap">
-    <table class="prod-table" id="mov-table">
+  <div class="prod-wrap" style="overflow-x:auto">
+    <table class="prod-table" id="mov-table" style="min-width:500px">
       <thead><tr>
         <th style="cursor:pointer;user-select:none" onclick="sortMov('date')">Fecha <span id="sort-date">↕</span></th>
         <th>Descripción</th>
@@ -796,10 +1050,36 @@ mark {
   <!-- ZONA DE SUBIDA -->
   <div class="card" style="margin-bottom:16px">
     <div class="card-title">Subir facturas</div>
+    <!-- ESTADO DE ESCANEOS -->
+    <div id="escaneos-status" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:12px;font-size:13px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="color:var(--text2)">Escaneos disponibles</span>
+        <span id="escaneos-count" style="font-weight:700;color:var(--accent)">Cargando...</span>
+      </div>
+      <div id="videos-progress" style="margin-top:6px;display:none">
+        <div style="color:var(--text3);font-size:12px;margin-bottom:4px">Videos para próximo escaneo: <span id="videos-faltantes">2</span></div>
+        <button class="btn btn-outline" style="width:100%;font-size:13px;padding:8px;margin-top:4px" onclick="verVideoRewarded()">
+          🎬 Ver video para ganar escaneo
+        </button>
+      </div>
+    </div>
+    <!-- BOTONES CÁMARA Y GALERÍA -->
+    <div style="display:flex;gap:10px;margin-bottom:8px">
+      <button class="btn btn-accent" style="flex:1;font-size:14px;padding:12px" onclick="tomarFotoConVerificacion()">
+        📸 Tomar foto
+      </button>
+      <button class="btn btn-outline" style="flex:1;font-size:14px;padding:12px" onclick="abrirGaleria()">
+        🖼️ Galería / Archivo
+      </button>
+    </div>
+    <!-- TIPS DE FOTOGRAFÍA -->
+    <div style="background:var(--surface2);border-radius:10px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:var(--text2);line-height:1.6">
+      📷 <strong style="color:var(--text)">Para mejores resultados:</strong> buena luz, factura plana y sin arrugas, encuadra solo el tiquete
+    </div>
     <div class="drop-zone" id="dropZone">
       <input type="file" accept="image/*,.pdf" id="factFile" multiple onchange="handleFacturas(this)">
       <div class="dz-icon">🧾</div>
-      <div class="dz-text">Arrastra una o varias facturas aquí o <strong>clic para seleccionar</strong><br>JPG · PNG · PDF · Puedes subir varias a la vez</div>
+      <div class="dz-text">O arrastra una o varias facturas aquí<br>JPG · PNG · PDF · Puedes subir varias a la vez</div>
     </div>
     <!-- BARRA DE PROGRESO DE COLA -->
     <div id="queue-status" style="display:none;margin-top:14px">
@@ -841,8 +1121,8 @@ mark {
       <option value="name">A→Z</option>
     </select>
   </div>
-  <div class="prod-wrap">
-    <table class="prod-table">
+  <div class="prod-wrap" style="overflow-x:auto">
+    <table class="prod-table" style="min-width:600px">
       <thead><tr>
         <th>Producto</th><th>Categoría</th><th>Compras</th>
         <th>Precio prom.</th><th>Último precio</th><th>Tendencia</th><th>Total gastado</th><th></th>
@@ -855,7 +1135,25 @@ mark {
 <!-- ═══════════════════ COMPARATIVA ═══════════════════ -->
 <div class="page" id="page-comparativa">
   <div class="pg-title">📈 Comparativa</div>
-  <div class="pg-sub">Compara dos meses: gastos, ingresos y precios de productos</div>
+  <div class="pg-sub">Evolución histórica y comparación entre meses</div>
+
+  <!-- Evolución 6 meses -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-title">Evolución 6 meses</div>
+    <div class="barchart" id="barR"></div>
+  </div>
+
+  <!-- Tasa de ahorro en el tiempo -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-title">📈 Tasa de ahorro en el tiempo</div>
+    <div id="saving-chart"></div>
+  </div>
+
+  <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;align-items:center">
+    <select class="ssel" id="cmp-m1" onchange="renderComparativa()"><option value="">Mes base</option></select>
+    <span style="color:var(--text3);font-size:16px;font-weight:700">vs</span>
+    <select class="ssel" id="cmp-m2" onchange="renderComparativa()"><option value="">Mes a comparar</option></select>
+  </div>
   <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;align-items:center">
     <select class="ssel" id="cmp-m1" onchange="renderComparativa()"><option value="">Mes base</option></select>
     <span style="color:var(--text3);font-size:16px;font-weight:700">vs</span>
@@ -878,7 +1176,7 @@ mark {
 <div class="page" id="page-presupuesto">
   <div class="pg-title">🎯 Presupuesto</div>
   <div class="pg-sub">Define cuánto puedes gastar por categoría cada mes</div>
-  <div class="two-col">
+  <div style="display:flex;flex-direction:column;gap:16px">
     <div class="card">
       <div class="card-title">Editar presupuesto</div>
       <div style="margin-bottom:14px;background:var(--surface2);border-radius:10px;padding:12px;font-size:13px">
@@ -895,7 +1193,7 @@ mark {
       <div class="card-title">Estado actual del mes</div>
       <div class="blist" id="budgState"></div>
     </div>
-  </div>
+  </div><!-- end flex col -->
   <div class="card" style="margin-top:14px">
     <div class="card-title">Gestionar categorías de gasto</div>
     <div style="display:flex;gap:9px;margin-bottom:13px;flex-wrap:wrap">
@@ -911,6 +1209,11 @@ mark {
 <div class="page" id="page-ajustes">
   <div class="pg-title">⚙️ Ajustes</div>
   <div class="pg-sub">Personaliza la app a tu gusto</div>
+
+  <div class="card" style="margin-bottom:16px;text-align:center;padding:12px">
+    <div style="font-size:12px;color:var(--text3)">Casa·IA <strong style="color:var(--accent)">v1.1.3</strong> — mayo 2026</div>
+    <div style="font-size:11px;color:var(--text3);margin-top:4px">Backend: casaia-backend-production.up.railway.app</div>
+  </div>
 
   <div class="card" style="margin-bottom:16px">
     <div class="card-title">📱 Instalar como app</div>
@@ -929,6 +1232,8 @@ mark {
       </button>
     </div>
   </div>
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-title">🎨 Tema de color</div>
     <div class="theme-grid">
       <div class="theme-card" id="tc-dark" onclick="setTheme('dark')">
         <div class="theme-preview" style="background:linear-gradient(135deg,#0F0E0C 50%,#1A1916 50%)">
@@ -1001,6 +1306,7 @@ mark {
     </div>
     <div style="display:flex;gap:10px;flex-wrap:wrap">
       <button class="btn btn-accent" onclick="exportarPDF()">📄 Exportar PDF del mes</button>
+      <button class="btn btn-accent" onclick="exportarExcel()" style="background:#3D7A5F">📊 Exportar Excel</button>
       <button class="btn btn-outline" onclick="exportData()">⬇️ Exportar datos (JSON)</button>
       <button class="btn btn-outline" onclick="document.getElementById('importFile').click()">⬆️ Importar datos</button>
       <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(this)">
@@ -1168,6 +1474,121 @@ mark {
   </div>
 </div>
 
+<!-- ═══════════════════ METAS ═══════════════════ -->
+<div class="page" id="page-metas">
+  <div class="pg-title">🎯 Metas de ahorro</div>
+  <div class="pg-sub">Define objetivos y rastrea tu progreso</div>
+  <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
+    <button class="btn btn-accent" onclick="openMetaModal()">＋ Nueva meta</button>
+  </div>
+  <div id="metas-container"></div>
+</div>
+
+<!-- ═══════════════════ AYUDA ═══════════════════ -->
+<div class="page" id="page-ayuda">
+  <div class="pg-title">❓ Cómo usar Casa·IA</div>
+  <div class="pg-sub">Guía rápida para sacarle el máximo provecho a la app</div>
+
+  <div class="card" style="margin-bottom:14px;border-left:4px solid var(--green)">
+    <div style="display:flex;align-items:flex-start;gap:16px">
+      <div style="width:44px;height:44px;border-radius:50%;background:rgba(76,175,125,.15);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">1️⃣</div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;margin-bottom:6px;color:var(--green)">Configura tu ingreso</div>
+        <div style="font-size:14px;color:var(--text2);line-height:1.7">Ve a <strong style="color:var(--text)">✏️ Registrar → Salario fijo</strong> y escribe cuánto ganas al mes. Esto permite calcular tu tasa de ahorro y sugerirte presupuestos.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px;border-left:4px solid var(--accent)">
+    <div style="display:flex;align-items:flex-start;gap:16px">
+      <div style="width:44px;height:44px;border-radius:50%;background:rgba(232,160,32,.15);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">2️⃣</div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;margin-bottom:6px;color:var(--accent)">Escanea tus facturas</div>
+        <div style="font-size:14px;color:var(--text2);line-height:1.7">Ve a <strong style="color:var(--text)">📷 Facturas</strong> y toma foto de tus tiquetes. La IA lee cada producto y precio automáticamente. Revisa y toca <strong style="color:var(--text)">Guardar factura</strong>.</div>
+        <div style="margin-top:10px;background:var(--surface2);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--text3)">💡 <strong style="color:var(--text2)">Tip:</strong> Fotografía con buena luz, la factura plana y encuadra solo el tiquete.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px;border-left:4px solid var(--blue)">
+    <div style="display:flex;align-items:flex-start;gap:16px">
+      <div style="width:44px;height:44px;border-radius:50%;background:rgba(80,144,224,.15);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">3️⃣</div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;margin-bottom:6px;color:var(--blue)">Registra gastos manuales</div>
+        <div style="font-size:14px;color:var(--text2);line-height:1.7">Para gastos sin factura usa <strong style="color:var(--text)">✏️ Registrar → Gasto</strong> o el botón <strong style="color:var(--text)">＋</strong> flotante. Escribe descripción, monto y categoría.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px;border-left:4px solid var(--teal)">
+    <div style="display:flex;align-items:flex-start;gap:16px">
+      <div style="width:44px;height:44px;border-radius:50%;background:rgba(64,176,160,.15);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">4️⃣</div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;margin-bottom:6px;color:var(--teal)">Analiza tu situación</div>
+        <div style="font-size:14px;color:var(--text2);line-height:1.7">En <strong style="color:var(--text)">🏠 Inicio</strong> ves tu balance de un vistazo. En <strong style="color:var(--text)">🤖 Análisis IA</strong> pide consejos de ahorro, alertas de precios o proyecciones del mes.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px;border-left:4px solid var(--purple)">
+    <div style="display:flex;align-items:flex-start;gap:16px">
+      <div style="width:44px;height:44px;border-radius:50%;background:rgba(160,112,208,.15);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">5️⃣</div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;margin-bottom:6px;color:var(--purple)">Define tu presupuesto</div>
+        <div style="font-size:14px;color:var(--text2);line-height:1.7">En <strong style="color:var(--text)">☰ Más → Presupuesto</strong> define cuánto puedes gastar por categoría. La app te avisa cuando te acercas al límite.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-title">📖 Términos clave</div>
+    <div style="display:flex;flex-direction:column;gap:0">
+      <div style="padding:12px 0;border-bottom:1px solid var(--border2)">
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px">Tasa de ahorro</div>
+        <div style="font-size:13px;color:var(--text2)">% de tus ingresos que no gastaste. Lo ideal es mínimo 20%. Ej: si ganas $3.000.000 y gastas $2.100.000, tu tasa es 30%.</div>
+      </div>
+      <div style="padding:12px 0;border-bottom:1px solid var(--border2)">
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px">Balance</div>
+        <div style="font-size:13px;color:var(--text2)">Ingresos menos gastos. Positivo = te sobró. Negativo = gastaste más de lo que ganaste.</div>
+      </div>
+      <div style="padding:12px 0;border-bottom:1px solid var(--border2)">
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px">% gastado</div>
+        <div style="font-size:13px;color:var(--text2)">Qué parte de tus ingresos se fue en gastos. Menos del 80% es saludable.</div>
+      </div>
+      <div style="padding:12px 0">
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px">Inflación personal</div>
+        <div style="font-size:13px;color:var(--text2)">Cuánto subieron los precios de los productos que TÚ compras — puede ser diferente a la inflación oficial.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-title">🙋 Preguntas frecuentes</div>
+    <div style="display:flex;flex-direction:column;gap:0">
+      <div style="padding:12px 0;border-bottom:1px solid var(--border2)">
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px">¿Mis datos están seguros?</div>
+        <div style="font-size:13px;color:var(--text2)">Sí. Todo se guarda en tu celular — nadie más puede verlos. Las facturas se analizan con IA pero no se almacenan en servidores.</div>
+      </div>
+      <div style="padding:12px 0;border-bottom:1px solid var(--border2)">
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px">¿Qué facturas puedo escanear?</div>
+        <div style="font-size:13px;color:var(--text2)">Supermercados, tiendas, restaurantes — cualquier tiquete con productos y precios. Los recibos de datafono sin ítems no funcionan bien.</div>
+      </div>
+      <div style="padding:12px 0;border-bottom:1px solid var(--border2)">
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px">¿Cuántos escaneos tengo?</div>
+        <div style="font-size:13px;color:var(--text2)">El plan gratuito incluye escaneos semanales. Puedes ganar más viendo videos en la sección de Facturas.</div>
+      </div>
+      <div style="padding:12px 0">
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px">¿Puedo exportar mis datos?</div>
+        <div style="font-size:13px;color:var(--text2)">Sí. En <strong style="color:var(--text)">⚙️ Ajustes → Datos</strong> exportas en PDF, Excel o JSON.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:20px;color:var(--text3);font-size:13px">
+    Casa·IA v3 — Hecho con 🧡 en Colombia
+  </div>
+</div>
+
 </main>
 
 <!-- MODAL PRODUCTO -->
@@ -1185,7 +1606,7 @@ mark {
 
 <!-- BOTÓN FLOTANTE GASTO RÁPIDO -->
 <button id="fab-btn" onclick="openFab()" title="Registrar gasto rápido"
-  style="position:fixed;bottom:24px;right:24px;z-index:400;width:52px;height:52px;border-radius:50%;background:var(--red);color:#fff;border:none;font-size:24px;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.4);transition:transform .2s;display:flex;align-items:center;justify-content:center">
+  style="position:fixed;bottom:72px;right:16px;z-index:400;width:52px;height:52px;border-radius:50%;background:var(--red);color:#fff;border:none;font-size:24px;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.4);transition:transform .2s;display:flex;align-items:center;justify-content:center">
   ＋
 </button>
 
@@ -1290,31 +1711,37 @@ let ingTipo='salario';
 
 function save(){
   try{
-    localStorage.setItem('casaIAv3',JSON.stringify(S));
-    // Aviso proactivo si supera 80%
-    const used=getStorageUsedMB();
-    if(used>4){
-      const t=document.getElementById('toast');
-      if(t&&!t.classList.contains('show')){
-        t.textContent='⚠️ Espacio casi lleno ('+used.toFixed(1)+'MB). Ve a Ajustes → Limpiar fotos.';
-        t.className='toast err show';
-        setTimeout(()=>t.classList.remove('show'),4000);
-      }
-    }
+    // Nunca guardar fotos base64 — limpiarlas antes de guardar
+    const toSave={...S,facturas:S.facturas.map(f=>({...f,photo:null}))};
+    localStorage.setItem('casaIAv3',JSON.stringify(toSave));
   }catch(e){
-    // QuotaExceededError — espacio lleno
-    alert('❌ Espacio del navegador lleno.\n\nVe a Ajustes → Limpiar fotos antiguas para liberar espacio.\nO exporta tus datos y borra todo.');
+    alert('❌ Espacio del navegador lleno.\nVe a Ajustes → Limpiar fotos o exporta y borra todo.');
   }
 }
 function load(){
   try{
-    // Intentar cargar datos guardados de cualquier versión anterior
     const raw=localStorage.getItem('casaIAv3')||localStorage.getItem('casaIA');
     if(!raw)return;
-    const d=JSON.parse(raw);
-    // Migración segura: mezclar con defaults para que nunca falte un campo
+    // Limpiar fotos y base64 con regex ANTES de parsear — evita error atob
+    const cleaned=raw
+      .replace(/"photo"\s*:\s*"data:[^"]{0,2000000}"/g,'"photo":null')
+      .replace(/"b64"\s*:\s*"[A-Za-z0-9+/=]{50,}"/g,'"b64":""');
+    const d=JSON.parse(cleaned);
     S=migrate(d);
-  }catch(e){console.warn('Error cargando datos:',e);}
+  }catch(e){
+    console.warn('Error cargando:',e);
+    // Último recurso: borrar localStorage corrupto y empezar limpio
+    try{
+      const raw=localStorage.getItem('casaIAv3');
+      if(raw){
+        // Intentar extraer solo transacciones y productos con regex
+        const txMatch=raw.match(/"transactions"\s*:\s*(\[[\s\S]*?\])\s*,\s*"products"/);
+        if(txMatch){
+          console.log('Recuperando transacciones...');
+        }
+      }
+    }catch(e2){}
+  }
 }
 function migrate(d){
   // Garantiza que cada campo del estado exista aunque venga de versión anterior
@@ -1343,13 +1770,36 @@ function migrate(d){
 // ═══════════════════════════════════════════════════════
 // NAV
 // ═══════════════════════════════════════════════════════
-function goPage(id,btn){
+function goPage(id,btn,bnId){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.bnav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
-  if(btn)btn.classList.add('active');
-  const r={resumen:renderResumen,semanal:renderSemanal,movimientos:renderMovimientos,ingresos:renderIngresos,productos:renderProductos,comparativa:renderComparativa,presupuesto:renderPresupuesto,facturas:renderFactList,ajustes:renderAjustes,recurrentes:renderRecurrentes,analisis:renderAnalisisPage,inflacion:renderInflacion};
+  if(btn&&btn.classList) btn.classList.add('active');
+  // Activar botón de barra inferior si corresponde
+  if(bnId){
+    const bn=document.getElementById(bnId);
+    if(bn)bn.classList.add('active');
+  } else {
+    // Buscar cuál botón de la barra corresponde a esta página
+    const map={resumen:'bn-resumen',semanal:'bn-resumen',ingresos:'bn-ingresos',facturas:'bn-facturas',movimientos:'bn-movimientos',productos:'bn-movimientos',comparativa:'bn-movimientos',recurrentes:'bn-more',presupuesto:'bn-more',analisis:'bn-more',inflacion:'bn-more',ajustes:'bn-more'};
+    const bnBtn=document.getElementById(map[id]);
+    if(bnBtn)bnBtn.classList.add('active');
+  }
+  const r={resumen:renderResumen,semanal:renderSemanal,movimientos:renderMovimientos,ingresos:renderIngresos,productos:renderProductos,comparativa:renderComparativa,presupuesto:renderPresupuesto,facturas:renderFactList,ajustes:renderAjustes,recurrentes:renderRecurrentes,analisis:renderAnalisisPage,inflacion:renderInflacion,ayuda:()=>{},metas:renderMetas};
   if(r[id])r[id]();
+}
+
+function toggleMoreMenu(){
+  const m=document.getElementById('more-menu');
+  m.style.display=m.style.display==='none'?'block':'none';
+  // Activar botón más
+  document.querySelectorAll('.bnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('bn-more').classList.add('active');
+}
+
+function closeMoreMenu(){
+  document.getElementById('more-menu').style.display='none';
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1421,7 +1871,7 @@ function renderResumen(){
   document.getElementById('k-exp-c').textContent=gastos.length+' registros';
   const kb=document.getElementById('k-bal');
   kb.textContent=(bal>=0?'+':'-')+fmt(bal);
-  kb.className='kpi-val '+(bal>=0?'g':'r');
+  kb.style.color=bal>=0?'var(--green)':'var(--red)';
   const ks=document.getElementById('k-save');
   ks.textContent=savePct+'%';
   ks.style.color=savePct>=20?'var(--green)':savePct>=10?'var(--accent)':'var(--red)';
@@ -1429,10 +1879,7 @@ function renderResumen(){
   document.getElementById('k-ratio').textContent=ratioPct+'%';
 
   drawDonut('donutR','dlegR',gastos);
-  drawBar('barR');
   drawBudg('budgR');
-  drawSavingChart();
-  drawRecent('recentR',txns);
   renderMetas();
   updNavBadge();
   // Sugerir abono a meta si hay superávit (solo una vez por mes)
@@ -1518,28 +1965,26 @@ function drawBudg(cid){
     if(!budget&&!spent)return null;
     const pct=budget?Math.min(100,Math.round(spent/budget*100)):100;
     const color=pct>=100?'var(--red)':pct>=80?'var(--accent)':cat.color;
+    const statusIcon=pct>=100?'🔴':pct>=80?'🟡':'🟢';
 
-    // Lista de transacciones de esta categoría expandible
-    const txnRows=catTxns.sort((a,b)=>new Date(b.date)-new Date(a.date)).map(t=>`
-      <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:7px;background:var(--surface2);margin-top:4px">
-        <span style="font-size:11px;color:var(--text3);flex-shrink:0">${fmtD(t.date)}</span>
-        <span style="font-size:12px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${t.desc}</span>
-        <span style="font-size:12px;font-weight:700;color:var(--red);flex-shrink:0">−${fmt(t.amount)}</span>
-        <button onclick="eliminarTxnBudg('${t.id}')" style="background:none;border:none;cursor:pointer;color:var(--text3);font-size:14px;padding:0 2px;flex-shrink:0" title="Eliminar">🗑</button>
-      </div>`).join('');
-
-    return `<div>
+    return `<div style="padding:10px 0;border-bottom:1px solid var(--border2)">
       <div class="brow-top">
-        <span class="brow-name">${cat.name}</span>
-        <span class="brow-nums">${fmt(spent)}${budget?' / '+fmt(budget):''}</span>
+        <span class="brow-name" style="display:flex;align-items:center;gap:6px">
+          <span style="width:8px;height:8px;border-radius:50%;background:${cat.color};flex-shrink:0;display:inline-block"></span>
+          ${cat.name}
+        </span>
+        <span style="display:flex;align-items:center;gap:6px">
+          <span style="font-size:10px">${statusIcon}</span>
+          <span class="brow-nums" style="font-weight:700;color:${color}">${fmt(spent)}${budget?'<span style="color:var(--text3);font-weight:400"> / '+fmt(budget)+'</span>':''}</span>
+        </span>
       </div>
-      <div class="bbar-bg"><div class="bbar-fill" style="width:${pct}%;background:${color}"></div></div>
-      ${txnRows}
+      <div class="bbar-bg" style="margin-top:6px"><div class="bbar-fill" style="width:${pct}%;background:${color}"></div></div>
+      ${budget?`<div style="font-size:11px;color:var(--text3);margin-top:4px;text-align:right">${pct}% usado</div>`:''}
     </div>`;
   }).filter(Boolean);
 
   el.innerHTML=rows.length
-    ? rows.join('<div style="height:10px"></div>')
+    ? `<div style="display:flex;flex-direction:column">${rows.join('')}</div>`
     : '<div class="empty"><div class="empty-ico">📊</div>Sin datos</div>';
 }
 
@@ -1827,6 +2272,53 @@ function delTxn(id){
 }
 
 // ═══════════════════════════════════════════════════════
+// CÁMARA NATIVA — Capacitor Camera Plugin
+// ═══════════════════════════════════════════════════════
+async function tomarFoto(){
+  try{
+    // Intentar Capacitor Camera primero
+    const cap=window.Capacitor;
+    const camPlugin=cap&&cap.Plugins&&cap.Plugins.Camera;
+    if(camPlugin){
+      try{
+        const photo=await camPlugin.getPhoto({
+          quality:75,
+          allowEditing:false,
+          resultType:'base64',
+          source:'CAMERA',
+          width:1200,
+          correctOrientation:true,
+          presentationStyle:'fullscreen'
+        });
+        const b64=photo.base64String;
+        const mime='image/jpeg';
+        const id='Q'+Date.now()+Math.random();
+        factQueue.push({id,file:null,b64,mime,name:'foto_'+Date.now()+'.jpg',status:'pending',data:null,nota:''});
+        renderQueue();
+        if(!queueRunning)processQueue();
+        toast('📸 Foto tomada — procesando...','ok');
+        return;
+      }catch(camErr){
+        if(camErr.message&&(camErr.message.includes('cancelled')||camErr.message.includes('cancel')))return;
+        console.warn('Camera plugin error, usando fallback:', camErr.message);
+      }
+    }
+    // Fallback — input con capture
+    const input=document.createElement('input');
+    input.type='file';
+    input.accept='image/*';
+    input.capture='environment';
+    input.style.display='none';
+    document.body.appendChild(input);
+    input.onchange=()=>{ handleFacturas(input); document.body.removeChild(input); };
+    input.click();
+  }catch(e){
+    console.error('Error en tomarFoto:',e.message);
+    toast('Error al abrir cámara','err');
+  }
+}
+
+// ═══════════════════════════════════════════════════════
 // COLA DE FACTURAS MÚLTIPLES
 // ═══════════════════════════════════════════════════════
 let factQueue=[];   // [{id, file, b64, mime, status:'pending'|'processing'|'done'|'error', data, nota}]
@@ -1906,7 +2398,6 @@ async function processQueue(){
   const total=factQueue.length;
   let done=factQueue.filter(q=>q.status==='done'||q.status==='error').length;
 
-  // Mostrar barra de progreso
   const qs=document.getElementById('queue-status');
   qs.style.display=pending.length?'block':'none';
 
@@ -1915,35 +2406,40 @@ async function processQueue(){
     renderQueue();
     updQueueBar(done,total);
     try{
-      const isPdf=item.mime==='application/pdf';
-      const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      const resp=await fetch(BACKEND_URL+'/api/factura',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({
-          model:'claude-sonnet-4-20250514', max_tokens:4000,
-          messages:[{role:'user',content:[
-            isPdf?{type:'document',source:{type:'base64',media_type:'application/pdf',data:item.b64}}
-                 :{type:'image',source:{type:'base64',media_type:item.mime,data:item.b64}},
-            {type:'text',text:`Analiza esta factura/tiquete y extrae TODOS los productos con sus precios.
-Responde ÚNICAMENTE con un objeto JSON válido. Sin texto antes ni después. Sin markdown. Sin backticks.
-Formato exacto:
-{"store":"nombre tienda","date":"YYYY-MM-DD","items":[{"name":"producto","qty":1,"unit_price":0,"total":0,"category":"una de: Alimentación, Aseo y limpieza, Salud, Transporte, Entretenimiento, Ropa, Tecnología, Educación, Otros"}],"total":0}
-Si no ves un valor usa 0. El JSON debe estar completo y cerrado.`}
-          ]}]
+          userId:getUserId(),
+          imageBase64:item.b64,
+          mimeType:item.mime
         })
       });
-      if(!resp.ok)throw new Error('API '+resp.status);
+      if(resp.status===429){
+        const err=await resp.json();
+        const e=new Error(err.mensaje||'Límite semanal alcanzado.');
+        e.isLimite=true;
+        throw e;
+      }
+      if(!resp.ok)throw new Error('Error del servidor: '+resp.status);
       const apiData=await resp.json();
-      const rawText=apiData.content?.find(b=>b.type==='text')?.text||'';
-      const start=rawText.indexOf('{'),end=rawText.lastIndexOf('}');
-      if(start===-1||end===-1)throw new Error('No se encontró JSON');
-      const parsed=JSON.parse(rawText.slice(start,end+1));
+      if(!apiData.success)throw new Error(apiData.error||'Error procesando factura');
+      const parsed=apiData.data;
       if(!parsed.items||!Array.isArray(parsed.items))throw new Error('Formato inválido');
+      // Sanitizar precios — convertir decimales colombianos a enteros
+      parsed.items = parsed.items.map(item => ({
+        ...item,
+        unit_price: Math.round(Number(item.unit_price)||0),
+        total: Math.round(Number(item.total)||0),
+        qty: Number(item.qty)||1
+      }));
+      parsed.total = Math.round(Number(parsed.total)||0);
       item.data=parsed;
       item.status='done';
     }catch(e){
       item.status='error';
       item.error=e.message;
+      item.isLimite=e.isLimite||false;
     }
     done++;
     updQueueBar(done,total);
@@ -1952,6 +2448,7 @@ Si no ves un valor usa 0. El JSON debe estar completo y cerrado.`}
   queueRunning=false;
   qs.style.display='none';
   toast(`✅ ${done} factura(s) procesada(s)`,'ok');
+  mostrarAnuncio(); // Anuncio para plan gratis
 }
 
 function updQueueBar(done,total){
@@ -1989,7 +2486,18 @@ function renderQueue(){
     if(isProcessing){
       bodyHtml=`<div class="queue-processing"><div class="spinner"></div><span>Claude está leyendo la factura...</span></div>`;
     } else if(isError){
-      bodyHtml=`<div style="padding:14px 18px;color:var(--red);font-size:13px">❌ ${item.error||'No se pudo leer la factura. Intenta con una foto más clara.'}</div>`;
+      const tipsHtml=item.isLimite?'':`
+        <div style="background:var(--surface2);border-radius:10px;padding:12px;font-size:12px;color:var(--text2);margin-top:10px">
+          <div style="font-weight:600;color:var(--text);margin-bottom:8px">📷 Consejos para mejor lectura:</div>
+          <div style="margin-bottom:4px">• Buena iluminación — evita sombras y reflejos</div>
+          <div style="margin-bottom:4px">• Factura plana — sin arrugas ni dobleces</div>
+          <div style="margin-bottom:4px">• Encuadra solo la factura en la foto</div>
+          <div>• Si está muy arrugada, alísala antes de fotografiar</div>
+        </div>`;
+      bodyHtml=`<div style="padding:14px 18px">
+        <div style="color:var(--red);font-size:13px">❌ ${item.error||'No se pudo leer la factura'}</div>
+        ${tipsHtml}
+      </div>`
     } else if(isDone){
       const catOpts=S.categories.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
       bodyHtml=`
@@ -2013,6 +2521,9 @@ function renderQueue(){
     }
 
     const actionsHtml=isDone?`
+      <div style="background:#FFF8E1;border:1px solid #F9A825;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:12px;color:#795548">
+        ⚠️ Revisa los datos antes de guardar — la IA puede cometer errores
+      </div>
       <div class="queue-card-actions">
         <button class="btn btn-outline" style="font-size:12px" onclick="removeFromQueue('${item.id}')">Descartar</button>
         <button class="btn btn-accent" style="font-size:12px;margin-left:auto" onclick="saveQueueItem('${item.id}')">💾 Guardar factura →</button>
@@ -2079,24 +2590,14 @@ function saveQueueItem(id){
   const fid='F'+Date.now();
   const items=item.data.items||[];
   const nota=item.nota||'';
-  const photoData=item.mime!=='application/pdf'?`data:${item.mime};base64,${item.b64}`:null;
 
-  // Verificar espacio antes de guardar foto
-  if(photoData){
-    const approxSize=photoData.length*0.75/1024/1024; // MB aprox
-    const used=getStorageUsedMB();
-    if(used+approxSize>4.5){
-      const ok=confirm(`⚠️ Espacio casi lleno (${used.toFixed(1)}MB usados).\nGuardar esta foto podría causar errores.\n\n¿Guardar sin foto?`);
-      if(ok){
-        guardarFacturaSinFoto(fid,date,item,items,nota);return;
-      }else{return;}
-    }
-  }
-
-  S.facturas.push({id:fid,date,store:item.data.store||'Tienda',total,items,nota,photo:photoData});
+  // Las fotos NO se guardan en localStorage — evita errores de base64, espacio y CSP
+  // Solo se muestran temporalmente en memoria durante la sesión actual
+  S.facturas.push({id:fid,date,store:item.data.store||'Tienda',total:item.data.total||0,items,nota,photo:null});
   registrarTransaccionesYProductos(fid,date,item.data.store,items,nota);
   item.status='saved';
   save();renderQueue();renderFactList();
+  checkStorageUsage();
   toast(`✅ ${item.data.store||'Factura'} guardada — ${items.length} productos`,'ok');
 }
 
@@ -2105,7 +2606,7 @@ function guardarFacturaSinFoto(fid,date,item,items,nota){
   registrarTransaccionesYProductos(fid,date,item.data.store,items,nota);
   item.status='saved';
   save();renderQueue();renderFactList();
-  toast(`✅ Guardada sin foto (espacio limitado)`,'ok');
+  toast(`✅ Guardada — ${items.length} productos`,'ok');
 }
 
 function registrarTransaccionesYProductos(fid,date,store,items,nota){
@@ -2404,10 +2905,10 @@ function renderProductos(){
     if(p.trend==='up'&&p.pct!==0) tr=`<span class="trend-up">↑ +${p.pct}%</span>`;
     if(p.trend==='down'&&p.pct!==0) tr=`<span class="trend-down">↓ ${p.pct}%</span>`;
     return`<tr>
-      <td style="cursor:pointer;font-weight:600" onclick="openProdModal('${p.id}')" title="Ver historial">
+      <td style="cursor:pointer;font-weight:600;max-width:120px;word-break:break-word" onclick="openProdModal('${p.id}')" title="Ver historial">
         ${p.name} <span style="font-size:10px;color:var(--text3)">📊</span>
       </td>
-      <td><span class="pill" style="background:${color}22;color:${color}">${p.cat}</span></td>
+      <td><span class="pill" style="background:${color}22;color:${color};white-space:nowrap">${p.cat}</span></td>
       <td style="color:var(--text2)">${p.freq}×</td>
       <td>${fmt(p.avg)}</td>
       <td style="font-weight:700;color:var(--accent)">${fmt(p.last)}</td>
@@ -2421,20 +2922,56 @@ function renderProductos(){
 function editarProducto(id){
   const prod=S.products.find(p=>p.id===id);
   if(!prod)return;
-  const nuevoNombre=prompt(`Editar nombre del producto:\n\nNombre actual: "${prod.name}"\n\nEscribe el nuevo nombre:`, prod.name);
-  if(!nuevoNombre||nuevoNombre.trim()===prod.name)return;
-  const trimmed=nuevoNombre.trim();
-  // Verificar si ya existe otro con ese nombre
-  const existe=S.products.find(p=>p.id!==id&&p.name.toLowerCase()===trimmed.toLowerCase());
+
+  // Modal de edición con nombre y categoría
+  const overlay=document.createElement('div');
+  overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:700;display:flex;align-items:center;justify-content:center;padding:20px';
+  overlay.onclick=e=>{if(e.target===overlay)overlay.remove();};
+
+  const catOpts=S.categories.map(c=>`<option value="${c.name}" ${c.name===prod.cat?'selected':''}>${c.name}</option>`).join('');
+
+  const box=document.createElement('div');
+  box.style.cssText='background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.5)';
+  box.innerHTML=`
+    <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:18px">✏️ Editar producto</div>
+    <div class="fg" style="margin-bottom:12px">
+      <label>Nombre</label>
+      <input id="ep-name" class="sinput" style="width:100%" value="${prod.name}">
+    </div>
+    <div class="fg" style="margin-bottom:18px">
+      <label>Categoría</label>
+      <select id="ep-cat" class="ssel" style="width:100%">${catOpts}</select>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button onclick="this.closest('[style*=fixed]').remove()" style="flex:1;padding:10px;background:transparent;border:1.5px solid var(--border2);color:var(--text2);border-radius:10px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer">Cancelar</button>
+      <button onclick="guardarEdicionProducto('${id}',this)" style="flex:1;padding:10px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer">Guardar</button>
+    </div>`;
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+  setTimeout(()=>document.getElementById('ep-name').focus(),100);
+}
+
+function guardarEdicionProducto(id, btn){
+  const prod=S.products.find(p=>p.id===id);
+  if(!prod)return;
+  const nuevoNombre=document.getElementById('ep-name').value.trim();
+  const nuevaCat=document.getElementById('ep-cat').value;
+  if(!nuevoNombre){toast('Escribe un nombre','err');return;}
+
+  // Verificar fusión si existe otro con ese nombre
+  const existe=S.products.find(p=>p.id!==id&&p.name.toLowerCase()===nuevoNombre.toLowerCase());
   if(existe){
-    if(!confirm(`Ya existe "${existe.name}". ¿Fusionar con ese producto? Sus entradas se combinarán.`))return;
+    if(!confirm(`Ya existe "${existe.name}". ¿Fusionar?`))return;
     existe.entries=[...existe.entries,...prod.entries];
+    existe.cat=nuevaCat;
     S.products=S.products.filter(p=>p.id!==id);
     toast(`✅ Fusionado con "${existe.name}"`,'ok');
   } else {
-    prod.name=trimmed;
-    toast(`✅ Renombrado a "${trimmed}"`,'ok');
+    prod.name=nuevoNombre;
+    prod.cat=nuevaCat;
+    toast(`✅ Producto actualizado`,'ok');
   }
+  btn.closest('[style*="fixed"]').remove();
   save();renderProductos();
 }
 
@@ -2442,6 +2979,9 @@ function editarProducto(id){
 // COMPARATIVA
 // ═══════════════════════════════════════════════════════
 function renderComparativa(){
+  // Dibujar evolución y tasa de ahorro
+  drawBar('barR');
+  drawSavingChart();
   const allMons=[...new Set(S.transactions.map(t=>monKey(t.date)))].sort();
   const s1=document.getElementById('cmp-m1'),s2=document.getElementById('cmp-m2');
   const v1=s1.value,v2=s2.value;
@@ -2519,7 +3059,7 @@ function renderPresupuesto(){
     return`<div style="display:flex;align-items:center;gap:9px;background:var(--surface2);border-radius:9px;padding:9px 12px">
       <div style="width:9px;height:9px;border-radius:50%;background:${cat.color};flex-shrink:0"></div>
       <div style="flex:1;font-size:13px;font-weight:500">${cat.name}<span style="font-size:11px;color:var(--text3)">${pctOfIng}</span></div>
-      <input type="number" class="sinput" style="width:110px;text-align:right;padding:6px 10px;font-size:13px" placeholder="0" value="${budg||''}" data-cat="${cat.name}">
+      <input type="number" class="sinput" style="width:80px;text-align:right;padding:6px 8px;font-size:13px;min-width:0;flex-shrink:0" placeholder="0" value="${budg||''}" data-cat="${cat.name}">
     </div>`;}).join('');
   drawBudg('budgState');
   renderCatChips();
@@ -2610,6 +3150,7 @@ function setTheme(t){
 }
 
 function renderAjustes(){
+  checkApiKey();
   document.querySelectorAll('.theme-card').forEach(c=>c.classList.remove('active'));
   document.getElementById('tc-'+S.config.theme).classList.add('active');
   const a80=document.getElementById('alert80');const a100=document.getElementById('alert100');
@@ -2733,10 +3274,213 @@ function saveConfig(){
   save();
 }
 
+// ═══════════════════════════════════════════════════════
+// EXPORTAR EXCEL
+// ═══════════════════════════════════════════════════════
+async function exportarExcel(){
+  toast('⏳ Generando Excel...','ok');
+  try{
+    // Cargar SheetJS dinámicamente
+    if(!window.XLSX){
+      await new Promise((res,rej)=>{
+        const s=document.createElement('script');
+        s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+        s.onload=res; s.onerror=rej;
+        document.head.appendChild(s);
+      });
+    }
+    const wb=XLSX.utils.book_new();
+    const now=new Date();
+    const mes=now.toLocaleString('es-CO',{month:'long',year:'numeric'});
+    const txAll=S.transactions||[];
+    const factAll=S.facturas||[];
+    const cats=S.categories||[];
+    const budgets=S.budgets||{};
+    const salario=S.salario?.monto||0;
+
+    // ── HOJA 1: RESUMEN ──────────────────────────────────
+    const gastosTx=txAll.filter(t=>t.type==='expense');
+    const ingresosTx=txAll.filter(t=>t.type==='income');
+    const totalGastos=gastosTx.reduce((a,t)=>a+(t.amount||0),0);
+    const totalIngresos=ingresosTx.reduce((a,t)=>a+(t.amount||0),0);
+    const balance=totalIngresos-totalGastos;
+    const tasaAhorro=totalIngresos>0?Math.round((balance/totalIngresos)*100):0;
+
+    const wsResumen=XLSX.utils.aoa_to_sheet([
+      ['CASA·IA — REPORTE FINANCIERO DEL HOGAR'],
+      [`Período: ${mes}`],
+      [`Generado: ${now.toLocaleDateString('es-CO')}`],
+      [],
+      ['RESUMEN DEL MES',''],
+      ['Ingresos totales', totalIngresos],
+      ['Gastos totales', totalGastos],
+      ['Balance', balance],
+      ['Tasa de ahorro', tasaAhorro/100],
+      ['Salario configurado', salario],
+      [],
+      ['GASTOS POR CATEGORÍA','Monto','% del total','Presupuesto','% usado'],
+      ...cats.map(c=>{
+        const monto=gastosTx.filter(t=>t.category===c.name).reduce((a,t)=>a+(t.amount||0),0);
+        const pct=totalGastos>0?monto/totalGastos:0;
+        const budget=budgets[c.name]||0;
+        const pctBudget=budget>0?monto/budget:0;
+        return [c.name, monto, pct, budget, pctBudget];
+      }),
+      [],
+      ['FACTURAS ESCANEADAS CON IA','','','',''],
+      ['Total facturas', factAll.length],
+      ['Total en facturas', factAll.reduce((a,f)=>a+(f.total||0),0)],
+    ]);
+
+    // Estilos de ancho de columna
+    wsResumen['!cols']=[{wch:30},{wch:18},{wch:15},{wch:18},{wch:12}];
+
+    // Formato moneda y porcentaje
+    const fmtCOP='#,##0';
+    const fmtPct='0%';
+    ['B6','B7','B8','B10','B24'].forEach(ref=>{ if(wsResumen[ref]) wsResumen[ref].z=fmtCOP; });
+    ['D9'].forEach(ref=>{ if(wsResumen[ref]) wsResumen[ref].z=fmtPct; });
+
+    XLSX.utils.book_append_sheet(wb, wsResumen, '📊 Resumen');
+
+    // ── HOJA 2: GASTOS ───────────────────────────────────
+    const wsGastos=XLSX.utils.aoa_to_sheet([
+      ['GASTOS DEL HOGAR'],
+      [],
+      ['Fecha','Descripción','Categoría','Monto','Notas'],
+      ...gastosTx
+        .sort((a,b)=>new Date(b.date)-new Date(a.date))
+        .map(t=>[
+          t.date ? new Date(t.date) : '',
+          t.desc||t.description||'',
+          t.category||'Sin categoría',
+          t.amount||0,
+          t.note||''
+        ]),
+      [],
+      ['TOTAL','','', totalGastos,''],
+    ]);
+    wsGastos['!cols']=[{wch:14},{wch:30},{wch:20},{wch:15},{wch:25}];
+    XLSX.utils.book_append_sheet(wb, wsGastos, '💸 Gastos');
+
+    // ── HOJA 3: INGRESOS ─────────────────────────────────
+    const wsIngresos=XLSX.utils.aoa_to_sheet([
+      ['INGRESOS DEL HOGAR'],
+      [],
+      ['Fecha','Descripción','Monto','Notas'],
+      ...ingresosTx
+        .sort((a,b)=>new Date(b.date)-new Date(a.date))
+        .map(t=>[
+          t.date ? new Date(t.date) : '',
+          t.desc||t.description||'',
+          t.amount||0,
+          t.note||''
+        ]),
+      [],
+      ['TOTAL','', totalIngresos,''],
+    ]);
+    wsIngresos['!cols']=[{wch:14},{wch:30},{wch:15},{wch:25}];
+    XLSX.utils.book_append_sheet(wb, wsIngresos, '💰 Ingresos');
+
+    // ── HOJA 4: FACTURAS ─────────────────────────────────
+    const wsFact=XLSX.utils.aoa_to_sheet([
+      ['FACTURAS ESCANEADAS CON IA'],
+      [],
+      ['Fecha','Establecimiento','Categoría','Total','# Productos'],
+      ...factAll
+        .sort((a,b)=>new Date(b.date)-new Date(a.date))
+        .map(f=>[
+          f.date ? new Date(f.date) : '',
+          f.store||f.nombre||'',
+          f.category||'',
+          f.total||0,
+          (f.items||f.productos||[]).length
+        ]),
+      [],
+      ['TOTAL','','', factAll.reduce((a,f)=>a+(f.total||0),0),''],
+    ]);
+    wsFact['!cols']=[{wch:14},{wch:35},{wch:20},{wch:15},{wch:12}];
+    XLSX.utils.book_append_sheet(wb, wsFact, '🧾 Facturas');
+
+    // ── HOJA 5: PRESUPUESTO ──────────────────────────────
+    const wsPresup=XLSX.utils.aoa_to_sheet([
+      ['PRESUPUESTO MENSUAL'],
+      [`Salario: ${salario.toLocaleString('es-CO')}`],
+      [],
+      ['Categoría','Presupuesto','Gastado','Diferencia','% Usado'],
+      ...cats.map(c=>{
+        const gastado=gastosTx.filter(t=>t.category===c.name).reduce((a,t)=>a+(t.amount||0),0);
+        const budget=budgets[c.name]||0;
+        const diff=budget-gastado;
+        const pct=budget>0?gastado/budget:0;
+        return [c.name, budget, gastado, diff, pct];
+      }),
+    ]);
+    wsPresup['!cols']=[{wch:25},{wch:18},{wch:15},{wch:15},{wch:12}];
+    XLSX.utils.book_append_sheet(wb, wsPresup, '🎯 Presupuesto');
+
+    // ── DESCARGAR ─────────────────────────────────────────
+    const fecha=now.toISOString().slice(0,10);
+    XLSX.writeFile(wb, `CasaIA_${fecha}.xlsx`);
+    toast('✅ Excel descargado exitosamente','ok');
+
+  }catch(e){
+    console.error('Error Excel:',e);
+    toast('❌ Error generando Excel','err');
+  }
+}
+
 function exportData(){
-  const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='casaIA_datos.json';a.click();
-  toast('Datos exportados','ok');
+  const json=JSON.stringify(S,null,2);
+  try{
+    // Intentar descarga directa
+    const dataUrl='data:application/json;charset=utf-8,'+encodeURIComponent(json);
+    const a=document.createElement('a');
+    a.href=dataUrl;
+    a.download='casaIA_datos.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    toast('✅ Datos exportados','ok');
+  }catch(e){
+    // Si falla, mostrar el JSON en pantalla para copiar
+    mostrarJSONEnPantalla(json);
+  }
+}
+
+function mostrarJSONEnPantalla(json){
+  const overlay=document.createElement('div');
+  overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:900;display:flex;align-items:center;justify-content:center;padding:20px';
+  overlay.innerHTML=`
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;width:100%;max-width:600px;max-height:90vh;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800">📋 Copia tus datos</div>
+        <button onclick="this.closest('[style*=fixed]').remove()" style="background:none;border:none;cursor:pointer;font-size:22px;color:var(--text3)">×</button>
+      </div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6">
+        Selecciona todo el texto de abajo (Ctrl+A dentro del cuadro) y cópialo.<br>
+        Luego pégalo en un archivo <strong>.json</strong> en tu computador.
+      </div>
+      <textarea id="json-export-area" style="flex:1;min-height:300px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--text);font-family:monospace;font-size:11px;resize:none;outline:none">${json}</textarea>
+      <div style="display:flex;gap:8px">
+        <button onclick="
+          const ta=document.getElementById('json-export-area');
+          ta.select();
+          ta.setSelectionRange(0,99999);
+          document.execCommand('copy');
+          this.textContent='✅ Copiado';
+          setTimeout(()=>this.textContent='📋 Copiar todo',2000);
+        " style="flex:1;padding:10px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-family:\'Instrument Sans\',sans-serif;font-size:14px;font-weight:700;cursor:pointer">📋 Copiar todo</button>
+        <button onclick="this.closest('[style*=fixed]').remove()" style="padding:10px 20px;background:transparent;border:1.5px solid var(--border2);color:var(--text2);border-radius:10px;font-family:\'Instrument Sans\',sans-serif;font-size:14px;cursor:pointer">Cerrar</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  // Seleccionar todo automáticamente
+  setTimeout(()=>{
+    const ta=document.getElementById('json-export-area');
+    if(ta){ta.focus();ta.select();}
+  },100);
 }
 
 function importData(input){
@@ -2851,7 +3595,7 @@ function renderMovimientos(){
     const srcIcon=t.source==='factura'?'🧾':t.source==='recurrente'?'🔄':'✏️';
     return`<tr>
       <td style="padding:10px 15px;color:var(--text2);white-space:nowrap">${fmtD(t.date)}</td>
-      <td style="padding:10px 15px">
+      <td style="padding:10px 15px;max-width:150px;word-break:break-word">
         <div style="font-weight:500">${srcIcon} ${t.desc}</div>
         ${t.notes?`<div style="font-size:11px;color:var(--text3);margin-top:2px">${t.notes}</div>`:''}
       </td>
@@ -2945,6 +3689,197 @@ function confirmarAbonoSugerido(btn){
   overlay.remove();
   toast(`✅ ${fmt(amt)} abonado a "${meta.name}"`, 'ok');
 }
+
+// ═══════════════════════════════════════════════════════
+// API KEY — GESTIÓN
+// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+// BACKEND URL
+// ═══════════════════════════════════════════════════════
+const BACKEND_URL='https://casaia-backend-production.up.railway.app';
+
+// ═══════════════════════════════════════════════════════
+// ADMOB — Anuncios intersticiales para plan gratis
+// ═══════════════════════════════════════════════════════
+const ADMOB_INTERSTITIAL_ID='TU_AD_UNIT_ID_AQUI'; // Reemplazar con tu Ad Unit ID
+
+async function initAdMob(){
+  try{
+    if(!window.Capacitor||!window.Capacitor.Plugins||!window.Capacitor.Plugins.AdMob)return;
+    const {AdMob}=window.Capacitor.Plugins;
+    await AdMob.initialize({
+      requestTrackingAuthorization:false,
+      testingDevices:[],
+      initializeForTesting:false
+    });
+    console.log('AdMob inicializado');
+  }catch(e){
+    console.warn('AdMob no disponible:',e.message);
+  }
+}
+
+async function mostrarAnuncio(){
+  try{
+    const plan=localStorage.getItem('casaia_plan')||'gratis';
+    if(plan!=='gratis')return; // Solo para plan gratis
+    if(!window.Capacitor||!window.Capacitor.Plugins||!window.Capacitor.Plugins.AdMob)return;
+    const {AdMob}=window.Capacitor.Plugins;
+    await AdMob.prepareInterstitial({adId:ADMOB_INTERSTITIAL_ID});
+    await AdMob.showInterstitial();
+  }catch(e){
+    console.warn('Error mostrando anuncio:',e.message);
+  }
+}
+
+function getApiKey(){
+  return 'backend'; // Ya no se usa API key directa
+}
+
+function getDeviceId(){
+  let id=localStorage.getItem('casaia_device_id');
+  if(!id){
+    id='dev_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+    localStorage.setItem('casaia_device_id',id);
+  }
+  return id;
+}
+
+async function registrarUsuario(){
+  try{
+    const deviceId=getDeviceId();
+    const resp=await fetch(BACKEND_URL+'/api/usuario/registro',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({deviceId})
+    });
+    const data=await resp.json();
+    if(data.success){
+      localStorage.setItem('casaia_user_id',data.usuario.id);
+      localStorage.setItem('casaia_plan',data.usuario.plan);
+    }
+  }catch(e){console.warn('Error registrando usuario:',e);}
+}
+
+function getUserId(){
+  return localStorage.getItem('casaia_user_id')||getDeviceId();
+}
+
+// ── ESTADO DE ESCANEOS ────────────────────────────────
+async function actualizarEstadoEscaneos(){
+  try{
+    const deviceId=getDeviceId();
+    const resp=await fetch(BACKEND_URL+'/api/usuario/'+deviceId);
+    if(!resp.ok)return;
+    const data=await resp.json();
+    if(!data.success)return;
+    const uso=data.uso;
+    const plan=data.usuario.plan||'gratis';
+    localStorage.setItem('casaia_plan',plan);
+
+    const countEl=document.getElementById('escaneos-count');
+    const progressEl=document.getElementById('videos-progress');
+    const faltantesEl=document.getElementById('videos-faltantes');
+
+    if(countEl){
+      if(plan==='premium'){
+        countEl.textContent=uso.disponibles+' de '+uso.totalEscaneos;
+        countEl.style.color='var(--green)';
+        if(progressEl)progressEl.style.display='none';
+      } else {
+        if(uso.disponibles>0){
+          countEl.textContent=uso.disponibles+' disponibles';
+          countEl.style.color='var(--accent)';
+          if(progressEl)progressEl.style.display='none';
+        } else {
+          countEl.textContent='0 disponibles';
+          countEl.style.color='var(--red)';
+          if(progressEl){
+            progressEl.style.display='block';
+            if(faltantesEl)faltantesEl.textContent=uso.proximoEscaneoEn||2;
+            // Ocultar boton si ya llego al limite de videos
+            const btn=progressEl.querySelector('button');
+            if(btn){
+              if(uso.videosVistos>=uso.videosMaxSemana){
+                btn.textContent='⛔ Límite de videos alcanzado esta semana';
+                btn.disabled=true;
+              } else {
+                btn.textContent='🎬 Ver video para ganar escaneo — '+uso.proximoEscaneoEn+' video(s) más necesarios';
+                btn.disabled=false;
+              }
+            }
+          }
+        }
+      }
+    }
+  }catch(e){console.warn('Error actualizando escaneos:',e);}
+}
+
+// ── VER VIDEO REWARDED ────────────────────────────────
+async function verVideoRewarded(){
+  const plan=localStorage.getItem('casaia_plan')||'gratis';
+  if(plan==='premium'){toast('Ya eres Premium — sin anuncios 🎉','ok');return;}
+
+  try{
+    const {AdMob}=window.Capacitor?.Plugins||{};
+    if(AdMob){
+      // Mostrar anuncio rewarded real
+      await AdMob.prepareRewardVideoAd({adId:'TU_REWARDED_AD_UNIT_ID'});
+      await AdMob.showRewardVideoAd();
+    } else {
+      // En web — simular video (solo para pruebas)
+      toast('🎬 Simulando video de 3 segundos...','');
+      await new Promise(r=>setTimeout(r,3000));
+    }
+    // Registrar video en backend
+    const resp=await fetch(BACKEND_URL+'/api/video/visto',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({userId:getUserId()})
+    });
+    const data=await resp.json();
+    if(data.success){
+      if(data.proximoEscaneoEn===0||data.escaneosPorVideos>0){
+        toast('🎉 ¡Ganaste 1 escaneo! Ya puedes subir una factura','ok');
+      } else {
+        toast('Video visto ✅ — '+data.proximoEscaneoEn+' video(s) más para el siguiente escaneo','');
+      }
+      await actualizarEstadoEscaneos();
+    } else {
+      toast(data.mensaje||'Límite de videos alcanzado','err');
+    }
+  }catch(e){
+    console.warn('Error en video rewarded:',e);
+    toast('Error al procesar el video','err');
+  }
+}
+
+// ── TOMAR FOTO CON VERIFICACION ───────────────────────
+async function tomarFotoConVerificacion(){
+  const plan=localStorage.getItem('casaia_plan')||'gratis';
+  if(plan!=='premium'){
+    // Plan gratis: no puede usar cámara directa
+    toast('📷 La cámara directa es exclusiva de Premium. Usa Galería o ve videos para ganar escaneos.','err');
+    return;
+  }
+  // Solo premium puede usar cámara directa
+  await tomarFoto();
+}
+
+// ── ABRIR GALERÍA ─────────────────────────────────────
+function abrirGaleria(){
+  document.getElementById('factFile').click();
+}
+
+function checkApiKey(){
+  // Ya no se usa API key — el backend maneja todo
+}
+
+function setOnbTab(n){}
+function abrirAnthropic(){}
+function validarKeyInput(inp){}
+function guardarApiKey(){}
+function usarSinIA(){}
+function actualizarApiKey(){}
 
 // ═══════════════════════════════════════════════════════
 // GASTOS RECURRENTES
@@ -3227,10 +4162,10 @@ SALARIO FIJO CONFIGURADO: ${S.salario.monto>0?fmt(S.salario.monto)+' día '+S.sa
 async function runAnalysis(tipo){
   const titles={resumen:'📊 Resumen del mes',ahorro:'💡 Consejos de ahorro',precios:'📈 Alertas de precios',proyeccion:'🔮 Proyección del mes'};
   const prompts={
-    resumen:`Eres un asesor financiero personal amigable y directo. Analiza estos datos financieros del hogar y da un resumen claro del mes: qué fue bien, qué fue mal, cuál es la categoría más costosa, cómo está la tasa de ahorro. Sé específico con los números. Máximo 200 palabras. Usa emojis para hacer el texto más visual.`,
-    ahorro:`Eres un asesor financiero personal. Basándote en los datos del mes, identifica 3-4 oportunidades concretas de ahorro. Sé muy específico: menciona categorías reales y montos exactos. Propón acciones concretas. Máximo 200 palabras. Usa emojis.`,
-    precios:`Eres un analista de precios del hogar. Revisa qué productos han subido de precio, evalúa si el gasto total en alimentación y aseo es razonable, e identifica dónde están los mayores aumentos. Máximo 200 palabras. Usa emojis.`,
-    proyeccion:`Eres un planificador financiero. Basándote en el historial de los meses anteriores y los datos actuales, proyecta cómo terminará el mes financieramente. Estima si habrá superávit o déficit y por cuánto. Máximo 200 palabras. Usa emojis.`
+    resumen:`Eres el asistente financiero de Casa·IA. Solo analizas los datos financieros del hogar del usuario que se te proporcionan — nunca hablas de temas externos. Analiza estos datos y da un resumen claro del mes: qué fue bien, qué fue mal, cuál es la categoría más costosa, cómo está la tasa de ahorro. Sé específico con los números reales. Máximo 200 palabras. Usa emojis.`,
+    ahorro:`Eres el asistente financiero de Casa·IA. Solo analizas los datos financieros del hogar del usuario que se te proporcionan — nunca hablas de temas externos. Basándote en los datos del mes, identifica 3-4 oportunidades concretas de ahorro. Menciona categorías reales y montos exactos. Propón acciones concretas. Máximo 200 palabras. Usa emojis.`,
+    precios:`Eres el asistente financiero de Casa·IA. Solo analizas los datos financieros del hogar del usuario que se te proporcionan — nunca hablas de temas externos. Revisa qué productos han subido de precio, evalúa si el gasto en alimentación y aseo es razonable, e identifica los mayores aumentos. Máximo 200 palabras. Usa emojis.`,
+    proyeccion:`Eres el asistente financiero de Casa·IA. Solo analizas los datos financieros del hogar del usuario que se te proporcionan — nunca hablas de temas externos. Basándote en el historial y datos actuales, proyecta cómo terminará el mes. Estima si habrá superávit o déficit y por cuánto. Máximo 200 palabras. Usa emojis.`
   };
 
   document.getElementById('ai-analysis-title').textContent=titles[tipo];
@@ -3243,18 +4178,18 @@ async function runAnalysis(tipo){
   const context=buildFinanceContext(mesKey);
 
   try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+    const resp=await fetch(BACKEND_URL+'/api/analisis',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:600,
-        messages:[{role:'user',content:`${prompts[tipo]}\n\nDATA FINANCIERA:\n${context}`}]
+        userId:getUserId(),
+        prompt:prompts[tipo],
+        contexto:context
       })
     });
-    if(!resp.ok)throw new Error('API error '+resp.status);
+    if(!resp.ok)throw new Error('Error del servidor '+resp.status);
     const data=await resp.json();
-    const text=data.content?.find(b=>b.type==='text')?.text||'Sin respuesta';
+    const text=data.text||'Sin respuesta';
     status.classList.remove('show');
     // Efecto de escritura
     box.textContent='';
@@ -3292,18 +4227,18 @@ async function askFreeQuestion(){
   }).join('\n');
 
   try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+    const resp=await fetch(BACKEND_URL+'/api/analisis',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:500,
-        messages:[{role:'user',content:`Eres un asesor financiero personal. Responde esta pregunta sobre las finanzas del hogar de forma clara y directa, usando los datos reales disponibles. Máximo 150 palabras.\n\nHISTORIAL COMPLETO:\n${fullCtx}\n\nDATOS MES ACTUAL:\n${context}\n\nPREGUNTA: ${q}`}]
+        userId:getUserId(),
+        prompt:`Eres el asistente financiero de Casa·IA. Tu única función es responder preguntas sobre los datos financieros del hogar del usuario que se te proporcionan. Solo puedes hablar de gastos, ingresos, facturas, presupuesto, categorías y métricas de ahorro que aparecen en esos datos. Si el usuario pregunta algo que no tiene relación con sus finanzas del hogar (política, recetas, viajes, entretenimiento, inversiones generales u otros temas), responde amablemente: "Solo puedo ayudarte con información sobre tus finanzas del hogar registradas en Casa·IA 🏠". Usa los datos reales, sé directo y específico con los números. Máximo 150 palabras. Usa emojis.\n\nHISTORIAL COMPLETO:\n${fullCtx}\n\nDATOS MES ACTUAL:\n${context}\n\nPREGUNTA DEL USUARIO: ${q}`,
+        contexto:context
       })
     });
-    if(!resp.ok)throw new Error('API '+resp.status);
+    if(!resp.ok)throw new Error('Error del servidor '+resp.status);
     const data=await resp.json();
-    const text=data.content?.find(b=>b.type==='text')?.text||'Sin respuesta';
+    const text=data.text||'Sin respuesta';
     status.classList.remove('show');
     ansBox.style.display='block';
     ansBox.textContent='';
@@ -3835,90 +4770,66 @@ function renderInflacion(){
 }
 
 // ═══════════════════════════════════════════════════════
+// COMPARTIR APP
+// ═══════════════════════════════════════════════════════
+function compartirApp(){
+  const url='https://salopezlo.github.io/casaia/';
+  const msg=`🏠 *Casa·IA* — App de control de gastos del hogar con inteligencia artificial\n\n✅ Escanea facturas con IA\n✅ Registra gastos e ingresos\n✅ Gráficas y presupuesto mensual\n✅ Gratis y sin instalación\n\n👉 ${url}`;
+  const waUrl=`https://wa.me/?text=${encodeURIComponent(msg)}`;
+  // Intentar Web Share API primero (más nativo en móvil)
+  if(navigator.share){
+    navigator.share({
+      title:'Casa·IA — Control de Gastos',
+      text:'App de control de gastos del hogar con IA — gratis y sin instalación',
+      url
+    }).catch(()=>{});
+  } else {
+    window.open(waUrl,'_blank');
+  }
+}
+
+// ═══════════════════════════════════════════════════════
 // PWA — MANIFEST + SERVICE WORKER INLINE
 // ═══════════════════════════════════════════════════════
 function initPWA(){
-  // 1. Manifest dinámico
-  const manifest={
-    name:'Casa·IA — Control de Gastos',
-    short_name:'Casa·IA',
-    description:'Control inteligente de gastos del hogar con IA',
-    start_url:window.location.href,
-    display:'standalone',
-    background_color:'#0F0E0C',
-    theme_color:'#E8A020',
-    orientation:'portrait-primary',
-    icons:[
-      {src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='38' fill='%230F0E0C'/><text y='135' x='96' text-anchor='middle' font-size='120'>🏠</text></svg>",sizes:'192x192',type:'image/svg+xml'},
-      {src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%230F0E0C'/><text y='360' x='256' text-anchor='middle' font-size='320'>🏠</text></svg>",sizes:'512x512',type:'image/svg+xml',purpose:'any maskable'}
-    ],
-    categories:['finance','productivity'],
-    lang:'es',
-    dir:'ltr'
-  };
-  const manifestBlob=new Blob([JSON.stringify(manifest)],{type:'application/json'});
-  const manifestURL=URL.createObjectURL(manifestBlob);
-  const link=document.createElement('link');
-  link.rel='manifest';link.href=manifestURL;
-  document.head.appendChild(link);
+  // Manifest dinámico
+  try{
+    const manifest={
+      name:'Casa·IA — Control de Gastos',
+      short_name:'Casa·IA',
+      description:'Control inteligente de gastos del hogar con IA',
+      start_url:'./',
+      display:'standalone',
+      background_color:'#0F0E0C',
+      theme_color:'#E8A020',
+      orientation:'portrait-primary',
+      icons:[
+        {src:'./icon-192.png',sizes:'192x192',type:'image/png'},
+        {src:'./icon-512.png',sizes:'512x512',type:'image/png',purpose:'any maskable'}
+      ],
+      categories:['finance','productivity'],
+      lang:'es'
+    };
+    const blob=new Blob([JSON.stringify(manifest)],{type:'application/json'});
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement('link');
+    link.rel='manifest';link.href=url;
+    document.head.appendChild(link);
+  }catch(e){ console.log('Manifest no disponible en este entorno'); }
 
-  // 2. Service Worker — cache offline
+  // Registrar Service Worker externo (funciona en Netlify, no en Claude.ai)
   if('serviceWorker' in navigator){
-    const swCode=`
-const CACHE='casaia-v1';
-const ASSETS=[self.location.href];
-
-self.addEventListener('install',e=>{
-  e.waitUntil(
-    caches.open(CACHE).then(cache=>cache.addAll(ASSETS))
-  );
-  self.skipWaiting();
-});
-
-self.addEventListener('activate',e=>{
-  e.waitUntil(
-    caches.keys().then(keys=>
-      Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))
-    )
-  );
-  self.clients.claim();
-});
-
-self.addEventListener('fetch',e=>{
-  // Para APIs externas siempre ir a la red
-  if(e.request.url.includes('anthropic.com')||e.request.url.includes('googleapis.com')){
-    e.respondWith(fetch(e.request).catch(()=>new Response('',{status:503})));
-    return;
+    navigator.serviceWorker.register('./sw.js')
+      .then(()=>console.log('SW registrado correctamente'))
+      .catch(()=>{}); // silencioso si no está disponible
   }
-  // Para todo lo demás: cache first, luego red
-  e.respondWith(
-    caches.match(e.request).then(cached=>{
-      if(cached)return cached;
-      return fetch(e.request).then(response=>{
-        if(response.ok){
-          const clone=response.clone();
-          caches.open(CACHE).then(cache=>cache.put(e.request,clone));
-        }
-        return response;
-      }).catch(()=>caches.match('/'));
-    })
-  );
-});
-    `;
-    const swBlob=new Blob([swCode],{type:'application/javascript'});
-    const swURL=URL.createObjectURL(swBlob);
-    navigator.serviceWorker.register(swURL,{scope:'./'})
-      .then(reg=>{
-        console.log('SW registrado:', reg.scope);
-        // Mostrar prompt de instalación cuando esté disponible
-        window.addEventListener('beforeinstallprompt',e=>{
-          e.preventDefault();
-          window._installPrompt=e;
-          showInstallBanner();
-        });
-      })
-      .catch(err=>console.warn('SW no disponible:', err));
-  }
+
+  // Banner de instalación
+  window.addEventListener('beforeinstallprompt',e=>{
+    e.preventDefault();
+    window._installPrompt=e;
+    showInstallBanner();
+  });
 }
 
 function showInstallBanner(){
@@ -3977,6 +4888,8 @@ function checkInstallable(){
 // INIT
 // ═══════════════════════════════════════════════════════
 load();
+// Limpiar fotos guardadas — causan errores de base64 y ocupan mucho espacio
+S.facturas=S.facturas.map(f=>({...f,photo:null}));
 S.products=S.products.map(p=>({...p,id:p.id||('P'+Math.random()),entries:Array.isArray(p.entries)?p.entries:[]}));
 S.transactions=S.transactions.map(t=>({...t,id:t.id||Date.now()+Math.random()}));
 S.recGastos=S.recGastos||[];
@@ -4001,9 +4914,16 @@ save();
 
 document.documentElement.setAttribute('data-theme',S.config.theme||'dark');
 document.getElementById('i-date').value=todayStr();
+// Ocultar onboarding — ya no se necesita API key
+const onb=document.getElementById('onboarding');
+if(onb)onb.style.display='none';
 aiCurMonth=S.curMonth;aiCurYear=S.curYear;
 initEnterHandlers();
 initPWA();
+checkApiKey();
+registrarUsuario(); // Registrar usuario en el backend
+initAdMob(); // Inicializar AdMob
+setTimeout(actualizarEstadoEscaneos, 1500); // Cargar estado de escaneos
 renderResumen();
 renderFactList();
 setTimeout(checkInstallable, 2000);
