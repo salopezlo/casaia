@@ -51,10 +51,10 @@
 }
 .bnav-btn {
   flex:1;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;gap:3px;
+  justify-content:center;gap:4px;
   background:none;border:none;cursor:pointer;
   color:var(--text3);transition:all .2s;
-  padding:10px 4px 8px;
+  padding:12px 4px 10px;
   position:relative;
 }
 .bnav-btn.active { color:var(--accent); }
@@ -155,7 +155,7 @@ main { padding-bottom:calc(60px + max(16px, env(safe-area-inset-bottom))); }
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Instrument Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; transition:background .3s,color .3s; }
+body { font-family:'Instrument Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; transition:background .3s,color .3s; font-size:15px; -webkit-text-size-adjust:100%; }
 
 /* ══════════════════════════════════════════
    NAV
@@ -186,7 +186,7 @@ nav {
   color:#fff; font-size:9px; font-weight:800; margin-left:4px; vertical-align:middle;
 }
 
-main { max-width:1160px; margin:0 auto; padding:16px 14px; overflow-x:hidden; }
+main { max-width:1160px; margin:0 auto; padding:16px 14px 90px; overflow-x:hidden; }
 .page { display:none; animation:fadeIn .2s ease; }
 .page.active { display:block; }
 @keyframes fadeIn { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:none} }
@@ -196,7 +196,7 @@ main { max-width:1160px; margin:0 auto; padding:16px 14px; overflow-x:hidden; }
 ══════════════════════════════════════════ */
 .pg-title { font-family:'Syne',sans-serif; font-size:26px; font-weight:800; margin-bottom:6px; }
 .pg-sub { color:var(--text2); font-size:14px; margin-bottom:24px; line-height:1.5; }
-.card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px; box-shadow:var(--shadow); }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 16px; box-shadow:var(--shadow); }
 .card-title { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; margin-bottom:16px; }
 .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
 .three-col { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:16px; }
@@ -271,7 +271,7 @@ canvas.donut { flex-shrink:0; }
 .prod-wrap { background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
 .prod-table { width:100%; border-collapse:collapse; }
 .prod-table th { background:var(--surface2); text-align:left; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--text3); padding:11px 15px; }
-.prod-table td { padding:10px 15px; border-bottom:1px solid var(--border2); font-size:13px; }
+.prod-table td { padding:12px 10px; border-bottom:1px solid var(--border2); font-size:14px; }
 .prod-table tr:hover td { background:var(--surface2); }
 .prod-table tr:last-child td { border:none; }
 .trend-up { color:var(--red); font-weight:700; }
@@ -284,14 +284,14 @@ canvas.donut { flex-shrink:0; }
 .fg { margin-bottom:13px; }
 .fg label { display:block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.8px; color:var(--text3); margin-bottom:6px; }
 .fg input,.fg select,.fg textarea {
-  width:100%; padding:9px 12px; background:var(--surface2); border:1.5px solid var(--border);
-  border-radius:8px; color:var(--text); font-family:'Instrument Sans',sans-serif; font-size:13px; outline:none; transition:border-color .2s;
+  width:100%; padding:12px 14px; background:var(--surface2); border:1.5px solid var(--border);
+  border-radius:12px; color:var(--text); font-family:'Instrument Sans',sans-serif; font-size:15px; outline:none; transition:border-color .2s;
 }
 .fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--accent); }
 .fg textarea { resize:vertical; min-height:56px; }
 .frow { display:grid; grid-template-columns:1fr 1fr; gap:11px; }
 .frow3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:11px; }
-.btn { padding:9px 18px; border-radius:9px; border:none; cursor:pointer; font-family:'Instrument Sans',sans-serif; font-size:13px; font-weight:700; transition:all .2s; }
+.btn { padding:12px 20px; border-radius:12px; border:none; cursor:pointer; font-family:'Instrument Sans',sans-serif; font-size:14px; font-weight:700; transition:all .2s; }
 .btn-accent { background:var(--accent); color:#fff; }
 .btn-accent:hover { opacity:.88; }
 .btn-green { background:var(--green); color:#fff; }
@@ -729,7 +729,7 @@ mark {
   </button>
   <button class="bnav-btn" id="bn-movimientos" onclick="goPage('movimientos',this,'bn-movimientos')">
     <span class="bnav-icon">📋</span>
-    <span class="bnav-label">Gastos</span>
+    <span class="bnav-label">Movimientos</span>
   </button>
   <button class="bnav-btn" id="bn-more" onclick="toggleMoreMenu()">
     <span class="bnav-icon">☰</span>
@@ -1098,9 +1098,12 @@ mark {
 
   <!-- FACTURAS GUARDADAS -->
   <div class="card">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
       <div class="card-title" style="margin:0">Facturas guardadas</div>
-      <span id="fact-count-badge" style="font-size:12px;color:var(--text3)"></span>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span id="fact-count-badge" style="font-size:12px;color:var(--text3)"></span>
+        <button class="btn btn-outline" style="font-size:11px;padding:5px 10px;color:var(--red);border-color:var(--red)" onclick="borrarTodasFacturas()">🗑 Borrar todas</button>
+      </div>
     </div>
     <div id="factListBody"></div>
   </div>
@@ -1124,8 +1127,7 @@ mark {
   <div class="prod-wrap" style="overflow-x:auto">
     <table class="prod-table" style="min-width:600px">
       <thead><tr>
-        <th>Producto</th><th>Categoría</th><th>Compras</th>
-        <th>Precio prom.</th><th>Último precio</th><th>Tendencia</th><th>Total gastado</th><th></th>
+        <th>Producto</th><th>Categoría</th><th>Compras</th><th style="text-align:right">Último precio</th><th style="text-align:right">Total</th><th></th>
       </tr></thead>
       <tbody id="prodBody"></tbody>
     </table>
@@ -1154,11 +1156,7 @@ mark {
     <span style="color:var(--text3);font-size:16px;font-weight:700">vs</span>
     <select class="ssel" id="cmp-m2" onchange="renderComparativa()"><option value="">Mes a comparar</option></select>
   </div>
-  <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;align-items:center">
-    <select class="ssel" id="cmp-m1" onchange="renderComparativa()"><option value="">Mes base</option></select>
-    <span style="color:var(--text3);font-size:16px;font-weight:700">vs</span>
-    <select class="ssel" id="cmp-m2" onchange="renderComparativa()"><option value="">Mes a comparar</option></select>
-  </div>
+  <div style="margin-bottom:20px;font-size:13px;color:var(--text3)">Selecciona dos meses para comparar</div>
   <div class="comp-kpi-grid" id="compKpis"></div>
   <div class="two-col">
     <div class="card"><div class="card-title">🔴 Productos que subieron</div>
@@ -1211,7 +1209,7 @@ mark {
   <div class="pg-sub">Personaliza la app a tu gusto</div>
 
   <div class="card" style="margin-bottom:16px;text-align:center;padding:12px">
-    <div style="font-size:12px;color:var(--text3)">Casa·IA <strong style="color:var(--accent)">v1.1.3</strong> — mayo 2026</div>
+    <div style="font-size:12px;color:var(--text3)">Casa·IA <strong style="color:var(--accent)">v1.2.2</strong> — mayo 2026</div>
     <div style="font-size:11px;color:var(--text3);margin-top:4px">Backend: casaia-backend-production.up.railway.app</div>
   </div>
 
@@ -1224,7 +1222,7 @@ mark {
           Instala la app en tu celular o computador para usarla sin abrir el navegador, con ícono en la pantalla de inicio y modo sin conexión.
           <br><br>
           <strong style="color:var(--accent)">En Android Chrome:</strong> menú ⋮ → "Añadir a pantalla de inicio"<br>
-          <strong style="color:var(--accent)">En iOS Safari:</strong> botón compartir □↑ → "Añadir a inicio"
+          
         </div>
       </div>
       <button id="btn-install" class="btn btn-accent" onclick="installApp()" style="flex-shrink:0">
@@ -1319,7 +1317,7 @@ mark {
   <div class="card">
     <div class="card-title">ℹ️ Acerca de</div>
     <div style="font-size:13px;color:var(--text2);line-height:1.7">
-      <strong style="color:var(--text)">Casa·IA v3</strong> — App de control de gastos del hogar con inteligencia artificial.<br>
+      <strong style="color:var(--text)">Casa·IA v1.2.2</strong> — App de control de gastos del hogar con inteligencia artificial.<br>
       Tus datos se guardan <strong style="color:var(--green)">solo en tu navegador</strong>, nunca se envían a ningún servidor.<br>
       Las facturas se analizan con la API de Claude (Anthropic).
     </div>
@@ -1585,7 +1583,7 @@ mark {
   </div>
 
   <div style="text-align:center;padding:20px;color:var(--text3);font-size:13px">
-    Casa·IA v3 — Hecho con 🧡 en Colombia
+    Casa·IA v1.2.2 — Hecho con 🧡 en Colombia
   </div>
 </div>
 
@@ -1605,10 +1603,62 @@ mark {
 </div>
 
 <!-- BOTÓN FLOTANTE GASTO RÁPIDO -->
-<button id="fab-btn" onclick="openFab()" title="Registrar gasto rápido"
-  style="position:fixed;bottom:72px;right:16px;z-index:400;width:52px;height:52px;border-radius:50%;background:var(--red);color:#fff;border:none;font-size:24px;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.4);transition:transform .2s;display:flex;align-items:center;justify-content:center">
+<button id="fab-btn" title="Registrar gasto rápido"
+  style="position:fixed;bottom:72px;right:16px;z-index:400;width:56px;height:56px;border-radius:50%;background:var(--red);color:#fff;border:none;font-size:26px;cursor:grab;box-shadow:0 4px 20px rgba(0,0,0,.4);transition:box-shadow .2s;display:flex;align-items:center;justify-content:center;touch-action:none;user-select:none">
   ＋
 </button>
+
+<script>
+(function(){
+  const fab=document.getElementById('fab-btn');
+  let dragging=false,startX,startY,startRight,startBottom,moved=false;
+
+  function getPos(){
+    const right=parseInt(fab.style.right)||16;
+    const bottom=parseInt(fab.style.bottom)||72;
+    return{right,bottom};
+  }
+
+  fab.addEventListener('touchstart',e=>{
+    const t=e.touches[0];
+    startX=t.clientX; startY=t.clientY;
+    const pos=getPos();
+    startRight=pos.right; startBottom=pos.bottom;
+    dragging=true; moved=false;
+    fab.style.cursor='grabbing';
+    fab.style.boxShadow='0 8px 30px rgba(0,0,0,.5)';
+    fab.style.transition='none';
+  },{passive:true});
+
+  fab.addEventListener('touchmove',e=>{
+    if(!dragging)return;
+    e.preventDefault();
+    const t=e.touches[0];
+    const dx=t.clientX-startX;
+    const dy=t.clientY-startY;
+    if(Math.abs(dx)>5||Math.abs(dy)>5) moved=true;
+    const newRight=Math.max(8,Math.min(window.innerWidth-64,startRight-dx));
+    const newBottom=Math.max(80,Math.min(window.innerHeight-64,startBottom-dy));
+    fab.style.right=newRight+'px';
+    fab.style.bottom=newBottom+'px';
+  },{passive:false});
+
+  fab.addEventListener('touchend',()=>{
+    dragging=false;
+    fab.style.cursor='grab';
+    fab.style.boxShadow='0 4px 20px rgba(0,0,0,.4)';
+    fab.style.transition='box-shadow .2s';
+    if(!moved) openFab();
+    try{localStorage.setItem('fab_pos',JSON.stringify({right:fab.style.right,bottom:fab.style.bottom}));}catch(e){}
+  });
+
+  // Restaurar posición guardada
+  try{
+    const pos=JSON.parse(localStorage.getItem('fab_pos'));
+    if(pos&&pos.right&&pos.bottom){fab.style.right=pos.right;fab.style.bottom=pos.bottom;}
+  }catch(e){}
+})();
+</script>
 
 <!-- MODAL GASTO RÁPIDO -->
 <div class="edit-modal-overlay" id="fabModal" onclick="if(event.target===this)closeFab()">
@@ -1677,6 +1727,178 @@ mark {
 <div class="toast" id="toast"></div>
 
 <script>
+// ═══════════════════════════════════════════════════════
+// DATOS DEMO — eliminar antes de producción
+// ═══════════════════════════════════════════════════════
+function cargarDatosDemo(){
+  if(S.transactions.length>0||S.facturas.length>0)return; // No sobreescribir datos reales
+
+  const hoy=new Date();
+  const mes=hoy.getMonth();
+  const anio=hoy.getFullYear();
+  const mesP=mes===0?11:mes-1;
+  const anioP=mes===0?anio-1:anio;
+  const mes2=mesP===0?11:mesP-1;
+  const anio2=mesP===0?anioP-1:anioP;
+
+  function f(m,a,d){return `${a}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;}
+
+  // INGRESOS
+  S.transactions.push(
+    {id:'i1',type:'ingreso',desc:'Salario Sigworks',amount:3101096,date:f(mes,anio,30),cat:'Salario',ingTipo:'salario',source:'manual'},
+    {id:'i2',type:'ingreso',desc:'Freelance diseño',amount:450000,date:f(mes,anio,15),cat:'Freelance',ingTipo:'variable',source:'manual'},
+    {id:'i3',type:'ingreso',desc:'Salario Sigworks',amount:3101096,date:f(mesP,anioP,30),cat:'Salario',ingTipo:'salario',source:'manual'},
+    {id:'i4',type:'ingreso',desc:'Salario Sigworks',amount:3101096,date:f(mes2,anio2,30),cat:'Salario',ingTipo:'salario',source:'manual'}
+  );
+
+  // GASTOS MES ACTUAL
+  S.transactions.push(
+    {id:'g1',type:'gasto',desc:'Mercado D1',amount:87500,date:f(mes,anio,3),cat:'Alimentación',source:'manual'},
+    {id:'g2',type:'gasto',desc:'Almuerzo oficina',amount:15000,date:f(mes,anio,5),cat:'Alimentación',source:'manual'},
+    {id:'g3',type:'gasto',desc:'Uber',amount:18500,date:f(mes,anio,6),cat:'Transporte',source:'manual'},
+    {id:'g4',type:'gasto',desc:'Netflix',amount:26900,date:f(mes,anio,7),cat:'Entretenimiento',source:'manual'},
+    {id:'g5',type:'gasto',desc:'Farmacia Cruz Verde',amount:34200,date:f(mes,anio,8),cat:'Salud',source:'manual'},
+    {id:'g6',type:'gasto',desc:'Agua y alcantarillado',amount:45000,date:f(mes,anio,10),cat:'Servicios públicos',source:'manual'},
+    {id:'g7',type:'gasto',desc:'EPM Energía',amount:89000,date:f(mes,anio,10),cat:'Servicios públicos',source:'manual'},
+    {id:'g8',type:'gasto',desc:'Mercado Éxito',amount:156300,date:f(mes,anio,12),cat:'Alimentación',source:'factura',factId:'f1'},
+    {id:'g9',type:'gasto',desc:'Restaurante La Leña',amount:67000,date:f(mes,anio,14),cat:'Entretenimiento',source:'manual'},
+    {id:'g10',type:'gasto',desc:'Claro móvil',amount:55000,date:f(mes,anio,15),cat:'Servicios públicos',source:'manual'},
+    {id:'g11',type:'gasto',desc:'Zapatillas Nike',amount:189000,date:f(mes,anio,16),cat:'Ropa',source:'manual'},
+    {id:'g12',type:'gasto',desc:'Supermercado D1',amount:43200,date:f(mes,anio,18),cat:'Aseo y limpieza',source:'factura',factId:'f2'},
+    {id:'g13',type:'gasto',desc:'Gas natural',amount:38000,date:f(mes,anio,20),cat:'Servicios públicos',source:'manual'},
+    {id:'g14',type:'gasto',desc:'Cine Procinal',amount:28000,date:f(mes,anio,21),cat:'Entretenimiento',source:'manual'},
+    {id:'g15',type:'gasto',desc:'Pollo Éxito',amount:32500,date:f(mes,anio,22),cat:'Alimentación',source:'manual'}
+  );
+
+  // GASTOS MES ANTERIOR
+  S.transactions.push(
+    {id:'gp1',type:'gasto',desc:'Mercado D1',amount:79000,date:f(mesP,anioP,4),cat:'Alimentación',source:'manual'},
+    {id:'gp2',type:'gasto',desc:'Uber',amount:22000,date:f(mesP,anioP,6),cat:'Transporte',source:'manual'},
+    {id:'gp3',type:'gasto',desc:'Netflix',amount:26900,date:f(mesP,anioP,7),cat:'Entretenimiento',source:'manual'},
+    {id:'gp4',type:'gasto',desc:'Agua y alcantarillado',amount:42000,date:f(mesP,anioP,10),cat:'Servicios públicos',source:'manual'},
+    {id:'gp5',type:'gasto',desc:'EPM Energía',amount:82000,date:f(mesP,anioP,10),cat:'Servicios públicos',source:'manual'},
+    {id:'gp6',type:'gasto',desc:'Mercado Éxito',amount:143000,date:f(mesP,anioP,13),cat:'Alimentación',source:'manual'},
+    {id:'gp7',type:'gasto',desc:'Restaurante',amount:45000,date:f(mesP,anioP,15),cat:'Entretenimiento',source:'manual'},
+    {id:'gp8',type:'gasto',desc:'Claro móvil',amount:55000,date:f(mesP,anioP,15),cat:'Servicios públicos',source:'manual'},
+    {id:'gp9',type:'gasto',desc:'Farmacia',amount:28000,date:f(mesP,anioP,18),cat:'Salud',source:'manual'},
+    {id:'gp10',type:'gasto',desc:'Gas natural',amount:35000,date:f(mesP,anioP,20),cat:'Servicios públicos',source:'manual'}
+  );
+
+  // GASTOS MES HACE 2 MESES
+  S.transactions.push(
+    {id:'g2p1',type:'gasto',desc:'Mercado',amount:95000,date:f(mes2,anio2,5),cat:'Alimentación',source:'manual'},
+    {id:'g2p2',type:'gasto',desc:'Servicios',amount:180000,date:f(mes2,anio2,10),cat:'Servicios públicos',source:'manual'},
+    {id:'g2p3',type:'gasto',desc:'Entretenimiento',amount:85000,date:f(mes2,anio2,15),cat:'Entretenimiento',source:'manual'},
+    {id:'g2p4',type:'gasto',desc:'Transporte',amount:45000,date:f(mes2,anio2,20),cat:'Transporte',source:'manual'}
+  );
+
+  // FACTURAS
+  S.facturas.push({
+    id:'f1',date:f(mes,anio,12),store:'Éxito Pereira',total:156300,nota:'Mercado quincenal',photo:null,
+    items:[
+      {name:'Arroz Diana 5kg',qty:1,unit_price:18900,total:18900,category:'Alimentación'},
+      {name:'Aceite vegetal 1L',qty:2,unit_price:9500,total:19000,category:'Alimentación'},
+      {name:'Leche Alquería x6',qty:1,unit_price:24600,total:24600,category:'Alimentación'},
+      {name:'Pollo entero kg',qty:2,unit_price:12800,total:25600,category:'Alimentación'},
+      {name:'Huevos x30',qty:1,unit_price:19800,total:19800,category:'Alimentación'},
+      {name:'Pan tajado',qty:2,unit_price:6200,total:12400,category:'Alimentación'},
+      {name:'Tomate kg',qty:1,unit_price:4500,total:4500,category:'Alimentación'},
+      {name:'Cebolla kg',qty:1,unit_price:3800,total:3800,category:'Alimentación'},
+      {name:'Papa criolla kg',qty:2,unit_price:3200,total:6400,category:'Alimentación'},
+      {name:'Jabón Rey x3',qty:1,unit_price:8900,total:8900,category:'Aseo y limpieza'},
+      {name:'Detergente Ariel',qty:1,unit_price:12800,total:12800,category:'Aseo y limpieza'}
+    ]
+  });
+
+  S.facturas.push({
+    id:'f2',date:f(mes,anio,18),store:'D1 Cuba',total:43200,nota:'Aseo del mes',photo:null,
+    items:[
+      {name:'Papel higiénico x12',qty:1,unit_price:15900,total:15900,category:'Aseo y limpieza'},
+      {name:'Shampoo',qty:1,unit_price:12800,total:12800,category:'Aseo y limpieza'},
+      {name:'Crema dental',qty:2,unit_price:4500,total:9000,category:'Aseo y limpieza'},
+      {name:'Desodorante',qty:1,unit_price:5500,total:5500,category:'Aseo y limpieza'}
+    ]
+  });
+
+  S.facturas.push({
+    id:'f3',date:f(mesP,anioP,8),store:'Supercarnes JH Cuba',total:89500,nota:'Carnes del mes',photo:null,
+    items:[
+      {name:'Pechuga pollo kg',qty:2,unit_price:12500,total:25000,category:'Alimentación'},
+      {name:'Carne molida kg',qty:1,unit_price:18900,total:18900,category:'Alimentación'},
+      {name:'Chuleta kg',qty:2,unit_price:15800,total:31600,category:'Alimentación'},
+      {name:'Chicharrón kg',qty:1,unit_price:14000,total:14000,category:'Alimentación'}
+    ]
+  });
+
+  // PRODUCTOS
+  S.products=[
+    {id:'p1',name:'Arroz Diana 5kg',cat:'Alimentación',entries:[
+      {date:f(mes2,anio2,5),price:17500,qty:1,factId:null,source:'manual'},
+      {date:f(mesP,anioP,10),price:18200,qty:1,factId:null,source:'manual'},
+      {date:f(mes,anio,12),price:18900,qty:1,factId:'f1',source:'factura'}
+    ]},
+    {id:'p2',name:'Aceite vegetal 1L',cat:'Alimentación',entries:[
+      {date:f(mes2,anio2,5),price:8200,qty:2,factId:null,source:'manual'},
+      {date:f(mesP,anioP,10),price:8800,qty:2,factId:null,source:'manual'},
+      {date:f(mes,anio,12),price:9500,qty:2,factId:'f1',source:'factura'}
+    ]},
+    {id:'p3',name:'Leche Alquería x6',cat:'Alimentación',entries:[
+      {date:f(mesP,anioP,10),price:23100,qty:1,factId:null,source:'manual'},
+      {date:f(mes,anio,12),price:24600,qty:1,factId:'f1',source:'factura'}
+    ]},
+    {id:'p4',name:'Pechuga pollo kg',cat:'Alimentación',entries:[
+      {date:f(mes2,anio2,8),price:11800,qty:2,factId:null,source:'manual'},
+      {date:f(mesP,anioP,8),price:12500,qty:2,factId:'f3',source:'factura'}
+    ]},
+    {id:'p5',name:'Papel higiénico x12',cat:'Aseo y limpieza',entries:[
+      {date:f(mesP,anioP,15),price:14900,qty:1,factId:null,source:'manual'},
+      {date:f(mes,anio,18),price:15900,qty:1,factId:'f2',source:'factura'}
+    ]},
+    {id:'p6',name:'Detergente Ariel',cat:'Aseo y limpieza',entries:[
+      {date:f(mes2,anio2,10),price:11500,qty:1,factId:null,source:'manual'},
+      {date:f(mes,anio,12),price:12800,qty:1,factId:'f1',source:'factura'}
+    ]},
+    {id:'p7',name:'Netflix',cat:'Entretenimiento',entries:[
+      {date:f(mes2,anio2,7),price:26900,qty:1,factId:null,source:'manual'},
+      {date:f(mesP,anioP,7),price:26900,qty:1,factId:null,source:'manual'},
+      {date:f(mes,anio,7),price:26900,qty:1,factId:null,source:'manual'}
+    ]}
+  ];
+
+  // PRESUPUESTO
+  S.budgets={
+    'Alimentación':600000,
+    'Aseo y limpieza':120000,
+    'Servicios públicos':250000,
+    'Salud':100000,
+    'Transporte':150000,
+    'Entretenimiento':200000,
+    'Ropa':200000,
+    'Tecnología':100000,
+    'Educación':100000,
+    'Otros':50000
+  };
+
+  // SALARIO
+  S.salario={monto:3101096,dia:30,desc:'Salario Sigworks'};
+
+  // METAS
+  S.metas=[
+    {id:1,name:'Fondo de emergencia',target:5000000,monthly:500000,color:'#4CAF7D',saved:1200000},
+    {id:2,name:'Vacaciones Cartagena',target:3000000,monthly:300000,color:'#5090E0',saved:600000},
+    {id:3,name:'Computador nuevo',target:2500000,monthly:200000,color:'#E8A020',saved:2500000}
+  ];
+
+  // GASTOS RECURRENTES
+  S.recGastos=[
+    {id:1,name:'Netflix',monto:26900,dia:7,cat:'Entretenimiento',notes:'Plan estándar'},
+    {id:2,name:'Claro móvil',monto:55000,dia:15,cat:'Servicios públicos',notes:''},
+    {id:3,name:'Gym',monto:80000,dia:1,cat:'Salud',notes:''}
+  ];
+
+  save();
+}
+
 // ═══════════════════════════════════════════════════════
 // CONSTANTES
 // ═══════════════════════════════════════════════════════
@@ -2730,6 +2952,19 @@ function openFactPhoto(fid){
   w.document.write(`<html><body style="margin:0;background:#000;display:flex;justify-content:center;align-items:flex-start;min-height:100vh"><img src="${f.photo}" style="max-width:100%;height:auto"></body></html>`);
 }
 
+function borrarTodasFacturas(){
+  if(!S.facturas.length){toast('No hay facturas guardadas','err');return;}
+  if(!confirm('¿Borrar TODAS las '+S.facturas.length+' facturas guardadas?\nLas transacciones asociadas también se eliminarán.'))return;
+  const ids=S.facturas.map(f=>f.id);
+  S.facturas=[];
+  ids.forEach(id=>{
+    S.transactions=S.transactions.filter(t=>t.factId!==id);
+    S.products.forEach(p=>{p.entries=p.entries.filter(e=>e.factId!==id);});
+  });
+  S.products=S.products.filter(p=>p.entries.length>0);
+  save();renderFactList();toast('✅ Todas las facturas eliminadas','ok');
+}
+
 function deleteFact(id){
   if(!confirm('¿Eliminar factura y sus datos?'))return;
   S.facturas=S.facturas.filter(f=>f.id!==id);
@@ -3486,7 +3721,9 @@ function mostrarJSONEnPantalla(json){
 function importData(input){
   const file=input.files[0];if(!file)return;
   const r=new FileReader();
-  r.onload=e=>{try{const d=JSON.parse(e.target.result);S=d;save();location.reload();}catch(err){toast('Archivo inválido','err');}};
+  r.onload=e=>{try{const d=JSON.parse(e.target.result);S=d;save();location.re
+
+load();}catch(err){toast('Archivo inválido','err');}};
   r.readAsText(file);
 }
 
@@ -4544,20 +4781,37 @@ function renderTiendaBarata(){
     const ahorro=maxPrecio-minPrecio;
     const ahorroP=Math.round(ahorro/maxPrecio*100);
 
-    return`<div class="tienda-prod-row">
-      <div style="flex:1">
-        <div class="tienda-prod-name">${p.name}</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px">
-          ${tiendas.map((t,i)=>`
-            <span class="tienda-chip" style="background:${i===0?'var(--green2)':'var(--surface2)'};color:${i===0?'var(--green)':'var(--text2)'}">
-              ${i===0?'✅ ':''}${t.tienda}: ${fmt(t.avg)} <span style="opacity:.7">(${t.veces}×)</span>
-            </span>`).join('')}
-        </div>
+    // Solo mostrar si hay ahorro real o al menos 2 tiendas distintas con precio diferente
+    const mejorTienda = tiendas[0];
+    const peorTienda = tiendas[tiendas.length-1];
+    
+    return`<div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px">
+      <!-- Nombre producto + badge ahorro -->
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px">
+        <div style="font-weight:700;font-size:15px;line-height:1.3;flex:1">${p.name}</div>
+        ${ahorro>0?`<div style="background:rgba(76,175,125,.15);border:1px solid rgba(76,175,125,.3);border-radius:20px;padding:4px 10px;flex-shrink:0;text-align:center">
+          <div style="font-size:11px;color:var(--green);font-weight:700">Ahorras</div>
+          <div style="font-size:14px;font-weight:800;color:var(--green)">${fmt(ahorro)}</div>
+        </div>`:'<div style="background:var(--surface2);border-radius:20px;padding:4px 10px;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">Mismo precio</div></div>'}
       </div>
-      <div style="text-align:right;flex-shrink:0">
-        <div style="font-size:11px;color:var(--text3)">Ahorras</div>
-        <div style="font-weight:800;color:var(--green);font-size:15px">${fmt(ahorro)}</div>
-        <div style="font-size:11px;color:var(--green)">${ahorroP}% menos en ${tiendas[0].tienda}</div>
+      <!-- Lista de tiendas -->
+      <div style="display:flex;flex-direction:column;gap:6px">
+        ${tiendas.map((t,i)=>{
+          const esMejor=i===0;
+          const diff=tiendas.length>1?Math.round((t.avg-mejorTienda.avg)/mejorTienda.avg*100):0;
+          return`<div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:${esMejor?'rgba(76,175,125,.12)':'var(--surface2)'};border:1.5px solid ${esMejor?'var(--green)':'var(--border)'}">
+            <div style="font-size:18px;flex-shrink:0">${esMejor?'🏆':'🏪'}</div>
+            <div style="flex:1;min-width:0">
+              <div style="font-size:13px;font-weight:700;color:${esMejor?'var(--green)':'var(--text)'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.tienda}</div>
+              <div style="font-size:11px;color:var(--text3);margin-top:1px">${t.veces} compra${t.veces>1?'s':''} registrada${t.veces>1?'s':''}</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0">
+              <div style="font-size:15px;font-weight:800;color:${esMejor?'var(--green)':'var(--text)'}">${fmt(t.avg)}</div>
+              ${!esMejor&&diff>0?`<div style="font-size:10px;color:var(--red);font-weight:600">+${diff}% más caro</div>`:''}
+              ${esMejor?'<div style="font-size:10px;color:var(--green);font-weight:600">Más barato ✓</div>':''}
+            </div>
+          </div>`;
+        }).join('')}
       </div>
     </div>`;
   }).join('');
@@ -4884,6 +5138,175 @@ function checkInstallable(){
   }
 }
 
+
+// ═══════════════════════════════════════════════════════
+// NOTIFICACIONES INTELIGENTES
+// ═══════════════════════════════════════════════════════
+function initNotificaciones(){
+  if(!('Notification' in window))return;
+  if(Notification.permission==='default'){
+    // Pedir permiso después de 3 segundos
+    setTimeout(()=>{
+      Notification.requestPermission().then(p=>{
+        if(p==='granted') toast('✅ Notificaciones activadas','ok');
+      });
+    },3000);
+  }
+  if(Notification.permission==='granted'){
+    setTimeout(revisarNotificaciones,1500);
+  }
+}
+
+function enviarNotif(titulo,cuerpo,icono='💰'){
+  try{
+    new Notification(`${icono} ${titulo}`,{
+      body:cuerpo,
+      icon:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" fill="%230F0E0C"/><text y="68" x="50" text-anchor="middle" font-size="60">🏠</text></svg>',
+      badge:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" fill="%23E8A020"/><text y="68" x="50" text-anchor="middle" font-size="60">🏠</text></svg>',
+      vibrate:[200,100,200],
+      tag:titulo
+    });
+  }catch(e){}
+}
+
+function yaNotificadoHoy(key){
+  const hoy=new Date().toISOString().slice(0,10);
+  const data=JSON.parse(localStorage.getItem('notif_log')||'{}');
+  if(data[key]===hoy)return true;
+  data[key]=hoy;
+  localStorage.setItem('notif_log',JSON.stringify(data));
+  return false;
+}
+
+function revisarNotificaciones(){
+  if(Notification.permission!=='granted')return;
+  const now=new Date();
+  const mes=now.getMonth();
+  const anio=now.getFullYear();
+  const mesKey=anio+'-'+String(mes+1).padStart(2,'0');
+  
+  const txns=S.transactions.filter(t=>{
+    const d=new Date(t.date+'T12:00:00');
+    return d.getMonth()===mes&&d.getFullYear()===anio;
+  });
+  const gastos=txns.filter(t=>t.type==='gasto');
+  const ingresos=txns.filter(t=>t.type==='ingreso');
+  const tG=gastos.reduce((s,t)=>s+t.amount,0);
+  const tI=ingresos.reduce((s,t)=>s+t.amount,0);
+
+  // 1. PRESUPUESTO AL 80%
+  S.categories.forEach(cat=>{
+    const budget=S.budgets[cat.name]||0;
+    if(!budget)return;
+    const gastado=gastos.filter(t=>t.cat===cat.name).reduce((s,t)=>s+t.amount,0);
+    const pct=gastado/budget*100;
+    if(pct>=80&&pct<100&&!yaNotificadoHoy('budg80_'+cat.name)){
+      const restante=budget-gastado;
+      enviarNotif(
+        `${cat.name} al ${Math.round(pct)}%`,
+        `Te quedan $${Math.round(restante).toLocaleString('es-CO')} en ${cat.name} este mes. ¡Cuidado!`,
+        '⚠️'
+      );
+    }
+    if(pct>=100&&!yaNotificadoHoy('budg100_'+cat.name)){
+      enviarNotif(
+        `Superaste ${cat.name}`,
+        `Ya gastaste $${Math.round(gastado).toLocaleString('es-CO')} de $${Math.round(budget).toLocaleString('es-CO')} en ${cat.name}.`,
+        '🚨'
+      );
+    }
+  });
+
+  // 2. DÍAS SIN REGISTRAR
+  const ultimaTxn=txns.sort((a,b)=>new Date(b.date)-new Date(a.date))[0];
+  if(ultimaTxn){
+    const diasSin=Math.floor((now-new Date(ultimaTxn.date+'T12:00:00'))/(1000*60*60*24));
+    if(diasSin>=3&&!yaNotificadoHoy('sin_registro')){
+      enviarNotif(
+        'Llevas '+diasSin+' días sin registrar',
+        'No olvides anotar tus gastos para tener un control preciso de tus finanzas.',
+        '📝'
+      );
+    }
+  }
+
+  // 3. SALARIO DEL MES
+  const diaHoy=now.getDate();
+  const diaSalario=S.salario?.dia||30;
+  const tieneIngreso=ingresos.some(t=>t.cat==='Salario');
+  if(Math.abs(diaHoy-diaSalario)<=1&&!tieneIngreso&&!yaNotificadoHoy('salario_mes')){
+    enviarNotif(
+      '¿Registraste tu salario?',
+      'Hoy es día '+diaHoy+'. Recuerda registrar tu ingreso del mes para mantener tu balance actualizado.',
+      '💼'
+    );
+  }
+
+  // 4. RECURRENTES PENDIENTES
+  const pending=getPendientesEsteMes();
+  if(pending.length>0&&!yaNotificadoHoy('recurrentes_pend')){
+    const nombres=pending.slice(0,2).map(r=>r.name).join(', ');
+    enviarNotif(
+      pending.length+' gasto'+(pending.length>1?'s':'')+' recurrente'+(pending.length>1?'s':'')+' pendiente'+(pending.length>1?'s':''),
+      `No olvides registrar: ${nombres}${pending.length>2?' y más...':''}`,
+      '🔄'
+    );
+  }
+
+  // 5. TASA DE AHORRO EXCELENTE
+  const savePct=tI>0?Math.round((tI-tG)/tI*100):0;
+  if(savePct>=20&&tI>0&&!yaNotificadoHoy('ahorro_excelente')){
+    enviarNotif(
+      '¡Vas muy bien este mes!',
+      'Tu tasa de ahorro es '+savePct+'% — estás por encima del 20% recomendado. ¡Sigue así!',
+      '🏆'
+    );
+  }
+
+  // 6. GASTO DIARIO ALTO
+  const diaActual=now.getDate();
+  const gastoHoy=gastos.filter(t=>t.date===now.toISOString().slice(0,10)).reduce((s,t)=>s+t.amount,0);
+  const promDiario=tG/Math.max(1,diaActual);
+  if(gastoHoy>promDiario*2&&gastoHoy>50000&&!yaNotificadoHoy('gasto_alto_hoy')){
+    enviarNotif(
+      'Gasto alto hoy',
+      'Hoy llevas $'+Math.round(gastoHoy).toLocaleString('es-CO')+', el doble de tu promedio diario de $'+Math.round(promDiario).toLocaleString('es-CO')+'.',
+      '📊'
+    );
+  }
+
+  // 7. META PRÓXIMA A CUMPLIRSE
+  (S.metas||[]).forEach(meta=>{
+    const pct=meta.saved/meta.target*100;
+    if(pct>=90&&pct<100&&!yaNotificadoHoy('meta_cerca_'+meta.id)){
+      enviarNotif(
+        '¡Casi llegas a tu meta!',
+        '"'+meta.name+'" está al '+Math.round(pct)+'%. Te faltan $'+Math.round(meta.target-meta.saved).toLocaleString('es-CO')+'.',
+        '🎯'
+      );
+    }
+    if(pct>=100&&!yaNotificadoHoy('meta_cumplida_'+meta.id)){
+      enviarNotif(
+        '¡Meta cumplida!',
+        '¡Felicitaciones! Lograste tu meta "'+meta.name+'" de $'+Math.round(meta.target).toLocaleString('es-CO')+'.',
+        '🎉'
+      );
+    }
+  });
+
+  // 8. MES CASI TERMINANDO CON DÉFICIT
+  const diasEnMes=new Date(anio,mes+1,0).getDate();
+  const diasRestantes=diasEnMes-diaActual;
+  if(diasRestantes<=5&&tG>tI&&tI>0&&!yaNotificadoHoy('deficit_fin_mes')){
+    const deficit=tG-tI;
+    enviarNotif(
+      'Cierre de mes en déficit',
+      'Quedan '+diasRestantes+' días y llevas un déficit de $'+Math.round(deficit).toLocaleString('es-CO')+'. Reduce gastos para cerrar mejor.',
+      '📉'
+    );
+  }
+}
+
 // ═══════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════
@@ -4912,6 +5335,7 @@ S.transactions.filter(t=>t.type==='gasto'&&t.source==='manual'&&t.desc).forEach(
 });
 save();
 
+cargarDatosDemo();
 document.documentElement.setAttribute('data-theme',S.config.theme||'dark');
 document.getElementById('i-date').value=todayStr();
 // Ocultar onboarding — ya no se necesita API key
@@ -4920,6 +5344,7 @@ if(onb)onb.style.display='none';
 aiCurMonth=S.curMonth;aiCurYear=S.curYear;
 initEnterHandlers();
 initPWA();
+initNotificaciones();
 checkApiKey();
 registrarUsuario(); // Registrar usuario en el backend
 initAdMob(); // Inicializar AdMob
