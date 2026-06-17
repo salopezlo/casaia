@@ -100,7 +100,7 @@
 .more-item span.more-sub { font-size:10px;font-weight:400;color:var(--text3);line-height:1.3; }
 
 /* Ajustar main para barra inferior */
-main { padding-bottom:calc(60px + max(16px, env(safe-area-inset-bottom))); }
+main { padding-bottom:160px; }
 
 /* ══════════════════════════════════════════
    ONBOARDING — API KEY
@@ -186,7 +186,7 @@ nav {
   color:#fff; font-size:9px; font-weight:800; margin-left:4px; vertical-align:middle;
 }
 
-main { max-width:1160px; margin:0 auto; padding:16px 14px 90px; overflow-x:hidden; }
+main { max-width:1160px; margin:0 auto; padding:16px 14px 160px; overflow-x:hidden; }
 .page { display:none; animation:fadeIn .2s ease; }
 .page.active { display:block; }
 @keyframes fadeIn { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:none} }
@@ -281,17 +281,17 @@ canvas.donut { flex-shrink:0; }
 /* ══════════════════════════════════════════
    FORMS
 ══════════════════════════════════════════ */
-.fg { margin-bottom:13px; }
-.fg label { display:block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.8px; color:var(--text3); margin-bottom:6px; }
+.fg { margin-bottom:10px; }
+.fg label { display:block; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.8px; color:var(--text3); margin-bottom:4px; }
 .fg input,.fg select,.fg textarea {
-  width:100%; padding:12px 14px; background:var(--surface2); border:1.5px solid var(--border);
-  border-radius:12px; color:var(--text); font-family:'Instrument Sans',sans-serif; font-size:15px; outline:none; transition:border-color .2s;
+  width:100%; padding:11px 13px; background:var(--surface2); border:1.5px solid var(--border);
+  border-radius:10px; color:var(--text); font-family:'Instrument Sans',sans-serif; font-size:16px; outline:none; transition:border-color .2s;
 }
 .fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--accent); }
-.fg textarea { resize:vertical; min-height:56px; }
+.fg textarea { resize:vertical; min-height:44px; }
 .frow { display:grid; grid-template-columns:1fr 1fr; gap:11px; }
 .frow3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:11px; }
-.btn { padding:12px 20px; border-radius:12px; border:none; cursor:pointer; font-family:'Instrument Sans',sans-serif; font-size:14px; font-weight:700; transition:all .2s; }
+.btn { padding:10px 18px; border-radius:10px; border:none; cursor:pointer; font-family:'Instrument Sans',sans-serif; font-size:13px; font-weight:700; transition:all .2s; }
 .btn-accent { background:var(--accent); color:#fff; }
 .btn-accent:hover { opacity:.88; }
 .btn-green { background:var(--green); color:#fff; }
@@ -548,7 +548,7 @@ canvas.donut { flex-shrink:0; }
 }
 
 /* ── safe area para iPhone X+ ── */
-main { padding-bottom: max(28px, env(safe-area-inset-bottom)); }
+main { padding-bottom: max(160px, calc(160px + env(safe-area-inset-bottom))); }
 nav  { padding-top: env(safe-area-inset-top); }
 
 /* ── highlight búsqueda ── */
@@ -640,7 +640,7 @@ mark {
         </div>
         <div style="display:flex;gap:12px;align-items:flex-start;background:var(--surface2);border-radius:10px;padding:12px">
           <span style="font-size:24px">📈</span>
-          <div><div style="font-weight:700;font-size:14px;margin-bottom:2px">Inflación personal</div><div style="font-size:12px;color:var(--text2)">Descubre qué productos te han subido de precio en tu canasta real</div></div>
+
         </div>
         <div style="display:flex;gap:12px;align-items:flex-start;background:var(--surface2);border-radius:10px;padding:12px">
           <span style="font-size:24px">🤖</span>
@@ -748,7 +748,7 @@ mark {
       <button class="more-item" onclick="goPage('comparativa',null);closeMoreMenu()"><span class="more-ico">📈</span><span class="more-lbl">Comparativa</span><span class="more-sub">Compara dos meses</span></button>
       <button class="more-item" onclick="goPage('recurrentes',null);closeMoreMenu()"><span class="more-ico">🔄</span><span class="more-lbl">Recurrentes</span><span class="more-sub">Gastos fijos</span></button>
       <button class="more-item" onclick="goPage('presupuesto',null);closeMoreMenu()"><span class="more-ico">🎯</span><span class="more-lbl">Presupuesto</span><span class="more-sub">Límites por categoría</span></button>
-      <button class="more-item" onclick="goPage('inflacion',null);closeMoreMenu()"><span class="more-ico">📉</span><span class="more-lbl">Inflación</span><span class="more-sub">Tu canasta familiar</span></button>
+
       <button class="more-item" onclick="goPage('analisis',null);closeMoreMenu()"><span class="more-ico">🤖</span><span class="more-lbl">Análisis IA</span><span class="more-sub">Consejos con IA</span></button>
       <button class="more-item" onclick="goPage('ajustes',null);closeMoreMenu()"><span class="more-ico">⚙️</span><span class="more-lbl">Ajustes</span><span class="more-sub">Tema y datos</span></button>
       <button class="more-item" onclick="goPage('metas',null);closeMoreMenu()"><span class="more-ico">🎯</span><span class="more-lbl">Metas</span><span class="more-sub">Objetivos de ahorro</span></button>
@@ -828,19 +828,30 @@ mark {
   <div class="pg-title">📅 Resumen Semanal</div>
   <div class="pg-sub">Cómo vas esta semana y predicción de cierre del mes</div>
 
-  <!-- PREDICCIÓN DEL MES -->
-  <div class="card" style="margin-bottom:16px;border-left:3px solid var(--accent)">
-    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-      <div style="font-size:32px">🔮</div>
-      <div style="flex:1">
-        <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800">Predicción de cierre del mes</div>
-        <div id="prediccion-texto" style="font-size:13px;color:var(--text2);margin-top:4px">Calculando...</div>
+  <!-- RESUMEN REAL DEL MES -->
+  <div style="background:linear-gradient(135deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border);border-radius:20px;padding:20px;margin-bottom:16px">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:10px" id="sem-mes-label">Resumen del mes</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+      <div style="text-align:center">
+        <div style="font-size:10px;color:var(--green);font-weight:700;text-transform:uppercase;margin-bottom:4px">↑ Ingresó</div>
+        <div id="sem-ing" style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;color:var(--green)">$0</div>
       </div>
-      <div style="text-align:right">
-        <div style="font-size:11px;color:var(--text3);margin-bottom:2px">Proyección de gasto</div>
-        <div id="prediccion-valor" style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:700;color:var(--accent);letter-spacing:-0.5px">—</div>
+      <div style="text-align:center;border-left:1px solid var(--border2);border-right:1px solid var(--border2)">
+        <div style="font-size:10px;color:var(--red);font-weight:700;text-transform:uppercase;margin-bottom:4px">↓ Gastado</div>
+        <div id="sem-gas" style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;color:var(--red)">$0</div>
+        <div id="sem-gas-pct" style="font-size:10px;color:var(--text3);margin-top:2px">0%</div>
+      </div>
+      <div style="text-align:center">
+        <div id="sem-disp-label" style="font-size:10px;font-weight:700;text-transform:uppercase;margin-bottom:4px;color:var(--green)">💚 Libre</div>
+        <div id="sem-disp" style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;color:var(--green)">$0</div>
       </div>
     </div>
+    <!-- barra de progreso gasto vs ingreso -->
+    <div style="margin-top:12px;background:var(--border);border-radius:4px;height:5px;overflow:hidden">
+      <div id="sem-prog-bar" style="height:100%;border-radius:4px;background:var(--green);transition:width .4s;width:0%"></div>
+    </div>
+    <div id="prediccion-texto" style="font-size:11px;color:var(--text3);margin-top:6px"></div>
+    <div id="prediccion-valor" style="display:none"></div>
   </div>
 
   <!-- KPIs semana actual -->
@@ -868,6 +879,7 @@ mark {
   <div class="card" style="margin-top:4px">
     <div class="card-title">🏪 Tienda más barata por producto</div>
     <div class="pg-sub" style="margin-bottom:14px">Basado en tus facturas históricas — dónde te sale más barato cada producto</div>
+    <div id="tienda-barata-resumen"></div>
     <div id="tienda-barata-content"></div>
   </div>
 </div>
@@ -904,20 +916,15 @@ mark {
     <div class="kpi blue"><div class="kpi-label">Registros encontrados</div><div class="kpi-val b" id="mov-t-cnt">0</div><div class="kpi-sub">del total</div></div>
   </div>
 
-  <!-- TABLA -->
-  <div class="prod-wrap" style="overflow-x:auto">
-    <table class="prod-table" id="mov-table" style="min-width:500px">
-      <thead><tr>
-        <th style="cursor:pointer;user-select:none" onclick="sortMov('date')">Fecha <span id="sort-date">↕</span></th>
-        <th>Descripción</th>
-        <th style="cursor:pointer;user-select:none" onclick="sortMov('cat')">Categoría <span id="sort-cat">↕</span></th>
-        <th>Tipo</th>
-        <th style="text-align:right;cursor:pointer;user-select:none" onclick="sortMov('amount')">Monto <span id="sort-amount">↕</span></th>
-        <th></th>
-      </tr></thead>
-      <tbody id="mov-tbody"></tbody>
-    </table>
+  <!-- ORDENAMIENTO -->
+  <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;font-size:12px;color:var(--text3)">
+    <span>Ordenar por:</span>
+    <button onclick="sortMov('date')" style="background:none;border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:11px;cursor:pointer;color:var(--text2)">Fecha <span id="sort-date">↕</span></button>
+    <button onclick="sortMov('amount')" style="background:none;border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:11px;cursor:pointer;color:var(--text2)">Monto <span id="sort-amount">↕</span></button>
+    <button onclick="sortMov('cat')" style="background:none;border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:11px;cursor:pointer;color:var(--text2)">Cat <span id="sort-cat">↕</span></button>
   </div>
+  <!-- LISTA MOVIMIENTOS -->
+  <div id="mov-tbody"></div>
 </div>
 
 <!-- ═══════════════════ REGISTRAR (GASTO + INGRESO) ═══════════════════ -->
@@ -925,100 +932,49 @@ mark {
   <div class="pg-title">✏️ Registrar movimiento</div>
   <div class="pg-sub">Agrega un gasto o ingreso manualmente</div>
 
-  <!-- TABS GASTO / INGRESO -->
-  <div style="display:flex;gap:6px;margin-bottom:20px">
-    <button class="btn btn-red" id="reg-tab-gasto" onclick="setRegTab('gasto')" style="flex:1;font-size:14px">🔴 Gasto</button>
-    <button class="btn btn-outline" id="reg-tab-ingreso" onclick="setRegTab('ingreso')" style="flex:1;font-size:14px">🟢 Ingreso</button>
+  <!-- BOTONES — abren modales -->
+  <div style="display:flex;gap:10px;margin-bottom:20px">
+    <button class="btn btn-red" onclick="abrirModalGasto()" style="flex:1;font-size:14px;padding:14px">🔴 Gasto</button>
+    <button class="btn btn-outline" onclick="abrirModalIngreso()" style="flex:1;font-size:14px;padding:14px;color:var(--green);border-color:var(--green)">🟢 Ingreso</button>
   </div>
 
-  <div class="two-col">
-    <!-- FORMULARIO GASTO -->
-    <div id="reg-form-gasto">
-      <div class="card">
-        <div class="card-title" style="color:var(--red)">🔴 Registrar gasto manual</div>
-        <div class="fg"><label>Descripción</label><input id="g-desc" placeholder="Ej: Taxi, Almuerzo, Mercado..."></div>
-        <div class="frow">
-          <div class="fg"><label>Monto ($)</label><input id="g-amt" type="number" placeholder="0" min="0"></div>
-          <div class="fg"><label>Fecha</label><input id="g-date" type="date"></div>
-        </div>
-        <div class="fg"><label>Categoría</label>
-          <select id="g-cat"><option value="">Seleccionar...</option></select>
-        </div>
-        <div class="fg"><label>Notas (opcional)</label>
-          <input id="g-notes" placeholder="Detalle adicional...">
-        </div>
-        <button class="btn btn-red btn-full" onclick="addGasto()">＋ Registrar gasto</button>
-      </div>
-    </div>
+  <!-- inputs legacy ocultos para compatibilidad con addGasto/addIngreso -->
+  <div style="display:none">
+    <input id="g-desc"><input id="g-amt" type="number"><input id="g-date" type="date">
+    <select id="g-cat"></select><input id="g-notes">
+    <input id="i-desc"><input id="i-amt" type="number"><input id="i-date" type="date">
+    <select id="i-cat">
+      <option value="Salario">Salario</option><option value="Freelance">Freelance</option>
+      <option value="Trading">Trading</option><option value="Negocio">Negocio</option>
+      <option value="Arriendo">Arriendo</option><option value="Inversión">Inversión</option>
+      <option value="Bono">Bono</option><option value="Préstamo">Préstamo</option>
+      <option value="Otro ingreso">Otro</option>
+    </select>
+    <textarea id="i-notes"></textarea>
+  </div>
 
-    <!-- FORMULARIO INGRESO -->
-    <div id="reg-form-ingreso" style="display:none">
-      <div class="card">
-        <div class="card-title" style="color:var(--green)">🟢 Registrar ingreso</div>
-        <div class="ing-type-tabs">
-          <button class="ing-type-tab active" onclick="setIngTipo('salario',this)">💼 Salario</button>
-          <button class="ing-type-tab" onclick="setIngTipo('variable',this)">📊 Variable</button>
-          <button class="ing-type-tab" onclick="setIngTipo('esporadico',this)">⚡ Esporádico</button>
-        </div>
-        <div class="fg"><label>Descripción</label><input id="i-desc" placeholder="Ej: Salario abril, Proyecto X..."></div>
-        <div class="frow">
-          <div class="fg"><label>Monto ($)</label><input id="i-amt" type="number" placeholder="0" min="0"></div>
-          <div class="fg"><label>Fecha</label><input id="i-date" type="date"></div>
-        </div>
-        <div class="fg"><label>Fuente / categoría</label>
-          <select id="i-cat">
-            <option value="Salario">💼 Salario</option>
-            <option value="Freelance">💻 Freelance</option>
-            <option value="Trading">📈 Trading</option>
-            <option value="Negocio">🏪 Negocio</option>
-            <option value="Arriendo">🏠 Arriendo recibido</option>
-            <option value="Inversión">💹 Inversión / dividendos</option>
-            <option value="Bono">🎁 Bono / comisión</option>
-            <option value="Préstamo">🤝 Préstamo recibido</option>
-            <option value="Otro ingreso">🔹 Otro</option>
-          </select>
-        </div>
-        <div class="fg"><label>Notas (opcional)</label><textarea id="i-notes" placeholder="Detalles..."></textarea></div>
-        <button class="btn btn-green btn-full" onclick="addIngreso()">＋ Registrar ingreso</button>
-      </div>
-    </div>
+  <!-- contenedor legacy oculto -->
+  <div id="reg-form-gasto" style="display:none"></div>
+  <div id="reg-form-ingreso" style="display:none"></div>
 
-    <!-- PANEL DERECHO: salario fijo + recurrentes -->
-    <div style="display:flex;flex-direction:column;gap:14px">
-      <!-- KPIs rápidos -->
-      <div class="four-col" style="margin-bottom:0">
-        <div class="kpi green"><div class="kpi-label">Ingresos este mes</div><div class="kpi-val g" id="ki-mes">$0</div><div class="kpi-sub" id="ki-mes-c">0 entradas</div></div>
-        <div class="kpi red"><div class="kpi-label">Gastos este mes</div><div class="kpi-val r" id="ki-gmes">$0</div><div class="kpi-sub" id="ki-gmes-c">0 gastos</div></div>
-        <div class="kpi blue"><div class="kpi-label">Mejor mes ing.</div><div class="kpi-val b" id="ki-best">$0</div><div class="kpi-sub" id="ki-best-m">—</div></div>
-        <div class="kpi purple"><div class="kpi-label">Total año</div><div class="kpi-val p" id="ki-year">$0</div><div class="kpi-sub" id="ki-year-l">año actual</div></div>
-      </div>
+  <!-- KPIs rápidos del mes -->
+  <div class="four-col" style="margin-bottom:16px">
+    <div class="kpi green"><div class="kpi-label">Ingresos este mes</div><div class="kpi-val g" id="ki-mes">$0</div><div class="kpi-sub" id="ki-mes-c">0 entradas</div></div>
+    <div class="kpi red"><div class="kpi-label">Gastos este mes</div><div class="kpi-val r" id="ki-gmes">$0</div><div class="kpi-sub" id="ki-gmes-c">0 gastos</div></div>
+    <div class="kpi blue"><div class="kpi-label">Mejor mes</div><div class="kpi-val b" id="ki-best">$0</div><div class="kpi-sub" id="ki-best-m">—</div></div>
+    <div class="kpi purple"><div class="kpi-label">Total año</div><div class="kpi-val p" id="ki-year">$0</div><div class="kpi-sub" id="ki-year-l">año</div></div>
+  </div>
 
-      <div class="card">
-        <div class="card-title">💼 Salario fijo mensual</div>
-        <div class="frow">
-          <div class="fg"><label>Monto fijo ($)</label><input id="sal-monto" type="number" placeholder="0" min="0"></div>
-          <div class="fg"><label>Día de pago</label><input id="sal-dia" type="number" min="1" max="31" placeholder="ej: 30"></div>
-        </div>
-        <div class="fg"><label>Descripción</label><input id="sal-desc" placeholder="Ej: Salario empresa X"></div>
-        <button class="btn btn-accent btn-full" onclick="saveSalario()">Guardar salario fijo</button>
-        <div id="sal-status" style="margin-top:10px;font-size:12px;color:var(--text3)"></div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">🔄 Ingresos recurrentes</div>
-        <div class="frow3" style="margin-bottom:10px">
-          <div class="fg"><label>Nombre</label><input id="rc-name" placeholder="Ej: Arriendo"></div>
-          <div class="fg"><label>Monto ($)</label><input id="rc-monto" type="number" placeholder="0"></div>
-          <div class="fg"><label>Día del mes</label><input id="rc-dia" type="number" min="1" max="31" placeholder="1-31"></div>
-        </div>
-        <button class="btn btn-outline btn-full" onclick="addRecurrente()" style="margin-bottom:12px">＋ Agregar recurrente</button>
-        <div id="rc-list" style="display:flex;flex-direction:column;gap:7px"></div>
-      </div>
-    </div>
+  <!-- inputs legacy ocultos para salario y recurrentes -->
+  <div style="display:none">
+    <input id="sal-monto" type="number"><input id="sal-dia" type="number"><input id="sal-desc">
+    <div id="sal-status"></div>
+    <input id="rc-name"><input id="rc-monto" type="number"><input id="rc-dia" type="number">
+    <div id="rc-list"></div>
   </div>
 
   <!-- HISTORIAL COMPLETO -->
-  <div class="card" style="margin-top:4px">
+  <div class="card">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
       <div class="card-title" style="margin:0">Historial de ingresos</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -1026,20 +982,9 @@ mark {
         <select class="ssel" id="ifilt-mon" onchange="renderIngresos()"><option value="">Todos los meses</option></select>
       </div>
     </div>
-    <div style="overflow-x:auto">
-      <table class="prod-table" style="width:100%;border-collapse:collapse">
-        <thead><tr>
-          <th style="padding:11px 15px">Fecha</th>
-          <th style="padding:11px 15px">Descripción</th>
-          <th style="padding:11px 15px">Tipo</th>
-          <th style="padding:11px 15px">Fuente</th>
-          <th style="padding:11px 15px;text-align:right">Monto</th>
-          <th style="padding:11px 15px"></th>
-        </tr></thead>
-        <tbody id="ing-tbody"></tbody>
-      </table>
-    </div>
+    <div id="ing-tbody" style="display:flex;flex-direction:column;gap:6px"></div>
   </div>
+
 </div>
 
 <!-- ═══════════════════ FACTURAS IA ═══════════════════ -->
@@ -1124,14 +1069,7 @@ mark {
       <option value="name">A→Z</option>
     </select>
   </div>
-  <div class="prod-wrap" style="overflow-x:auto">
-    <table class="prod-table" style="min-width:600px">
-      <thead><tr>
-        <th>Producto</th><th>Categoría</th><th>Compras</th><th style="text-align:right">Último precio</th><th style="text-align:right">Total</th><th></th>
-      </tr></thead>
-      <tbody id="prodBody"></tbody>
-    </table>
-  </div>
+  <div id="prodBody" style="display:flex;flex-direction:column;gap:8px"></div>
 </div>
 
 <!-- ═══════════════════ COMPARATIVA ═══════════════════ -->
@@ -1160,9 +1098,9 @@ mark {
   <div class="comp-kpi-grid" id="compKpis"></div>
   <div class="two-col">
     <div class="card"><div class="card-title">🔴 Productos que subieron</div>
-      <table class="tbl"><thead><tr><th>Producto</th><th>Antes</th><th>Ahora</th><th>Cambio</th></tr></thead><tbody id="subioBody"></tbody></table></div>
+      <div id="subioBody" style="display:flex;flex-direction:column;gap:5px"></div></div>
     <div class="card"><div class="card-title">🟢 Productos que bajaron</div>
-      <table class="tbl"><thead><tr><th>Producto</th><th>Antes</th><th>Ahora</th><th>Cambio</th></tr></thead><tbody id="bajoBody"></tbody></table></div>
+      <div id="bajoBody" style="display:flex;flex-direction:column;gap:5px"></div></div>
   </div>
   <div class="two-col">
     <div class="card"><div class="card-title">💸 En qué más gastas</div><div id="topCatBody" style="display:flex;flex-direction:column;gap:10px"></div></div>
@@ -1174,6 +1112,44 @@ mark {
 <div class="page" id="page-presupuesto">
   <div class="pg-title">🎯 Presupuesto</div>
   <div class="pg-sub">Define cuánto puedes gastar por categoría cada mes</div>
+
+  <!-- DISTRIBUCIÓN SUGERIDA 50/30/20 -->
+  <div class="card" style="margin-bottom:16px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+      <div class="card-title" style="margin:0">📐 Distribución sugerida</div>
+      <button onclick="toggleAjustarDist()" style="background:none;border:none;color:var(--accent);font-size:12px;font-weight:600;cursor:pointer">⚙️ Ajustar</button>
+    </div>
+    <div style="font-size:12px;color:var(--text3);margin-bottom:14px">Cómo distribuir tu ingreso de forma saludable</div>
+    <div id="dist-content"></div>
+    <!-- Panel ajustar (oculto por defecto) -->
+    <div id="dist-ajustar" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--border2)">
+      <div style="font-size:12px;color:var(--text3);margin-bottom:12px">De lo que te queda después de gastos fijos, ¿cómo prefieres repartir entre gustos y ahorro?</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-size:13px;font-weight:600">🎉 Gustos</span>
+            <span style="font-size:13px;font-weight:700;color:var(--purple)"><span id="dist-des-val">30</span>%</span>
+          </div>
+          <input type="range" id="dist-des" min="0" max="100" value="30" step="5" style="width:100%;accent-color:var(--purple)" oninput="actualizarSliderDist()">
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-size:13px;font-weight:600">💰 Ahorro</span>
+            <span style="font-size:13px;font-weight:700;color:var(--green)"><span id="dist-aho-val">20</span>%</span>
+          </div>
+          <div style="background:var(--border);border-radius:4px;height:8px;overflow:hidden">
+            <div id="dist-aho-bar" style="height:100%;background:var(--green);width:40%"></div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--text3);margin-top:10px;text-align:center">El ahorro es lo que queda después de los gustos</div>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button class="btn btn-outline" style="flex:1;font-size:12px" onclick="resetDistribucion()">Restaurar 30/20</button>
+        <button class="btn btn-accent" style="flex:1;font-size:12px" onclick="guardarDistribucion()">Guardar</button>
+      </div>
+    </div>
+  </div>
+
   <div style="display:flex;flex-direction:column;gap:16px">
     <div class="card">
       <div class="card-title">Editar presupuesto</div>
@@ -1189,6 +1165,7 @@ mark {
     </div>
     <div class="card">
       <div class="card-title">Estado actual del mes</div>
+      <div id="budg-resumen-mes" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px"></div>
       <div class="blist" id="budgState"></div>
     </div>
   </div><!-- end flex col -->
@@ -1209,8 +1186,52 @@ mark {
   <div class="pg-sub">Personaliza la app a tu gusto</div>
 
   <div class="card" style="margin-bottom:16px;text-align:center;padding:12px">
-    <div style="font-size:12px;color:var(--text3)">Casa·IA <strong style="color:var(--accent)">v1.2.2</strong> — mayo 2026</div>
+    <div style="font-size:12px;color:var(--text3)">Casa·IA <strong style="color:var(--accent)">v1.2.6</strong> — junio 2026</div>
     <div style="font-size:11px;color:var(--text3);margin-top:4px">Backend: casaia-backend-production.up.railway.app</div>
+  </div>
+
+  <!-- TARJETA PREMIUM -->
+  <div class="card" id="card-premium" style="margin-bottom:16px;border:1.5px solid var(--accent)">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+      <div style="font-size:28px">👑</div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800">Casa·IA Premium</div>
+        <div id="prem-status-label" style="font-size:12px;color:var(--text3);margin-top:2px">Cargando...</div>
+      </div>
+    </div>
+    <div id="prem-free-content">
+      <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px">
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px">
+          <span style="color:var(--green)">✓</span> 15 escaneos por semana (vs 5 gratis)
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px">
+          <span style="color:var(--green)">✓</span> Cámara directa sin galería
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px">
+          <span style="color:var(--green)">✓</span> Sin anuncios
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px">
+          <span style="color:var(--green)">✓</span> Análisis IA ilimitado
+        </div>
+      </div>
+      <div style="text-align:center;margin-bottom:10px">
+        <span style="font-family:'DM Sans',sans-serif;font-size:28px;font-weight:700;color:var(--accent)">$12.000</span>
+        <span style="font-size:12px;color:var(--text3)"> COP / mes</span>
+      </div>
+      <button class="btn btn-accent btn-full" onclick="irAPremium()" style="font-size:15px;padding:14px">
+        👑 Obtener Premium
+      </button>
+      <div style="font-size:11px;color:var(--text3);text-align:center;margin-top:8px">
+        Pago seguro vía Wompi · Cancela cuando quieras
+      </div>
+    </div>
+    <div id="prem-active-content" style="display:none">
+      <div style="background:rgba(76,175,125,.1);border:1px solid rgba(76,175,125,.25);border-radius:12px;padding:14px;text-align:center">
+        <div style="font-size:24px;margin-bottom:6px">🎉</div>
+        <div style="font-weight:700;color:var(--green);margin-bottom:4px">¡Eres Premium!</div>
+        <div style="font-size:12px;color:var(--text3)">Tienes acceso a todas las funciones sin límites</div>
+      </div>
+    </div>
   </div>
 
   <div class="card" style="margin-bottom:16px">
@@ -1317,7 +1338,7 @@ mark {
   <div class="card">
     <div class="card-title">ℹ️ Acerca de</div>
     <div style="font-size:13px;color:var(--text2);line-height:1.7">
-      <strong style="color:var(--text)">Casa·IA v1.2.2</strong> — App de control de gastos del hogar con inteligencia artificial.<br>
+      <strong style="color:var(--text)">Casa·IA v1.2.6</strong> — App de control de gastos del hogar con inteligencia artificial.<br>
       Tus datos se guardan <strong style="color:var(--green)">solo en tu navegador</strong>, nunca se envían a ningún servidor.<br>
       Las facturas se analizan con la API de Claude (Anthropic).
     </div>
@@ -1326,43 +1347,44 @@ mark {
 
 <!-- ═══════════════════ RECURRENTES ═══════════════════ -->
 <div class="page" id="page-recurrentes">
-  <div class="pg-title">🔄 Gastos Recurrentes</div>
-  <div class="pg-sub">Servicios fijos que se repiten cada mes — se sugieren automáticamente</div>
+  <div class="pg-title">🔄 Recurrentes</div>
+  <div class="pg-sub">Gastos e ingresos fijos — se registran solos cada mes</div>
 
+  <!-- Pendientes -->
   <div id="pending-container"></div>
 
-  <div class="two-col">
-    <div class="card">
-      <div class="card-title">Agregar gasto recurrente</div>
-      <div class="fg"><label>Nombre</label><input id="rg-name" placeholder="Ej: Arriendo, Netflix, Agua..."></div>
-      <div class="frow">
-        <div class="fg"><label>Monto fijo ($)</label><input id="rg-monto" type="number" placeholder="0" min="0"></div>
-        <div class="fg"><label>Día del mes</label><input id="rg-dia" type="number" min="1" max="31" placeholder="1–31"></div>
-      </div>
-      <div class="fg"><label>Categoría</label>
-        <select id="rg-cat"><option value="">Seleccionar...</option></select>
-      </div>
-      <div class="fg"><label>Notas (opcional)</label><input id="rg-notes" placeholder="Detalle adicional..."></div>
-      <button class="btn btn-accent btn-full" onclick="addRecGasto()">＋ Agregar recurrente</button>
-    </div>
+  <!-- Botones agregar -->
+  <div style="display:flex;gap:10px;margin-bottom:16px">
+    <button class="btn btn-red" onclick="abrirModalRecGasto()" style="flex:1;font-size:13px;padding:12px">🔴 ＋ Gasto fijo</button>
+    <button class="btn btn-outline" onclick="abrirModalRecIngreso()" style="flex:1;font-size:13px;padding:12px;color:var(--green);border-color:var(--green)">🟢 ＋ Ingreso fijo</button>
+  </div>
 
+  <!-- Listas configurados -->
+  <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px">
     <div class="card">
-      <div class="card-title">Recurrentes configurados</div>
-      <div id="rec-gastos-list" style="display:flex;flex-direction:column;gap:8px"></div>
+      <div class="card-title">🔴 Gastos recurrentes</div>
+      <div id="rec-gastos-list" style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;color:var(--text3);text-align:center;padding:12px">Sin recurrentes configurados</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🟢 Ingresos recurrentes</div>
+      <div id="rec-ingresos-list" style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;color:var(--text3);text-align:center;padding:12px">Sin recurrentes configurados</div>
+      </div>
     </div>
   </div>
 
-  <div class="card" style="margin-top:4px">
-    <div class="card-title">Historial — gastos recurrentes registrados</div>
-    <table class="prod-table" style="width:100%;border-collapse:collapse">
-      <thead><tr>
-        <th style="padding:11px 15px">Fecha</th>
-        <th style="padding:11px 15px">Nombre</th>
-        <th style="padding:11px 15px">Categoría</th>
-        <th style="padding:11px 15px;text-align:right">Monto</th>
-      </tr></thead>
-      <tbody id="rec-hist-body"></tbody>
-    </table>
+  <!-- Historial -->
+  <div class="card">
+    <div class="card-title">Historial — recurrentes registrados</div>
+    <div id="rec-hist-body" style="display:flex;flex-direction:column;gap:6px"></div>
+  </div>
+
+  <!-- inputs legacy ocultos -->
+  <div style="display:none">
+    <input id="rg-name"><input id="rg-monto" type="number"><input id="rg-dia" type="number">
+    <select id="rg-cat"></select><input id="rg-notes">
   </div>
 </div>
 
@@ -1420,59 +1442,6 @@ mark {
 </div>
 
 <!-- ═══════════════════ INFLACIÓN PERSONAL ═══════════════════ -->
-<div class="page" id="page-inflacion">
-  <div class="pg-title">📉 Inflación Personal</div>
-  <div class="pg-sub">Tu propia canasta familiar — compara precios entre dos meses y calcula tu inflación real</div>
-
-  <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;align-items:center">
-    <select class="ssel" id="inf-m1" onchange="renderInflacion()"><option value="">Mes base</option></select>
-    <span style="color:var(--text3);font-size:18px;font-weight:700">→</span>
-    <select class="ssel" id="inf-m2" onchange="renderInflacion()"><option value="">Mes actual</option></select>
-    <div style="margin-left:auto;font-size:12px;color:var(--text3)">Solo productos comprados en ambos meses</div>
-  </div>
-
-  <!-- KPIs inflación -->
-  <div class="four-col" style="margin-bottom:20px">
-    <div class="kpi" style="border-color:var(--red)"><div class="kpi-label">Tu inflación</div><div class="kpi-val r" id="inf-pct">—</div><div class="kpi-sub" id="inf-periodo">selecciona meses</div></div>
-    <div class="kpi"><div class="kpi-label">Productos analizados</div><div class="kpi-val a" id="inf-prods">0</div><div class="kpi-sub">en ambos meses</div></div>
-    <div class="kpi red"><div class="kpi-label">Mayor aumento</div><div class="kpi-val r" id="inf-max-prod">—</div><div class="kpi-sub" id="inf-max-pct"></div></div>
-    <div class="kpi green"><div class="kpi-label">Mayor bajada</div><div class="kpi-val g" id="inf-min-prod">—</div><div class="kpi-sub" id="inf-min-pct"></div></div>
-  </div>
-
-  <div class="two-col">
-    <!-- TABLA DE CANASTA -->
-    <div class="card">
-      <div class="card-title">🧺 Tu canasta familiar</div>
-      <div id="inf-canasta-empty" class="empty" style="padding:30px"><div class="empty-ico">📉</div>Selecciona dos meses para ver tu canasta</div>
-      <table class="tbl" id="inf-canasta-table" style="display:none">
-        <thead><tr>
-          <th>Producto</th><th style="text-align:right">Precio base</th>
-          <th style="text-align:right">Precio actual</th><th style="text-align:right">Cambio</th>
-        </tr></thead>
-        <tbody id="inf-tbody"></tbody>
-        <tfoot id="inf-tfoot"></tfoot>
-      </table>
-    </div>
-
-    <!-- GRÁFICA Y ANÁLISIS -->
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div class="card">
-        <div class="card-title">📊 Impacto por categoría</div>
-        <div id="inf-by-cat" style="display:flex;flex-direction:column;gap:10px">
-          <div class="empty" style="padding:20px"><div class="empty-ico">📊</div>Sin datos</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">💡 Interpretación</div>
-        <div id="inf-interpretacion" style="font-size:13px;color:var(--text2);line-height:1.8">
-          Selecciona dos meses para ver cómo han cambiado los precios de tus productos.
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════ METAS ═══════════════════ -->
 <div class="page" id="page-metas">
   <div class="pg-title">🎯 Metas de ahorro</div>
   <div class="pg-sub">Define objetivos y rastrea tu progreso</div>
@@ -1583,7 +1552,7 @@ mark {
   </div>
 
   <div style="text-align:center;padding:20px;color:var(--text3);font-size:13px">
-    Casa·IA v1.2.2 — Hecho con 🧡 en Colombia
+    Casa·IA v1.2.6 — Hecho con 🧡 en Colombia
   </div>
 </div>
 
@@ -1599,6 +1568,7 @@ mark {
     <div class="ph-chart" id="modal-ph-chart"></div>
     <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:16px" id="modal-ph-labels"></div>
     <div id="modal-prod-stats"></div>
+    <div id="modal-prod-tiendas"></div>
   </div>
 </div>
 
@@ -1677,6 +1647,117 @@ mark {
     <div style="display:flex;gap:8px;margin-top:4px">
       <button class="btn btn-outline" style="flex:1" onclick="closeFab()">Cancelar</button>
       <button class="btn btn-red" style="flex:1" onclick="saveFabGasto()">＋ Registrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL GASTO RECURRENTE -->
+<div class="edit-modal-overlay" id="recGastoModal" onclick="if(event.target===this)cerrarModalRecGasto()">
+  <div class="edit-modal-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <div class="modal-title" style="color:var(--red)">🔴 Gasto fijo mensual</div>
+      <button class="modal-close" onclick="cerrarModalRecGasto()">×</button>
+    </div>
+    <div class="fg"><label>Nombre</label><input id="mrg-name" placeholder="Ej: Arriendo, Netflix, Agua..."></div>
+    <div class="frow">
+      <div class="fg"><label>Monto ($)</label><input id="mrg-monto" type="number" placeholder="0" min="0"></div>
+      <div class="fg"><label>Día del mes</label><input id="mrg-dia" type="number" min="1" max="31" placeholder="1–31"></div>
+    </div>
+    <div class="fg"><label>Categoría</label><select id="mrg-cat"><option value="">Seleccionar...</option></select></div>
+    <div class="fg"><label>Notas (opcional)</label><input id="mrg-notes" placeholder="Detalle adicional..."></div>
+    <div style="display:flex;gap:8px;margin-top:4px">
+      <button class="btn btn-outline" style="flex:1" onclick="cerrarModalRecGasto()">Cancelar</button>
+      <button class="btn btn-red" style="flex:1" onclick="guardarModalRecGasto()">＋ Agregar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL INGRESO RECURRENTE -->
+<div class="edit-modal-overlay" id="recIngresoModal" onclick="if(event.target===this)cerrarModalRecIngreso()">
+  <div class="edit-modal-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <div class="modal-title" style="color:var(--green)">🟢 Ingreso fijo mensual</div>
+      <button class="modal-close" onclick="cerrarModalRecIngreso()">×</button>
+    </div>
+    <div class="fg"><label>Nombre</label><input id="mri-name" placeholder="Ej: Salario Sigworks, Arriendo recibido..."></div>
+    <div class="frow">
+      <div class="fg"><label>Monto ($)</label><input id="mri-monto" type="number" placeholder="0" min="0"></div>
+      <div class="fg"><label>Día del mes</label><input id="mri-dia" type="number" min="1" max="31" placeholder="1–31"></div>
+    </div>
+    <div class="fg"><label>Fuente</label>
+      <select id="mri-cat">
+        <option value="Salario">💼 Salario</option>
+        <option value="Freelance">💻 Freelance</option>
+        <option value="Trading">📈 Trading</option>
+        <option value="Negocio">🏪 Negocio</option>
+        <option value="Arriendo">🏠 Arriendo recibido</option>
+        <option value="Inversión">💹 Inversión / dividendos</option>
+        <option value="Otro ingreso">🔹 Otro</option>
+      </select>
+    </div>
+    <div class="fg"><label>Notas (opcional)</label><input id="mri-notes" placeholder="Detalle adicional..."></div>
+    <div style="display:flex;gap:8px;margin-top:4px">
+      <button class="btn btn-outline" style="flex:1" onclick="cerrarModalRecIngreso()">Cancelar</button>
+      <button class="btn btn-green" style="flex:1" onclick="guardarModalRecIngreso()">＋ Agregar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL REGISTRAR GASTO -->
+<div class="edit-modal-overlay" id="gastoModal" onclick="if(event.target===this)cerrarModalGasto()">
+  <div class="edit-modal-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <div class="modal-title" style="color:var(--red)">🔴 Registrar gasto</div>
+      <button class="modal-close" onclick="cerrarModalGasto()">×</button>
+    </div>
+    <div class="fg"><label>Descripción</label><input id="mg-desc" placeholder="Ej: Taxi, Almuerzo, Mercado..."></div>
+    <div class="frow">
+      <div class="fg"><label>Monto ($)</label><input id="mg-amt" type="number" placeholder="0" min="0"></div>
+      <div class="fg"><label>Fecha</label><input id="mg-date" type="date"></div>
+    </div>
+    <div class="fg"><label>Categoría</label><select id="mg-cat"><option value="">Seleccionar...</option></select></div>
+    <div class="fg"><label>Notas (opcional)</label><input id="mg-notes" placeholder="Detalle adicional..."></div>
+    <div style="display:flex;gap:8px;margin-top:4px">
+      <button class="btn btn-outline" style="flex:1" onclick="cerrarModalGasto()">Cancelar</button>
+      <button class="btn btn-red" style="flex:1" onclick="guardarModalGasto()">＋ Registrar gasto</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL REGISTRAR INGRESO -->
+<div class="edit-modal-overlay" id="ingresoModal" onclick="if(event.target===this)cerrarModalIngreso()">
+  <div class="edit-modal-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <div class="modal-title" style="color:var(--green)">🟢 Registrar ingreso</div>
+      <button class="modal-close" onclick="cerrarModalIngreso()">×</button>
+    </div>
+    <div class="ing-type-tabs" style="margin-bottom:12px">
+      <button class="ing-type-tab active" onclick="setIngTipo('salario',this)">💼 Salario</button>
+      <button class="ing-type-tab" onclick="setIngTipo('variable',this)">📊 Variable</button>
+      <button class="ing-type-tab" onclick="setIngTipo('esporadico',this)">⚡ Esporádico</button>
+    </div>
+    <div class="fg"><label>Descripción</label><input id="mi-desc" placeholder="Ej: Salario mayo, Proyecto X..."></div>
+    <div class="frow">
+      <div class="fg"><label>Monto ($)</label><input id="mi-amt" type="number" placeholder="0" min="0"></div>
+      <div class="fg"><label>Fecha</label><input id="mi-date" type="date"></div>
+    </div>
+    <div class="fg"><label>Fuente</label>
+      <select id="mi-cat">
+        <option value="Salario">💼 Salario</option>
+        <option value="Freelance">💻 Freelance</option>
+        <option value="Trading">📈 Trading</option>
+        <option value="Negocio">🏪 Negocio</option>
+        <option value="Arriendo">🏠 Arriendo recibido</option>
+        <option value="Inversión">💹 Inversión / dividendos</option>
+        <option value="Bono">🎁 Bono / comisión</option>
+        <option value="Préstamo">🤝 Préstamo recibido</option>
+        <option value="Otro ingreso">🔹 Otro</option>
+      </select>
+    </div>
+    <div class="fg"><label>Notas (opcional)</label><input id="mi-notes" placeholder="Detalle adicional..."></div>
+    <div style="display:flex;gap:8px;margin-top:4px">
+      <button class="btn btn-outline" style="flex:1" onclick="cerrarModalIngreso()">Cancelar</button>
+      <button class="btn btn-green" style="flex:1" onclick="guardarModalIngreso()">＋ Registrar ingreso</button>
     </div>
   </div>
 </div>
@@ -1923,6 +2004,14 @@ let S={
   recurrentes:[],       // ingresos recurrentes {id,name,monto,dia}
   recGastos:[],         // gastos recurrentes {id,name,monto,dia,cat,notes}
   config:{theme:'dark',alert80:true,alert100:true},
+  distribucion:{necesidades:50,deseos:30,ahorro:20}, // regla 50/30/20 ajustable
+  gruposCat:{ // mapeo categoría → grupo (necesidad/deseo/ahorro)
+    'Alimentación':'necesidades','Aseo y limpieza':'necesidades',
+    'Servicios públicos':'necesidades','Salud':'necesidades',
+    'Transporte':'necesidades','Arriendo':'necesidades',
+    'Entretenimiento':'deseos','Ropa':'deseos','Tecnología':'deseos',
+    'Educación':'necesidades','Otros':'deseos'
+  },
   curMonth:new Date().getMonth(),
   curYear:new Date().getFullYear(),
   aiMonth:new Date().getMonth(),
@@ -2004,11 +2093,11 @@ function goPage(id,btn,bnId){
     if(bn)bn.classList.add('active');
   } else {
     // Buscar cuál botón de la barra corresponde a esta página
-    const map={resumen:'bn-resumen',semanal:'bn-resumen',ingresos:'bn-ingresos',facturas:'bn-facturas',movimientos:'bn-movimientos',productos:'bn-movimientos',comparativa:'bn-movimientos',recurrentes:'bn-more',presupuesto:'bn-more',analisis:'bn-more',inflacion:'bn-more',ajustes:'bn-more'};
+    const map={resumen:'bn-resumen',semanal:'bn-resumen',ingresos:'bn-ingresos',facturas:'bn-facturas',movimientos:'bn-movimientos',productos:'bn-movimientos',comparativa:'bn-movimientos',recurrentes:'bn-more',presupuesto:'bn-more',analisis:'bn-more',ajustes:'bn-more'};
     const bnBtn=document.getElementById(map[id]);
     if(bnBtn)bnBtn.classList.add('active');
   }
-  const r={resumen:renderResumen,semanal:renderSemanal,movimientos:renderMovimientos,ingresos:renderIngresos,productos:renderProductos,comparativa:renderComparativa,presupuesto:renderPresupuesto,facturas:renderFactList,ajustes:renderAjustes,recurrentes:renderRecurrentes,analisis:renderAnalisisPage,inflacion:renderInflacion,ayuda:()=>{},metas:renderMetas};
+  const r={resumen:renderResumen,semanal:renderSemanal,movimientos:renderMovimientos,ingresos:renderIngresos,productos:renderProductos,comparativa:renderComparativa,presupuesto:renderPresupuesto,facturas:renderFactList,ajustes:renderAjustes,recurrentes:renderRecurrentes,analisis:renderAnalisisPage,ayuda:()=>{},metas:renderMetas};
   if(r[id])r[id]();
 }
 
@@ -2104,6 +2193,35 @@ function renderResumen(){
   drawBudg('budgR');
   renderMetas();
   updNavBadge();
+
+  // Mensaje de bienvenida si la app está completamente vacía
+  const totalDatos=S.transactions.length+S.facturas.length;
+  let welcomeEl=document.getElementById('welcome-empty');
+  if(totalDatos===0){
+    if(!welcomeEl){
+      welcomeEl=document.createElement('div');
+      welcomeEl.id='welcome-empty';
+      welcomeEl.style.cssText='background:linear-gradient(135deg,rgba(232,160,32,.12),rgba(232,160,32,.04));border:1.5px solid rgba(232,160,32,.3);border-radius:16px;padding:20px;margin-bottom:16px;text-align:center';
+      welcomeEl.innerHTML=`
+        <div style="font-size:36px;margin-bottom:8px">👋</div>
+        <div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:800;margin-bottom:6px">¡Bienvenido a Casa·IA!</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:14px">Empieza escaneando una factura o registrando tu primer gasto. Tus finanzas en orden, sin esfuerzo.</div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-accent" style="font-size:13px;padding:9px 16px" onclick="goPage('facturas',document.querySelector('.tab'))">📸 Escanear factura</button>
+          <button class="btn btn-outline" style="font-size:13px;padding:9px 16px" onclick="abrirModalGasto()">✏️ Registrar gasto</button>
+        </div>`;
+      const page=document.getElementById('page-resumen');
+      const firstChild=page.querySelector('.pg-sub');
+      if(firstChild&&firstChild.nextSibling){
+        firstChild.parentNode.insertBefore(welcomeEl,firstChild.nextSibling);
+      } else {
+        page.insertBefore(welcomeEl,page.firstChild);
+      }
+    }
+    welcomeEl.style.display='block';
+  } else if(welcomeEl){
+    welcomeEl.style.display='none';
+  }
   // Sugerir abono a meta si hay superávit (solo una vez por mes)
   if(S.curMonth===new Date().getMonth()&&S.curYear===new Date().getFullYear()){
     checkMetaSugerida();
@@ -2170,9 +2288,14 @@ function drawBar(cid){
     return{label,g:txns.filter(t=>t.type==='gasto').reduce((s,t)=>s+t.amount,0),i:txns.filter(t=>t.type==='ingreso').reduce((s,t)=>s+t.amount,0)};
   });
   const mx=Math.max(...data.map(d=>Math.max(d.g,d.i)),1);
-  el.innerHTML=data.map(d=>`<div class="bcol">
-    <div class="bbar" style="height:${(d.i/mx)*90}px;background:var(--green2)"></div>
-    <div class="bbar" style="height:${(d.g/mx)*90}px;background:var(--accent)"></div>
+  function fmtK(n){if(n>=1000000)return'$'+(n/1000000).toFixed(1)+'M';if(n>=1000)return'$'+(n/1000).toFixed(0)+'k';return'$'+Math.round(n);}
+  el.innerHTML=data.map(d=>`<div class="bcol" style="position:relative">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:1px;width:100%">
+      ${d.i>0?`<div style="font-size:8px;color:var(--green);font-weight:700;white-space:nowrap">${fmtK(d.i)}</div>`:'<div style="font-size:8px"></div>'}
+      <div class="bbar" style="height:${Math.max(3,(d.i/mx)*70)}px;background:var(--green2);width:100%"></div>
+      ${d.g>0?`<div style="font-size:8px;color:var(--accent);font-weight:700;white-space:nowrap">${fmtK(d.g)}</div>`:'<div style="font-size:8px"></div>'}
+      <div class="bbar" style="height:${Math.max(3,(d.g/mx)*70)}px;background:var(--accent);width:100%"></div>
+    </div>
     <div class="blabel">${d.label}</div>
   </div>`).join('')+`<div style="display:flex;flex-direction:column;gap:4px;justify-content:flex-end;padding-bottom:16px;font-size:9px;color:var(--text3)"><div style="display:flex;align-items:center;gap:3px"><span style="width:8px;height:8px;border-radius:2px;background:var(--green2);display:inline-block"></span>Ing</div><div style="display:flex;align-items:center;gap:3px"><span style="width:8px;height:8px;border-radius:2px;background:var(--accent);display:inline-block"></span>Gas</div></div>`;
 }
@@ -2244,16 +2367,6 @@ function drawRecent(cid,txns){
 // ═══════════════════════════════════════════════════════
 // REGISTRAR GASTO MANUAL
 // ═══════════════════════════════════════════════════════
-function setRegTab(tab){
-  const isGasto=tab==='gasto';
-  document.getElementById('reg-form-gasto').style.display=isGasto?'block':'none';
-  document.getElementById('reg-form-ingreso').style.display=isGasto?'none':'block';
-  document.getElementById('reg-tab-gasto').className='btn '+(isGasto?'btn-red':'btn-outline');
-  document.getElementById('reg-tab-ingreso').className='btn '+(isGasto?'btn-outline':'btn-green');
-  // Poblar categorías en select de gasto
-  if(isGasto) poblarCatSelectGasto('g-cat');
-}
-
 function poblarCatSelectGasto(selId){
   const sel=document.getElementById(selId);
   if(!sel)return;
@@ -2318,15 +2431,122 @@ function saveFabGasto(){
 
 // ─── BOTÓN FLOTANTE ───────────────────────────────────
 function openFab(){
-  poblarCatSelectGasto('fab-cat');
-  document.getElementById('fab-date').value=todayStr();
-  document.getElementById('fab-desc').value='';
-  document.getElementById('fab-amt').value='';
-  document.getElementById('fab-notes').value='';
-  document.getElementById('fabModal').classList.add('show');
-  setTimeout(()=>document.getElementById('fab-desc').focus(),100);
+  // El FAB + abre el modal de gasto unificado
+  abrirModalGasto();
 }
 function closeFab(){ document.getElementById('fabModal').classList.remove('show'); }
+
+// ═══ MODALES RECURRENTES ═══
+function abrirModalRecGasto(){
+  // Poblar categorías
+  const sel=document.getElementById('mrg-cat');
+  sel.innerHTML='<option value="">Seleccionar...</option>'+
+    S.categories.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
+  document.getElementById('mrg-name').value='';
+  document.getElementById('mrg-monto').value='';
+  document.getElementById('mrg-dia').value='';
+  document.getElementById('mrg-notes').value='';
+  document.getElementById('recGastoModal').classList.add('show');
+  setTimeout(()=>document.getElementById('mrg-name').focus(),150);
+}
+function cerrarModalRecGasto(){
+  document.getElementById('recGastoModal').classList.remove('show');
+}
+function guardarModalRecGasto(){
+  const name=document.getElementById('mrg-name').value.trim();
+  const monto=parseFloat(document.getElementById('mrg-monto').value)||0;
+  const dia=parseInt(document.getElementById('mrg-dia').value)||1;
+  const cat=document.getElementById('mrg-cat').value;
+  const notes=document.getElementById('mrg-notes').value.trim();
+  if(!name){toast('Escribe un nombre','err');return;}
+  if(!monto||monto<=0){toast('El monto debe ser mayor a 0','err');return;}
+  if(!cat){toast('Selecciona una categoría','err');return;}
+  S.recGastos.push({id:Date.now(),name,monto,dia,cat,notes});
+  save();cerrarModalRecGasto();renderRecurrentes();
+  toast('✅ '+name+' agregado como recurrente','ok');
+}
+
+function abrirModalRecIngreso(){
+  document.getElementById('mri-name').value='';
+  document.getElementById('mri-monto').value='';
+  document.getElementById('mri-dia').value='';
+  document.getElementById('mri-notes').value='';
+  document.getElementById('mri-cat').value='Salario';
+  document.getElementById('recIngresoModal').classList.add('show');
+  setTimeout(()=>document.getElementById('mri-name').focus(),150);
+}
+function cerrarModalRecIngreso(){
+  document.getElementById('recIngresoModal').classList.remove('show');
+}
+function guardarModalRecIngreso(){
+  const name=document.getElementById('mri-name').value.trim();
+  const monto=parseFloat(document.getElementById('mri-monto').value)||0;
+  const dia=parseInt(document.getElementById('mri-dia').value)||1;
+  const cat=document.getElementById('mri-cat').value||'Salario';
+  const notes=document.getElementById('mri-notes').value.trim();
+  if(!name){toast('Escribe un nombre','err');return;}
+  if(!monto||monto<=0){toast('El monto debe ser mayor a 0','err');return;}
+  S.recurrentes.push({id:Date.now(),name,monto,dia,cat,notes});
+  save();cerrarModalRecIngreso();renderRecurrentes();
+  toast('✅ '+name+' agregado como recurrente','ok');
+}
+
+function abrirModalGasto(){
+  poblarCatSelectGasto('mg-cat');
+  document.getElementById('mg-desc').value='';
+  document.getElementById('mg-amt').value='';
+  document.getElementById('mg-date').value=todayStr();
+  document.getElementById('mg-notes').value='';
+  document.getElementById('gastoModal').classList.add('show');
+  setTimeout(()=>document.getElementById('mg-desc').focus(),150);
+}
+function cerrarModalGasto(){
+  document.getElementById('gastoModal').classList.remove('show');
+}
+function guardarModalGasto(){
+  const desc=document.getElementById('mg-desc').value.trim();
+  const amt=parseFloat(document.getElementById('mg-amt').value)||0;
+  const date=document.getElementById('mg-date').value||todayStr();
+  const cat=document.getElementById('mg-cat').value;
+  const notes=document.getElementById('mg-notes').value.trim();
+  if(!desc){toast('Escribe una descripción','err');return;}
+  if(!amt||amt<=0){toast('El monto debe ser mayor a 0','err');return;}
+  if(!cat){toast('Selecciona una categoría','err');return;}
+  S.transactions.push({id:Date.now()+Math.random(),type:'gasto',desc,amount:amt,date,cat,notes,source:'manual'});
+  registrarProductoDeGasto(desc,cat,date,amt);
+  save();cerrarModalGasto();renderResumen();
+  toast('✅ '+desc+' — '+fmt(amt),'ok');
+}
+
+function abrirModalIngreso(){
+  document.getElementById('mi-desc').value='';
+  document.getElementById('mi-amt').value='';
+  document.getElementById('mi-date').value=todayStr();
+  document.getElementById('mi-notes').value='';
+  document.getElementById('mi-cat').value='Salario';
+  // reset tipo tabs
+  document.querySelectorAll('.ing-type-tab').forEach(t=>t.classList.remove('active'));
+  const firstTab=document.querySelector('#ingresoModal .ing-type-tab');
+  if(firstTab) firstTab.classList.add('active');
+  ingTipo='salario';
+  document.getElementById('ingresoModal').classList.add('show');
+  setTimeout(()=>document.getElementById('mi-desc').focus(),150);
+}
+function cerrarModalIngreso(){
+  document.getElementById('ingresoModal').classList.remove('show');
+}
+function guardarModalIngreso(){
+  const desc=document.getElementById('mi-desc').value.trim();
+  const amt=parseFloat(document.getElementById('mi-amt').value);
+  const date=document.getElementById('mi-date').value||todayStr();
+  const cat=document.getElementById('mi-cat').value;
+  const notes=document.getElementById('mi-notes').value.trim();
+  if(!desc){toast('Escribe una descripción','err');return;}
+  if(!amt||amt<=0){toast('El monto debe ser mayor a 0','err');return;}
+  S.transactions.push({id:Date.now()+Math.random(),type:'ingreso',desc,amount:amt,date,cat,ingTipo,notes,source:'manual'});
+  save();cerrarModalIngreso();renderIngresos();renderResumen();
+  toast('✅ Ingreso registrado','ok');
+}
 
 // ═══════════════════════════════════════════════════════
 // INGRESOS — mantener función existente + agregar KPI gastos
@@ -2375,18 +2595,7 @@ function delRecurrente(id){
   save();renderRecurrentes();
 }
 
-function renderRecurrentes(){
-  const el=document.getElementById('rc-list');
-  if(!S.recurrentes.length){el.innerHTML='<div style="font-size:12px;color:var(--text3)">Sin recurrentes configurados</div>';return;}
-  el.innerHTML=S.recurrentes.map(r=>`
-    <div class="recurrente-chip">
-      <div class="rc-dot" style="background:var(--green)"></div>
-      <div class="rc-name">${r.name}</div>
-      <div class="rc-dia">día ${r.dia}</div>
-      <div class="rc-monto">${fmt(r.monto)}</div>
-      <span class="rc-del" onclick="delRecurrente(${r.id})">×</span>
-    </div>`).join('');
-}
+// renderRecurrentes legacy removed — see full version below
 
 function renderIngresos(){
   // KPIs
@@ -2469,22 +2678,35 @@ function renderIngresos(){
   list.sort((a,b)=>new Date(b.date)-new Date(a.date));
 
   const tbody=document.getElementById('ing-tbody');
-  if(!list.length){tbody.innerHTML='<tr><td colspan="6" class="empty" style="padding:30px"><div class="empty-ico">💰</div>Sin ingresos registrados</td></tr>';return;}
+  if(!list.length){tbody.innerHTML='<div class="empty" style="padding:30px"><div class="empty-ico">💰</div><div>Sin ingresos registrados</div></div>';return;}
 
-  const tipoColors={salario:'var(--green)',variable:'var(--blue)',esporadico:'var(--purple)'};
-  const tipoLabel={salario:'Salario',variable:'Variable',esporadico:'Esporádico'};
+  const tipoColors={salario:'var(--green)',variable:'var(--blue)',esporadico:'var(--purple)',recurrente:'var(--teal)'};
+  const tipoLabel={salario:'Salario',variable:'Variable',esporadico:'Esporádico',recurrente:'Recurrente'};
 
-  tbody.innerHTML=list.map(t=>`<tr>
-    <td style="color:var(--text2);padding:10px 15px">${fmtD(t.date)}</td>
-    <td style="padding:10px 15px;font-weight:500">${t.desc}${t.notes?`<br><span style="font-size:11px;color:var(--text3)">${t.notes}</span>`:''}</td>
-    <td style="padding:10px 15px"><span class="pill" style="background:${(tipoColors[t.ingTipo]||'var(--text3)')+'22'};color:${tipoColors[t.ingTipo]||'var(--text3)'}">${tipoLabel[t.ingTipo]||'—'}</span></td>
-    <td style="padding:10px 15px"><span class="pill" style="background:var(--green2);color:var(--green)">${t.cat}</span></td>
-    <td style="padding:10px 15px;text-align:right;font-weight:700;color:var(--green)">+${fmt(t.amount)}</td>
-    <td style="padding:10px 15px;white-space:nowrap">
-      <button class="del-btn" title="Editar" onclick="openEditModal('${t.id}')" style="margin-right:2px">✏️</button>
-      <button class="del-btn" title="Eliminar" onclick="delTxn('${t.id}')">🗑</button>
-    </td>
-  </tr>`).join('');
+  tbody.innerHTML=list.map(t=>{
+    const tc=tipoColors[t.ingTipo]||'var(--text3)';
+    const tl=tipoLabel[t.ingTipo]||'Ingreso';
+    return`<div style="background:rgba(76,175,125,.06);border:1px solid rgba(76,175,125,.15);border-radius:12px;padding:12px 14px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:600;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${t.desc}</div>
+          <div style="display:flex;gap:6px;align-items:center;margin-top:5px;flex-wrap:wrap">
+            <span style="font-size:11px;color:var(--text3)">${fmtD(t.date)}</span>
+            <span class="pill" style="background:${tc}22;color:${tc};font-size:10px">${tl}</span>
+            <span class="pill" style="background:var(--green2);color:var(--green);font-size:10px">${t.cat}</span>
+            ${t.notes?`<span style="font-size:11px;color:var(--text3);font-style:italic">${t.notes}</span>`:''}
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0">
+          <span style="font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;color:var(--green)">+${fmt(t.amount)}</span>
+          <div style="display:flex;gap:4px">
+            <button class="del-btn" onclick="openEditModal('${t.id}')">✏️</button>
+            <button class="del-btn" onclick="delTxn('${t.id}')">🗑</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 function delTxn(id){
@@ -2726,18 +2948,24 @@ function renderQueue(){
         <div class="queue-card-body">
           ${!isPdf?`<img src="data:${item.mime};base64,${item.b64}" class="fact-thumb" alt="factura">`:''}
           <div class="fg"><label>Nota (opcional)</label><input placeholder="Ej: Mercado quincenal..." oninput="updateQueueNota('${item.id}',this.value)" value="${item.nota||''}"></div>
-          <table class="ext-table" style="margin-top:4px">
-            <thead><tr><th>Producto</th><th>Cant.</th><th>P.Unit</th><th>Total</th><th>Categoría</th></tr></thead>
-            <tbody>${(item.data.items||[]).map((p,i)=>`<tr>
-              <td><input style="background:transparent;border:none;color:var(--text);font-size:12px;width:100%;min-width:100px;outline:none" value="${p.name||''}" oninput="updateQueueItem('${item.id}',${i},'name',this.value)"></td>
-              <td><input type="number" style="background:transparent;border:none;color:var(--text3);font-size:12px;width:34px;outline:none" value="${p.qty||1}" oninput="updateQueueItem('${item.id}',${i},'qty',+this.value)"></td>
-              <td style="color:var(--accent)">${fmt(p.unit_price||0)}</td>
-              <td style="font-weight:600">${fmt(p.total||p.unit_price*(p.qty||1)||0)}</td>
-              <td><select class="cat-sel" onchange="updateQueueItem('${item.id}',${i},'category',this.value)">
-                ${S.categories.map(c=>`<option value="${c.name}" ${c.name===p.category?'selected':''}>${c.name}</option>`).join('')}
-              </select></td>
-            </tr>`).join('')}</tbody>
-          </table>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
+            ${(item.data.items||[]).map((p,i)=>`
+              <div style="background:var(--surface2);border-radius:10px;padding:10px 12px">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px">
+                  <input style="background:transparent;border:none;color:var(--text);font-size:13px;font-weight:600;flex:1;min-width:0;outline:none;padding:0" value="${p.name||''}" oninput="updateQueueItem('${item.id}',${i},'name',this.value)">
+                  <span style="font-family:'DM Sans',sans-serif;font-weight:700;color:var(--accent);white-space:nowrap;flex-shrink:0">${fmt(p.total||p.unit_price*(p.qty||1)||0)}</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                  <span style="font-size:11px;color:var(--text3)">Cant:</span>
+                  <input type="number" style="background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--text3);font-size:11px;width:40px;padding:2px 4px;outline:none;text-align:center" value="${p.qty||1}" oninput="updateQueueItem('${item.id}',${i},'qty',+this.value)">
+                  <span style="font-size:11px;color:var(--text3)">c/u ${fmt(p.unit_price||0)}</span>
+                  <select class="cat-sel" style="font-size:11px;flex:1;min-width:80px" onchange="updateQueueItem('${item.id}',${i},'category',this.value)">
+                    ${S.categories.map(c=>`<option value="${c.name}" ${c.name===p.category?'selected':''}>${c.name}</option>`).join('')}
+                  </select>
+                </div>
+              </div>
+            `).join('')}
+          </div>
           <div class="ext-total" style="margin-top:8px"><span>Total</span><span style="color:var(--accent)">${fmt(item.data.total||0)}</span></div>
         </div>`;
     }
@@ -2954,15 +3182,13 @@ function openFactPhoto(fid){
 
 function borrarTodasFacturas(){
   if(!S.facturas.length){toast('No hay facturas guardadas','err');return;}
-  if(!confirm('¿Borrar TODAS las '+S.facturas.length+' facturas guardadas?\nLas transacciones asociadas también se eliminarán.'))return;
-  const ids=S.facturas.map(f=>f.id);
+  const msg='¿Borrar las '+S.facturas.length+' facturas escaneadas?\n\n'
+    +'Solo se eliminan las imágenes/escaneos.\n'
+    +'Los gastos que ya registraste siguen guardados.\n\n'
+    +'Esta acción no se puede deshacer.';
+  if(!confirm(msg))return;
   S.facturas=[];
-  ids.forEach(id=>{
-    S.transactions=S.transactions.filter(t=>t.factId!==id);
-    S.products.forEach(p=>{p.entries=p.entries.filter(e=>e.factId!==id);});
-  });
-  S.products=S.products.filter(p=>p.entries.length>0);
-  save();renderFactList();toast('✅ Todas las facturas eliminadas','ok');
+  save();renderFactList();toast('✅ Facturas eliminadas','ok');
 }
 
 function deleteFact(id){
@@ -3007,10 +3233,12 @@ function saveEdit(){
   t.cat=document.getElementById('edit-cat').value;
   t.notes=document.getElementById('edit-notes').value.trim();
   save();closeEditModal();
-  // Re-render la página activa
+  // Re-render todas las páginas relevantes
+  renderResumen();
   const active=document.querySelector('.page.active')?.id?.replace('page-','');
-  if(active==='resumen')renderResumen();
+  if(active==='movimientos')renderMovimientos();
   else if(active==='ingresos')renderIngresos();
+  else if(active==='presupuesto')renderPresupuesto();
   toast('✅ Movimiento actualizado','ok');
 }
 
@@ -3129,28 +3357,33 @@ function renderProductos(){
 
   const tbody=document.getElementById('prodBody');
   if(!prods.length){
-    tbody.innerHTML=`<tr><td colspan="8" class="empty" style="padding:40px"><div class="empty-ico">🛒</div>${search||catF||mesF?'Sin productos con ese filtro':'Escanea una factura primero'}</td></tr>`;
+    tbody.innerHTML=`<div class="empty" style="padding:40px"><div class="empty-ico">🛒</div><div>${search||catF||mesF?'Sin productos con ese filtro':'Escanea una factura primero'}</div></div>`;
     return;
   }
 
   tbody.innerHTML=prods.map(p=>{
     const co=S.categories.find(c=>c.name===p.cat);
     const color=co?co.color:'#9A9590';
-    let tr='<span class="trend-eq">= Sin cambio</span>';
-    if(p.trend==='up'&&p.pct!==0) tr=`<span class="trend-up">↑ +${p.pct}%</span>`;
-    if(p.trend==='down'&&p.pct!==0) tr=`<span class="trend-down">↓ ${p.pct}%</span>`;
-    return`<tr>
-      <td style="cursor:pointer;font-weight:600;max-width:120px;word-break:break-word" onclick="openProdModal('${p.id}')" title="Ver historial">
-        ${p.name} <span style="font-size:10px;color:var(--text3)">📊</span>
-      </td>
-      <td><span class="pill" style="background:${color}22;color:${color};white-space:nowrap">${p.cat}</span></td>
-      <td style="color:var(--text2)">${p.freq}×</td>
-      <td>${fmt(p.avg)}</td>
-      <td style="font-weight:700;color:var(--accent)">${fmt(p.last)}</td>
-      <td>${tr}</td>
-      <td style="font-weight:700">${fmt(p.totalSpent)}</td>
-      <td><button class="del-btn" title="Editar nombre" onclick="editarProducto('${p.id}')">✏️</button></td>
-    </tr>`;
+    let trColor='var(--text3)'; let trText='= Sin cambio';
+    if(p.trend==='up'&&p.pct!==0){trColor='var(--red)';trText='↑ +'+p.pct+'%';}
+    if(p.trend==='down'&&p.pct!==0){trColor='var(--green)';trText='↓ '+p.pct+'%';}
+    return`<div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px;cursor:pointer" onclick="openProdModal('${p.id}')">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:700;font-size:14px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.name} <span style="font-size:10px;color:var(--text3)">📊</span></div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:5px;flex-wrap:wrap">
+            <span class="pill" style="background:${color}22;color:${color};font-size:10px">${p.cat}</span>
+            <span style="font-size:11px;color:var(--text3)">${p.freq}× comprado</span>
+            <span style="font-size:11px;font-weight:600;color:${trColor}">${trText}</span>
+          </div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;color:var(--accent)">${fmt(p.last)}</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:2px">Total: ${fmt(p.totalSpent)}</div>
+          <button class="del-btn" style="margin-top:4px" title="Editar" onclick="event.stopPropagation();editarProducto('${p.id}')">✏️</button>
+        </div>
+      </div>
+    </div>`;
   }).join('');
 }
 
@@ -3258,7 +3491,14 @@ function renderComparativa(){
     if(chg>0)sub.push({name:p.name,a1,a2,chg});else if(chg<0)baj.push({name:p.name,a1,a2,chg});
   });
   sub.sort((a,b)=>b.chg-a.chg);baj.sort((a,b)=>a.chg-b.chg);
-  const rpr=(arr,el)=>{document.getElementById(el).innerHTML=arr.slice(0,8).map(p=>`<tr><td style="font-weight:500">${p.name}</td><td style="color:var(--text3)">${fmt(p.a1)}</td><td style="font-weight:600">${fmt(p.a2)}</td><td class="${p.chg>0?'trend-up':'trend-down'}">${p.chg>0?'↑ +':'↓ '}${p.chg}%</td></tr>`).join('')||'<tr><td colspan="4" class="empty" style="padding:16px">Sin datos</td></tr>';};
+  const rpr=(arr,el)=>{document.getElementById(el).innerHTML=arr.slice(0,8).map(p=>{
+    const isUp=p.chg>0;const cl=isUp?'var(--red)':'var(--green)';
+    return`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:var(--surface2);border-radius:9px;gap:6px">
+      <div style="flex:1;min-width:0;font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.name}</div>
+      <div style="font-size:11px;color:var(--text3);white-space:nowrap">${fmt(p.a1)} → <span style="color:var(--text);font-weight:700">${fmt(p.a2)}</span></div>
+      <div style="font-size:12px;font-weight:700;color:${cl};white-space:nowrap;flex-shrink:0">${isUp?'↑ +':'↓ '}${p.chg}%</div>
+    </div>`;
+  }).join('')||'<div class="empty" style="padding:16px">Sin datos</div>';};
   rpr(sub,'subioBody');rpr(baj,'bajoBody');
   // Top categorías
   const g2txns=txns2.filter(t=>t.type==='gasto');
@@ -3284,6 +3524,154 @@ function renderComparativa(){
 // ═══════════════════════════════════════════════════════
 // PRESUPUESTO
 // ═══════════════════════════════════════════════════════
+function renderDistribucion(){
+  const cont=document.getElementById('dist-content');
+  if(!cont)return;
+  const ingreso=S.salario.monto||getMonTxns().filter(t=>t.type==='ingreso').reduce((s,t)=>s+t.amount,0);
+  const dist=S.distribucion||{necesidades:50,deseos:30,ahorro:20};
+
+  if(!ingreso){
+    cont.innerHTML='<div style="font-size:13px;color:var(--text3);text-align:center;padding:12px">Configura tu ingreso mensual para ver tu plan personalizado</div>';
+    return;
+  }
+
+  // Calcular gasto real por grupo este mes
+  const txnsMes=getMonTxns().filter(t=>t.type==='gasto');
+  const gastoGrupo={necesidades:0,deseos:0};
+  txnsMes.forEach(t=>{
+    const grupo=(S.gruposCat&&S.gruposCat[t.cat])||'deseos';
+    if(grupo==='necesidades')gastoGrupo.necesidades+=t.amount;
+    else gastoGrupo.deseos+=t.amount;
+  });
+
+  const necesidadesReal=gastoGrupo.necesidades;
+  const deseosReal=gastoGrupo.deseos;
+  const gastoTotal=necesidadesReal+deseosReal;
+  const disponible=ingreso-gastoTotal;
+  const pctNec=Math.round(necesidadesReal/ingreso*100);
+
+  // ── PLAN PERSONALIZADO basado en gastos fijos reales ──
+  // Las necesidades reales ya están "comprometidas". Lo que queda se reparte.
+  const restante=ingreso-necesidadesReal;
+  // Sugerencia: del restante, destinar proporción a deseos y ahorro
+  // Mantener la relación deseos:ahorro del usuario (default 30:20 = 60:40)
+  const ratioDeseos=dist.deseos/(dist.deseos+dist.ahorro);
+  const sugDeseos=Math.max(0,Math.round(restante*ratioDeseos));
+  const sugAhorro=Math.max(0,restante-sugDeseos);
+
+  // Diagnóstico de salud financiera
+  let diagnostico='',diagColor='',diagIcon='';
+  if(pctNec>70){
+    diagnostico='Tus gastos fijos son muy altos ('+pctNec+'% del ingreso). Te queda poco margen. Prioriza reducir gastos fijos o aumentar ingresos.';
+    diagColor='var(--red)';diagIcon='🔴';
+  } else if(pctNec>55){
+    diagnostico='Tus gastos fijos están algo elevados ('+pctNec+'%). Lo ideal es mantenerlos bajo 50%, pero tienes margen para ahorrar.';
+    diagColor='var(--accent)';diagIcon='🟡';
+  } else {
+    diagnostico='¡Buen control! Tus gastos fijos ('+pctNec+'%) están en un nivel saludable. Tienes buen margen para ahorrar.';
+    diagColor='var(--green)';diagIcon='🟢';
+  }
+
+  cont.innerHTML=`
+    <!-- Diagnóstico -->
+    <div style="background:var(--surface2);border-left:3px solid ${diagColor};border-radius:8px;padding:12px;margin-bottom:16px">
+      <div style="display:flex;gap:8px;align-items:flex-start">
+        <span style="font-size:16px;flex-shrink:0">${diagIcon}</span>
+        <div style="font-size:12px;color:var(--text2);line-height:1.5">${diagnostico}</div>
+      </div>
+    </div>
+
+    <!-- Gastos fijos detectados -->
+    <div style="margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <div style="font-size:13px;font-weight:700">🏠 Tus gastos fijos este mes</div>
+        <div style="font-family:'DM Sans',sans-serif;font-weight:700;color:var(--blue)">${fmt(necesidadesReal)}</div>
+      </div>
+      <div style="background:var(--border);border-radius:4px;height:6px;overflow:hidden">
+        <div style="height:100%;border-radius:4px;background:var(--blue);width:${Math.min(100,pctNec)}%"></div>
+      </div>
+      <div style="font-size:10px;color:var(--text3);margin-top:3px">${pctNec}% de tu ingreso de ${fmt(ingreso)}</div>
+    </div>
+
+    <!-- Plan sugerido para lo que queda -->
+    <div style="background:linear-gradient(135deg,rgba(76,175,125,.1),rgba(80,144,224,.05));border:1px solid var(--border);border-radius:12px;padding:14px">
+      <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);margin-bottom:4px">Tu plan para lo que queda</div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:22px;font-weight:800;margin-bottom:14px">${fmt(restante)} <span style="font-size:13px;color:var(--text3);font-weight:400">disponible</span></div>
+
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <!-- Deseos -->
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+            <div style="font-size:13px;font-weight:600">🎉 Gustos y deseos</div>
+            <div style="text-align:right">
+              <span style="font-family:'DM Sans',sans-serif;font-weight:700;color:${deseosReal>sugDeseos?'var(--red)':'var(--purple)'}">${fmt(deseosReal)}</span>
+              <span style="font-size:11px;color:var(--text3)"> / ${fmt(sugDeseos)}</span>
+            </div>
+          </div>
+          <div style="background:var(--border);border-radius:4px;height:6px;overflow:hidden">
+            <div style="height:100%;border-radius:4px;background:${deseosReal>sugDeseos?'var(--red)':'var(--purple)'};width:${Math.min(100,sugDeseos>0?deseosReal/sugDeseos*100:0)}%;transition:width .4s"></div>
+          </div>
+          ${deseosReal>sugDeseos?`<div style="font-size:10px;color:var(--red);margin-top:3px">⚠️ Te pasaste ${fmt(deseosReal-sugDeseos)} de lo sugerido</div>`:`<div style="font-size:10px;color:var(--green);margin-top:3px">✓ Te quedan ${fmt(sugDeseos-deseosReal)} para gustos</div>`}
+        </div>
+
+        <!-- Ahorro -->
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+            <div style="font-size:13px;font-weight:600">💰 Ahorro sugerido</div>
+            <div style="text-align:right">
+              <span style="font-family:'DM Sans',sans-serif;font-weight:700;color:var(--green)">${fmt(disponible>sugAhorro?disponible:Math.max(0,disponible))}</span>
+              <span style="font-size:11px;color:var(--text3)"> / ${fmt(sugAhorro)}</span>
+            </div>
+          </div>
+          <div style="background:var(--border);border-radius:4px;height:6px;overflow:hidden">
+            <div style="height:100%;border-radius:4px;background:var(--green);width:${Math.min(100,sugAhorro>0?Math.max(0,disponible)/sugAhorro*100:0)}%;transition:width .4s"></div>
+          </div>
+          ${disponible>=sugAhorro?`<div style="font-size:10px;color:var(--green);margin-top:3px">✓ Vas bien — meta de ahorro ${fmt(sugAhorro)}</div>`:`<div style="font-size:10px;color:var(--accent);margin-top:3px">💡 Reduce gustos para alcanzar tu meta de ahorro</div>`}
+        </div>
+      </div>
+    </div>`;
+}
+
+function toggleAjustarDist(){
+  const panel=document.getElementById('dist-ajustar');
+  const dist=S.distribucion||{necesidades:50,deseos:30,ahorro:20};
+  if(panel.style.display==='none'||!panel.style.display){
+    // Convertir deseos/ahorro a proporción del restante (de su suma)
+    const total=dist.deseos+dist.ahorro;
+    const desPct=total>0?Math.round(dist.deseos/total*100):60;
+    document.getElementById('dist-des').value=desPct;
+    actualizarSliderDist();
+    panel.style.display='block';
+  } else {
+    panel.style.display='none';
+  }
+}
+
+function actualizarSliderDist(){
+  const des=parseInt(document.getElementById('dist-des').value)||0;
+  const aho=100-des;
+  document.getElementById('dist-des-val').textContent=des;
+  document.getElementById('dist-aho-val').textContent=aho;
+  document.getElementById('dist-aho-bar').style.width=aho+'%';
+}
+
+function guardarDistribucion(){
+  const desRatio=parseInt(document.getElementById('dist-des').value)||60;
+  const ahoRatio=100-desRatio;
+  // Guardar como proporción (se aplica al restante después de necesidades)
+  // Mantener necesidades en 50 como referencia pero lo que importa es la relación des/aho
+  S.distribucion={necesidades:50,deseos:desRatio,ahorro:ahoRatio};
+  save();
+  document.getElementById('dist-ajustar').style.display='none';
+  renderDistribucion();
+  toast('✅ Plan actualizado','ok');
+}
+
+function resetDistribucion(){
+  document.getElementById('dist-des').value=60;
+  actualizarSliderDist();
+}
+
 function renderPresupuesto(){
   const ingRef=S.salario.monto||0;
   document.getElementById('budg-ing-ref').textContent=fmt(ingRef);
@@ -3296,8 +3684,34 @@ function renderPresupuesto(){
       <div style="flex:1;font-size:13px;font-weight:500">${cat.name}<span style="font-size:11px;color:var(--text3)">${pctOfIng}</span></div>
       <input type="number" class="sinput" style="width:80px;text-align:right;padding:6px 8px;font-size:13px;min-width:0;flex-shrink:0" placeholder="0" value="${budg||''}" data-cat="${cat.name}">
     </div>`;}).join('');
+
+  // Resumen del mes — usa S.curMonth/S.curYear igual que el resto de la app
+  const txnsMes=getMonTxns();
+  const tIng=txnsMes.filter(t=>t.type==='ingreso').reduce((s,t)=>s+t.amount,0);
+  const tGas=txnsMes.filter(t=>t.type==='gasto').reduce((s,t)=>s+t.amount,0);
+  const disp=tIng-tGas;
+  const pctGas=tIng>0?Math.round(tGas/tIng*100):0;
+  const resEl=document.getElementById('budg-resumen-mes');
+  if(resEl){
+    resEl.innerHTML=`
+      <div style="background:rgba(76,175,125,.1);border:1px solid rgba(76,175,125,.25);border-radius:12px;padding:10px;text-align:center">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--green);margin-bottom:4px">↑ Ingresó</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;color:var(--green)">${fmt(tIng)}</div>
+      </div>
+      <div style="background:rgba(224,80,80,.1);border:1px solid rgba(224,80,80,.25);border-radius:12px;padding:10px;text-align:center">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--red);margin-bottom:4px">↓ Gastado</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;color:var(--red)">${fmt(tGas)}</div>
+        <div style="font-size:10px;color:var(--text3);margin-top:2px">${pctGas}% del ingreso</div>
+      </div>
+      <div style="background:${disp>=0?'rgba(76,175,125,.1)':'rgba(224,80,80,.1)'};border:1px solid ${disp>=0?'rgba(76,175,125,.25)':'rgba(224,80,80,.25)'};border-radius:12px;padding:10px;text-align:center">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:${disp>=0?'var(--green)':'var(--red)'};margin-bottom:4px">${disp>=0?'💚 Disponible':'🔴 Déficit'}</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;color:${disp>=0?'var(--green)':'var(--red)'}">${disp>=0?'':'-'}${fmt(Math.abs(disp))}</div>
+      </div>`;
+  }
+
   drawBudg('budgState');
   renderCatChips();
+  renderDistribucion();
 }
 
 function saveBudget(){
@@ -3384,6 +3798,16 @@ function setTheme(t){
   save();toast('Tema aplicado','ok');
 }
 
+function irAPremium(){
+  // Abre el navegador externo con la página de pago — Google Play no puede objetar pagos externos
+  const url='https://glittering-unicorn-88fc52.netlify.app/#premium';
+  if(window.Capacitor?.Plugins?.Browser){
+    window.Capacitor.Plugins.Browser.open({url});
+  } else {
+    window.open(url,'_blank');
+  }
+}
+
 function renderAjustes(){
   checkApiKey();
   document.querySelectorAll('.theme-card').forEach(c=>c.classList.remove('active'));
@@ -3392,6 +3816,14 @@ function renderAjustes(){
   a80.checked=S.config.alert80;a100.checked=S.config.alert100;
   updateToggleStyle('tog80',S.config.alert80);updateToggleStyle('tog100',S.config.alert100);
   updStorageMonitor();
+  // Estado premium
+  const isPrem=S.plan==='premium';
+  const labelEl=document.getElementById('prem-status-label');
+  const freeEl=document.getElementById('prem-free-content');
+  const activeEl=document.getElementById('prem-active-content');
+  if(labelEl) labelEl.textContent=isPrem?'✨ Plan Premium activo':'Plan gratuito';
+  if(freeEl) freeEl.style.display=isPrem?'none':'block';
+  if(activeEl) activeEl.style.display=isPrem?'block':'none';
 }
 
 function checkStorageUsage(){
@@ -3811,13 +4243,13 @@ function renderMovimientos(){
   balEl.className='kpi-val '+(bal>=0?'g':'r');
   document.getElementById('mov-t-cnt').textContent=txns.length;
 
-  // Tabla
+  // Lista de tarjetas
   const tbody=document.getElementById('mov-tbody');
   if(!txns.length){
-    tbody.innerHTML=`<tr><td colspan="6" class="empty" style="padding:40px">
+    tbody.innerHTML=`<div class="empty" style="padding:40px">
       <div class="empty-ico">🔍</div>
-      ${search?'Sin resultados para "'+search+'"':'Sin movimientos'}
-    </td></tr>`;
+      <div>${search?'Sin resultados para "'+search+'"':'Sin movimientos'}</div>
+    </div>`;
     return;
   }
 
@@ -3826,24 +4258,28 @@ function renderMovimientos(){
     const color=co?co.color:'#9A9590';
     const pre=t.type==='gasto'?'−':'+';
     const cl=t.type==='gasto'?'var(--red)':'var(--green)';
-    const tipoLabel=t.type==='gasto'?
-      `<span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;background:var(--red2);color:var(--red)">Gasto</span>`:
-      `<span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;background:var(--green2);color:var(--green)">Ingreso</span>`;
-    const srcIcon=t.source==='factura'?'🧾':t.source==='recurrente'?'🔄':'✏️';
-    return`<tr>
-      <td style="padding:10px 15px;color:var(--text2);white-space:nowrap">${fmtD(t.date)}</td>
-      <td style="padding:10px 15px;max-width:150px;word-break:break-word">
-        <div style="font-weight:500">${srcIcon} ${t.desc}</div>
-        ${t.notes?`<div style="font-size:11px;color:var(--text3);margin-top:2px">${t.notes}</div>`:''}
-      </td>
-      <td style="padding:10px 15px"><span class="pill" style="background:${color}22;color:${color}">${t.cat||'—'}</span></td>
-      <td style="padding:10px 15px">${tipoLabel}</td>
-      <td style="padding:10px 15px;text-align:right;font-weight:700;color:${cl};white-space:nowrap">${pre}${fmt(t.amount)}</td>
-      <td style="padding:10px 15px;white-space:nowrap">
-        <button class="del-btn" title="Editar" onclick="openEditModal('${t.id}')" style="margin-right:2px">✏️</button>
-        <button class="del-btn" title="Eliminar" onclick="delMovTxn('${t.id}')">🗑</button>
-      </td>
-    </tr>`;
+    const bg=t.type==='gasto'?'rgba(224,80,80,.06)':'rgba(76,175,125,.06)';
+    const border=t.type==='gasto'?'rgba(224,80,80,.15)':'rgba(76,175,125,.15)';
+    const srcIcon=t.source==='factura'?'🧾':t.source==='recurrente'||t.source==='recurrente_ing'?'🔄':'✏️';
+    return`<div style="background:${bg};border:1px solid ${border};border-radius:12px;padding:12px 14px;margin-bottom:8px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:600;font-size:14px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${srcIcon} ${t.desc}</div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:5px;flex-wrap:wrap">
+            <span style="font-size:11px;color:var(--text3)">${fmtD(t.date)}</span>
+            <span class="pill" style="background:${color}22;color:${color};font-size:10px">${t.cat||'—'}</span>
+            ${t.notes?`<span style="font-size:11px;color:var(--text3);font-style:italic">${t.notes}</span>`:''}
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0">
+          <span style="font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;color:${cl}">${pre}${fmt(t.amount)}</span>
+          <div style="display:flex;gap:4px">
+            <button class="del-btn" title="Editar" onclick="openEditModal('${t.id}')">✏️</button>
+            <button class="del-btn" title="Eliminar" onclick="delMovTxn('${t.id}')">🗑</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
   }).join('');
 }
 
@@ -4164,6 +4600,46 @@ function getPendientesEsteMes(){
   });
 }
 
+function getPendientesIngEsteMes(){
+  const now=new Date();
+  const curKey=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+  return S.recurrentes.filter(rec=>{
+    const yaReg=S.transactions.some(t=>
+      t.source==='recurrente_ing'&&t.recId===rec.id&&monKey(t.date)===curKey
+    );
+    return !yaReg;
+  });
+}
+
+function autoRegistrarRecurrentes(){
+  const now=new Date();
+  const diaHoy=now.getDate();
+  const curKey=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+  let huboRegistros=false;
+  S.recGastos.forEach(rec=>{
+    if(rec.dia>diaHoy)return;
+    const yaReg=S.transactions.some(t=>t.source==='recurrente'&&t.recId===rec.id&&monKey(t.date)===curKey);
+    if(yaReg)return;
+    const diasEnMes=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
+    const diaReal=Math.min(rec.dia,diasEnMes);
+    const fechaStr=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(diaReal).padStart(2,'0');
+    S.transactions.push({id:Date.now()+Math.random(),type:'gasto',desc:rec.name,amount:rec.monto,date:fechaStr,cat:rec.cat,source:'recurrente',recId:rec.id,notes:rec.notes||''});
+    huboRegistros=true;
+  });
+  S.recurrentes.forEach(rec=>{
+    if(rec.dia>diaHoy)return;
+    const yaReg=S.transactions.some(t=>t.source==='recurrente_ing'&&t.recId===rec.id&&monKey(t.date)===curKey);
+    if(yaReg)return;
+    const diasEnMes=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
+    const diaReal=Math.min(rec.dia,diasEnMes);
+    const fechaStr=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(diaReal).padStart(2,'0');
+    S.transactions.push({id:Date.now()+Math.random(),type:'ingreso',desc:rec.name,amount:rec.monto,date:fechaStr,cat:'Ingreso recurrente',source:'recurrente_ing',recId:rec.id,notes:'',ingTipo:'recurrente'});
+    huboRegistros=true;
+  });
+  if(huboRegistros){save();return true;}
+  return false;
+}
+
 function renderRecurrentes(){
   // Poblar select categorías
   const rgCat=document.getElementById('rg-cat');
@@ -4198,39 +4674,78 @@ function renderRecurrentes(){
     pc.innerHTML='';
   }
 
-  // Lista configurados
+  // Lista gastos recurrentes
   const el=document.getElementById('rec-gastos-list');
-  if(!S.recGastos.length){
-    el.innerHTML='<div style="font-size:12px;color:var(--text3);text-align:center;padding:20px">Sin recurrentes configurados</div>';
-  } else {
-    el.innerHTML=S.recGastos.map(rec=>{
-      const co=S.categories.find(c=>c.name===rec.cat);
-      const color=co?co.color:'#9A9590';
-      return`<div class="rec-chip">
-        <div class="rec-dot" style="background:${color}"></div>
-        <div class="rec-name">${rec.name}</div>
-        <span class="rec-dia">día ${rec.dia}</span>
-        <span class="pill" style="background:${color}22;color:${color};font-size:10px">${rec.cat}</span>
-        <div class="rec-monto">${fmt(rec.monto)}</div>
-        <span class="rec-del" onclick="delRecGasto(${rec.id})">×</span>
-      </div>`;
-    }).join('');
+  if(el){
+    if(!S.recGastos.length){
+      el.innerHTML='<div style="font-size:12px;color:var(--text3);text-align:center;padding:12px">Sin gastos fijos configurados</div>';
+    } else {
+      el.innerHTML=S.recGastos.map(rec=>{
+        const co=S.categories.find(c=>c.name===rec.cat);
+        const color=co?co.color:'#9A9590';
+        return`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:rgba(224,80,80,.06);border:1px solid rgba(224,80,80,.15);border-radius:10px;gap:8px">
+          <div style="flex:1;min-width:0">
+            <div style="font-weight:600;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${rec.name}</div>
+            <div style="display:flex;gap:6px;align-items:center;margin-top:3px;flex-wrap:wrap">
+              <span style="font-size:11px;color:var(--text3)">día ${rec.dia} de cada mes</span>
+              <span class="pill" style="background:${color}22;color:${color};font-size:10px">${rec.cat}</span>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+            <span style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--red)">−${fmt(rec.monto)}</span>
+            <span style="cursor:pointer;color:var(--text3);font-size:18px;line-height:1" onclick="delRecGasto(${rec.id})">×</span>
+          </div>
+        </div>`;
+      }).join('');
+    }
   }
 
-  // Historial
-  const hist=S.transactions.filter(t=>t.source==='recurrente').sort((a,b)=>new Date(b.date)-new Date(a.date));
+  // Lista ingresos recurrentes
+  const elIng=document.getElementById('rec-ingresos-list');
+  if(elIng){
+    if(!S.recurrentes.length){
+      elIng.innerHTML='<div style="font-size:12px;color:var(--text3);text-align:center;padding:12px">Sin ingresos fijos configurados</div>';
+    } else {
+      elIng.innerHTML=S.recurrentes.map(rec=>{
+        return`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:rgba(76,175,125,.06);border:1px solid rgba(76,175,125,.15);border-radius:10px;gap:8px">
+          <div style="flex:1;min-width:0">
+            <div style="font-weight:600;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${rec.name}</div>
+            <div style="display:flex;gap:6px;align-items:center;margin-top:3px;flex-wrap:wrap">
+              <span style="font-size:11px;color:var(--text3)">día ${rec.dia} de cada mes</span>
+              ${rec.cat?`<span class="pill" style="background:var(--green2);color:var(--green);font-size:10px">${rec.cat}</span>`:''}
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+            <span style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--green)">+${fmt(rec.monto)}</span>
+            <span style="cursor:pointer;color:var(--text3);font-size:18px;line-height:1" onclick="delRecurrente(${rec.id})">×</span>
+          </div>
+        </div>`;
+      }).join('');
+    }
+  }
+
+  // Historial — tarjetas compactas
+  const hist=S.transactions.filter(t=>t.source==='recurrente'||t.source==='recurrente_ing').sort((a,b)=>new Date(b.date)-new Date(a.date));
   const hbody=document.getElementById('rec-hist-body');
   if(!hist.length){
-    hbody.innerHTML='<tr><td colspan="4" class="empty" style="padding:30px"><div class="empty-ico">🔄</div>Sin historial todavía</td></tr>';
+    hbody.innerHTML='<div class="empty" style="padding:24px"><div class="empty-ico">🔄</div>Sin historial todavía</div>';
   } else {
     hbody.innerHTML=hist.map(t=>{
-      const co=S.categories.find(c=>c.name===t.cat);const color=co?co.color:'#9A9590';
-      return`<tr>
-        <td style="padding:10px 15px;color:var(--text2)">${fmtD(t.date)}</td>
-        <td style="padding:10px 15px;font-weight:500">${t.desc}</td>
-        <td style="padding:10px 15px"><span class="pill" style="background:${color}22;color:${color}">${t.cat}</span></td>
-        <td style="padding:10px 15px;text-align:right;font-weight:700;color:var(--red)">−${fmt(t.amount)}</td>
-      </tr>`;
+      const co=S.categories.find(c=>c.name===t.cat);
+      const color=co?co.color:'#9A9590';
+      const isIng=t.type==='ingreso';
+      const cl=isIng?'var(--green)':'var(--red)';
+      const pre=isIng?'+':'−';
+      return`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--surface2);border-radius:10px;gap:8px">
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:600;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${t.desc}</div>
+          <div style="display:flex;gap:6px;align-items:center;margin-top:3px;flex-wrap:wrap">
+            <span style="font-size:11px;color:var(--text3)">${fmtD(t.date)}</span>
+            <span class="pill" style="background:${color}22;color:${color};font-size:10px">${t.cat}</span>
+          </div>
+        </div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:${cl};white-space:nowrap">${pre}${fmt(t.amount)}</div>
+      </div>`;
     }).join('');
   }
 }
@@ -4251,15 +4766,30 @@ function openProdModal(prodId){
   const pricesWithDate=entries.filter(e=>e.price>0);
   const maxP=Math.max(...pricesWithDate.map(e=>e.price),1);
 
-  // Gráfica
+  // Gráfica — escala proporcional al RANGO (no al máximo absoluto)
   const chart=document.getElementById('modal-ph-chart');
-  chart.innerHTML=pricesWithDate.slice(-12).map(e=>{
-    const h=Math.round((e.price/maxP)*80)+4;
+  const datos=pricesWithDate.slice(-12);
+  const precios=datos.map(e=>e.price);
+  const minB=Math.min(...precios);
+  const maxB=Math.max(...precios);
+  const rango=maxB-minB;
+  chart.innerHTML=datos.map(e=>{
+    // Si todos los precios son iguales, barras al 50%. Si hay rango, escalar 30%-100%
+    let h;
+    if(rango===0){
+      h=50;
+    } else {
+      // base 30px + proporción del rango hasta 90px (así la diferencia se nota pero no es exagerada)
+      h=30+Math.round(((e.price-minB)/rango)*60);
+    }
     const dt=new Date(e.date+'T12:00:00');
     const lbl=MONTHS[dt.getMonth()].slice(0,3)+" '"+String(dt.getFullYear()).slice(2);
+    const esMin=e.price===minB&&rango>0;
+    const esMax=e.price===maxB&&rango>0;
+    const barColor=esMin?'var(--green)':esMax?'var(--accent)':color;
     return`<div class="ph-col">
       <div class="ph-val">${fmt(e.price)}</div>
-      <div class="ph-bar" style="height:${h}px;background:${color}"></div>
+      <div class="ph-bar" style="height:${h}px;background:${barColor}"></div>
       <div class="ph-lbl">${lbl}</div>
     </div>`;
   }).join('');
@@ -4284,7 +4814,70 @@ function openProdModal(prodId){
     <div class="pstat"><span class="pstat-l">Total gastado en este producto</span><span class="pstat-v">${fmt(totalSpent)}</span></div>
   `;
 
+  // ── Dónde se consigue más barato (busca en facturas) ──
+  renderTiendasProducto(prod.name);
+
   document.getElementById('prodModal').classList.add('show');
+}
+
+function renderTiendasProducto(nombreProd){
+  const cont=document.getElementById('modal-prod-tiendas');
+  if(!cont)return;
+
+  // Normalizar igual que en renderTiendaBarata
+  function normalizar(nombre){
+    return nombre.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/x\s*\d+\s*(g|gr|kg|ml|lt|l|cc|oz)?\b/gi,'')
+      .replace(/\d+\s*(g|gr|kg|ml|lt|l|cc|und|uds|u|oz|cm)\b/gi,'')
+      .replace(/[^a-z\s]/g,' ')
+      .replace(/\b(de|la|el|los|las|con|sin|para|und|unidad|paquete|bolsa|caja|x)\b/g,'')
+      .replace(/\s+/g,' ').trim();
+  }
+  const keyBuscado=normalizar(nombreProd);
+
+  // Buscar el producto en todas las facturas, agrupado por tienda
+  const tiendas={};
+  S.facturas.forEach(f=>{
+    const tienda=(f.store||'Tienda desconocida').trim();
+    const fecha=f.date||'';
+    (f.items||[]).forEach(item=>{
+      if(!item.name||!item.unit_price)return;
+      if(normalizar(item.name)!==keyBuscado)return;
+      if(!tiendas[tienda])tiendas[tienda]=[];
+      tiendas[tienda].push({precio:item.unit_price,fecha});
+    });
+  });
+
+  const lista=Object.entries(tiendas).map(([t,regs])=>{
+    const ord=regs.slice().sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
+    return{tienda:t,precio:ord[0].precio,veces:regs.length};
+  }).sort((a,b)=>a.precio-b.precio);
+
+  if(lista.length<2){
+    cont.innerHTML=lista.length===1
+      ? `<div style="font-size:12px;color:var(--text3);padding:8px 0">Solo registrado en <strong>${lista[0].tienda}</strong>. Compra en otra tienda para comparar precios.</div>`
+      : '';
+    return;
+  }
+
+  const masBarato=lista[0];
+  cont.innerHTML=`
+    <div style="margin-top:8px;padding-top:14px;border-top:1px solid var(--border2)">
+      <div style="font-size:13px;font-weight:700;margin-bottom:10px">🏪 Dónde comprarlo más barato</div>
+      ${lista.map((t,i)=>{
+        const esMejor=i===0;
+        const diff=Math.round((t.precio-masBarato.precio)/masBarato.precio*100);
+        return`<div style="display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:9px;margin-bottom:6px;background:${esMejor?'rgba(76,175,125,.12)':'var(--surface2)'};border:1px solid ${esMejor?'var(--green)':'var(--border)'}">
+          <span style="font-size:16px">${esMejor?'🏆':'🏪'}</span>
+          <div style="flex:1;min-width:0;font-size:13px;font-weight:600;color:${esMejor?'var(--green)':'var(--text)'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.tienda}</div>
+          <div style="text-align:right;flex-shrink:0">
+            <div style="font-weight:700;color:${esMejor?'var(--green)':'var(--text)'}">${fmt(t.precio)}</div>
+            ${!esMejor&&diff>0?`<div style="font-size:10px;color:var(--red)">+${diff}%</div>`:esMejor?'<div style="font-size:10px;color:var(--green)">Más barato ✓</div>':''}
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
 }
 
 function closeProdModal(){
@@ -4396,7 +4989,44 @@ HISTORIAL RECIENTE: ${histStr||'sin datos previos'}
 SALARIO FIJO CONFIGURADO: ${S.salario.monto>0?fmt(S.salario.monto)+' día '+S.salario.dia:'no configurado'}`;
 }
 
+// Verificar si usuario gratis puede usar análisis IA (necesita ver 2 videos)
+async function verificarAccesoAnalisis(){
+  // Usar el mismo contador de videos de facturas
+  // Los videos de la semana divido entre 2 = análisis disponibles
+  const inicio=inicioSemanaFrontend();
+  const videosKey='casaia_videos_'+inicio;
+  const videosVistos=parseInt(localStorage.getItem(videosKey)||'0');
+  const analisisUsados=parseInt(localStorage.getItem('casaia_analisis_'+inicio)||'0');
+  const analisisDisp=Math.floor(videosVistos/2)-analisisUsados;
+
+  if(analisisDisp>0){
+    // Tiene acceso — registrar uso
+    localStorage.setItem('casaia_analisis_'+inicio,String(analisisUsados+1));
+    return true;
+  }
+
+  // No tiene acceso — mensaje claro y llevar a Facturas donde están los videos
+  const videosFaltantes=2-(videosVistos%2);
+  toast('Ve '+videosFaltantes+' video(s) más para desbloquear un análisis IA 📺','err');
+  return false;
+}
+
+function inicioSemanaFrontend(){
+  const ahora=new Date();
+  const dia=ahora.getDay();
+  const diasDesdelunes=dia===0?6:dia-1;
+  const inicio=new Date(ahora);
+  inicio.setDate(ahora.getDate()-diasDesdelunes);
+  inicio.setHours(0,0,0,0);
+  return inicio.toISOString().slice(0,10);
+}
+
 async function runAnalysis(tipo){
+  // Verificar acceso según plan
+  if(S.plan!=='premium'){
+    const tieneAcceso=await verificarAccesoAnalisis();
+    if(!tieneAcceso)return;
+  }
   const titles={resumen:'📊 Resumen del mes',ahorro:'💡 Consejos de ahorro',precios:'📈 Alertas de precios',proyeccion:'🔮 Proyección del mes'};
   const prompts={
     resumen:`Eres el asistente financiero de Casa·IA. Solo analizas los datos financieros del hogar del usuario que se te proporcionan — nunca hablas de temas externos. Analiza estos datos y da un resumen claro del mes: qué fue bien, qué fue mal, cuál es la categoría más costosa, cómo está la tasa de ahorro. Sé específico con los números reales. Máximo 200 palabras. Usa emojis.`,
@@ -4447,6 +5077,11 @@ async function runAnalysis(tipo){
 async function askFreeQuestion(){
   const q=document.getElementById('ai-question').value.trim();
   if(!q){toast('Escribe una pregunta','err');return;}
+  // Verificar acceso según plan
+  if(S.plan!=='premium'){
+    const tieneAcceso=await verificarAccesoAnalisis();
+    if(!tieneAcceso)return;
+  }
   const ansBox=document.getElementById('ai-answer-box');
   const status=document.getElementById('aiStatusQ');
   ansBox.style.display='none';
@@ -4653,29 +5288,48 @@ function renderSemanal(){
   diffEl.textContent=(diff>0?'↑ +':'↓ ')+Math.abs(diff)+'%';
   diffEl.style.color=diff>0?'var(--red)':'var(--green)';
 
-  // ── PREDICCIÓN DEL MES ──
+  // ── RESUMEN REAL DEL MES ──
   const mesActual=S.curMonth,yearActual=S.curYear;
+  const mesLabel=MONTHS[mesActual]+' '+yearActual;
+  const txnsTodasMes=S.transactions.filter(t=>{const d=new Date(t.date+'T12:00:00');return d.getMonth()===mesActual&&d.getFullYear()===yearActual;});
+  const ingMes=txnsTodasMes.filter(t=>t.type==='ingreso').reduce((s,t)=>s+t.amount,0);
   const txnsMes=gastos.filter(t=>{const d=new Date(t.date+'T12:00:00');return d.getMonth()===mesActual&&d.getFullYear()===yearActual;});
   const gastadoMes=txnsMes.reduce((s,t)=>s+t.amount,0);
+  const disponible=ingMes-gastadoMes;
+  const pctGas=ingMes>0?Math.round(gastadoMes/ingMes*100):0;
   const diasEnMes=new Date(yearActual,mesActual+1,0).getDate();
   const diaActual=today.getMonth()===mesActual?today.getDate():diasEnMes;
-  const dailyMes=diaActual>0?gastadoMes/diaActual:0;
-  const proyeccion=Math.round(dailyMes*diasEnMes);
   const diasRestantes=diasEnMes-diaActual;
-  const totalBudget=Object.values(S.budgets).reduce((s,v)=>s+(v||0),0);
 
-  document.getElementById('prediccion-valor').textContent=fmt(proyeccion);
-  let predTexto='';
-  if(diaActual<3){
-    predTexto='Muy pocos días para proyectar. Sigue registrando tus gastos.';
-  } else if(totalBudget>0){
-    const pct=Math.round(proyeccion/totalBudget*100);
-    if(proyeccion>totalBudget) predTexto=`⚠️ Llevas ${diaActual} días y proyectas gastar ${fmt(proyeccion)}, que supera tu presupuesto de ${fmt(totalBudget)} (${pct}%). Quedan ${diasRestantes} días.`;
-    else predTexto=`✅ Buen ritmo. Proyectas ${fmt(proyeccion)} de un presupuesto de ${fmt(totalBudget)} (${pct}%). Quedan ${diasRestantes} días.`;
-  } else {
-    predTexto=`Llevas ${diaActual} días gastando ${fmt(gastadoMes)}. Ritmo diario: ${fmt(dailyMes)}. Quedan ${diasRestantes} días.`;
+  const semIngEl=document.getElementById('sem-ing');
+  const semGasEl=document.getElementById('sem-gas');
+  const semDispEl=document.getElementById('sem-disp');
+  const semDispLabel=document.getElementById('sem-disp-label');
+  const semGasPct=document.getElementById('sem-gas-pct');
+  const semProgBar=document.getElementById('sem-prog-bar');
+  const semMesLabel=document.getElementById('sem-mes-label');
+  const predTextoEl=document.getElementById('prediccion-texto');
+
+  if(semMesLabel) semMesLabel.textContent=mesLabel;
+  if(semIngEl) semIngEl.textContent=fmt(ingMes);
+  if(semGasEl){semGasEl.textContent=fmt(gastadoMes);semGasEl.style.color='var(--red)';}
+  if(semGasPct) semGasPct.textContent=pctGas+'% del ingreso';
+  if(semDispEl){
+    semDispEl.textContent=(disponible>=0?'':'-')+fmt(Math.abs(disponible));
+    semDispEl.style.color=disponible>=0?'var(--green)':'var(--red)';
   }
-  document.getElementById('prediccion-texto').textContent=predTexto;
+  if(semDispLabel){
+    semDispLabel.textContent=disponible>=0?'💚 Disponible':'🔴 Déficit';
+    semDispLabel.style.color=disponible>=0?'var(--green)':'var(--red)';
+  }
+  if(semProgBar){
+    semProgBar.style.width=Math.min(100,pctGas)+'%';
+    semProgBar.style.background=pctGas>=100?'var(--red)':pctGas>=80?'var(--accent)':'var(--green)';
+  }
+  let predTexto='';
+  if(diasRestantes>0) predTexto=`Quedan ${diasRestantes} días en ${mesLabel}`;
+  else predTexto=`${mesLabel} cerrado`;
+  if(predTextoEl) predTextoEl.textContent=predTexto;
 
   // ── SEMANAS DEL MES ──
   const semanasEl=document.getElementById('semanas-mes');
@@ -4744,24 +5398,42 @@ function renderSemanal(){
 
 function renderTiendaBarata(){
   const el=document.getElementById('tienda-barata-content');
+  const resumenEl=document.getElementById('tienda-barata-resumen');
 
-  // Agrupar productos por tienda usando facturas
+  // ── Normalización inteligente de nombres ──
+  // Quita tildes, gramajes, unidades y palabras comunes para agrupar mejor
+  function normalizar(nombre){
+    return nombre
+      .toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')   // quitar tildes
+      .replace(/x\s*\d+\s*(g|gr|kg|ml|lt|l|cc|oz)?\b/gi,'') // "x1000ml", "x 500g"
+      .replace(/\d+\s*(g|gr|kg|ml|lt|l|cc|und|uds|u|oz|cm)\b/gi,'') // gramajes/unidades
+      .replace(/[^a-z\s]/g,' ')                           // quitar números y símbolos
+      .replace(/\b(de|la|el|los|las|con|sin|para|und|unidad|paquete|bolsa|caja|x)\b/g,'') // palabras vacías + x suelta
+      .replace(/\s+/g,' ')
+      .trim();
+  }
+
+  // Agrupar productos por nombre normalizado, guardando fecha
   const prodTienda={};
   S.facturas.forEach(f=>{
-    const tienda=f.store||'Tienda desconocida';
-    f.items.forEach(item=>{
+    const tienda=(f.store||'Tienda desconocida').trim();
+    const fecha=f.date||f.savedAt||'';
+    (f.items||[]).forEach(item=>{
       if(!item.name||!item.unit_price)return;
-      const key=item.name.trim().toLowerCase();
+      const key=normalizar(item.name);
+      if(key.length<2)return;
       if(!prodTienda[key])prodTienda[key]={name:item.name.trim(),tiendas:{}};
       if(!prodTienda[key].tiendas[tienda])prodTienda[key].tiendas[tienda]=[];
-      prodTienda[key].tiendas[tienda].push(item.unit_price);
+      prodTienda[key].tiendas[tienda].push({precio:item.unit_price,fecha});
     });
   });
 
-  // Solo productos comprados en 2+ tiendas
+  // Solo productos en 2+ tiendas
   const comparables=Object.values(prodTienda).filter(p=>Object.keys(p.tiendas).length>=2);
 
   if(!comparables.length){
+    if(resumenEl)resumenEl.innerHTML='';
     el.innerHTML=`<div class="empty"><div class="empty-ico">🏪</div>
       Necesitas facturas de al menos 2 tiendas diferentes con productos en común.<br>
       <span style="font-size:12px">Sube facturas de Éxito, D1, Jumbo, etc. y la app comparará automáticamente.</span>
@@ -4769,44 +5441,80 @@ function renderTiendaBarata(){
     return;
   }
 
-  // Para cada producto calcular precio promedio por tienda
-  el.innerHTML=comparables.map(p=>{
-    const tiendas=Object.entries(p.tiendas).map(([t,precios])=>{
-      const avg=precios.reduce((s,v)=>s+v,0)/precios.length;
-      return{tienda:t,avg,veces:precios.length};
-    }).sort((a,b)=>a.avg-b.avg);
+  // Calcular para cada producto: tiendas con precio más reciente y ahorro
+  const productos=comparables.map(p=>{
+    const tiendas=Object.entries(p.tiendas).map(([t,registros])=>{
+      // Usar el precio MÁS RECIENTE de cada tienda (no el promedio)
+      const ordenados=registros.slice().sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
+      const ultimoPrecio=ordenados[0].precio;
+      const ultimaFecha=ordenados[0].fecha;
+      return{tienda:t,precio:ultimoPrecio,fecha:ultimaFecha,veces:registros.length};
+    }).sort((a,b)=>a.precio-b.precio);
 
-    const minPrecio=tiendas[0].avg;
-    const maxPrecio=tiendas[tiendas.length-1].avg;
+    const minPrecio=tiendas[0].precio;
+    const maxPrecio=tiendas[tiendas.length-1].precio;
     const ahorro=maxPrecio-minPrecio;
-    const ahorroP=Math.round(ahorro/maxPrecio*100);
+    return{name:p.name,tiendas,minPrecio,maxPrecio,ahorro};
+  }).sort((a,b)=>b.ahorro-a.ahorro); // ordenar por MAYOR ahorro primero
 
-    // Solo mostrar si hay ahorro real o al menos 2 tiendas distintas con precio diferente
-    const mejorTienda = tiendas[0];
-    const peorTienda = tiendas[tiendas.length-1];
-    
+  // ── RESUMEN: ahorro total potencial ──
+  const ahorroTotal=productos.reduce((s,p)=>s+p.ahorro,0);
+  const conAhorro=productos.filter(p=>p.ahorro>0);
+  if(resumenEl){
+    if(ahorroTotal>0){
+      // Identificar la tienda ganadora (más veces más barata)
+      const tiendaWins={};
+      conAhorro.forEach(p=>{tiendaWins[p.tiendas[0].tienda]=(tiendaWins[p.tiendas[0].tienda]||0)+1;});
+      const mejorTiendaGlobal=Object.entries(tiendaWins).sort((a,b)=>b[1]-a[1])[0];
+      resumenEl.innerHTML=`
+        <div style="background:linear-gradient(135deg,rgba(76,175,125,.15),rgba(76,175,125,.05));border:1.5px solid rgba(76,175,125,.3);border-radius:16px;padding:16px;margin-bottom:16px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="font-size:32px">💰</div>
+            <div style="flex:1">
+              <div style="font-size:12px;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.5px">Ahorro potencial detectado</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:800;color:var(--green)">${fmt(ahorroTotal)}</div>
+              <div style="font-size:12px;color:var(--text2);margin-top:2px">comprando cada producto donde sale más barato</div>
+            </div>
+          </div>
+          ${mejorTiendaGlobal?`<div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(76,175,125,.2);font-size:13px;color:var(--text2)">
+            🏆 <strong style="color:var(--green)">${mejorTiendaGlobal[0]}</strong> es la más barata en ${mejorTiendaGlobal[1]} producto${mejorTiendaGlobal[1]>1?'s':''}
+          </div>`:''}
+        </div>`;
+    } else {
+      resumenEl.innerHTML='';
+    }
+  }
+
+  // ── LISTA de productos ──
+  function fechaCorta(f){
+    if(!f)return'';
+    const d=new Date(f+'T12:00:00');
+    if(isNaN(d))return'';
+    return d.toLocaleDateString('es-CO',{day:'2-digit',month:'short'});
+  }
+
+  el.innerHTML=productos.map(p=>{
+    const mejorTienda=p.tiendas[0];
     return`<div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px">
-      <!-- Nombre producto + badge ahorro -->
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px">
         <div style="font-weight:700;font-size:15px;line-height:1.3;flex:1">${p.name}</div>
-        ${ahorro>0?`<div style="background:rgba(76,175,125,.15);border:1px solid rgba(76,175,125,.3);border-radius:20px;padding:4px 10px;flex-shrink:0;text-align:center">
-          <div style="font-size:11px;color:var(--green);font-weight:700">Ahorras</div>
-          <div style="font-size:14px;font-weight:800;color:var(--green)">${fmt(ahorro)}</div>
+        ${p.ahorro>0?`<div style="background:rgba(76,175,125,.15);border:1px solid rgba(76,175,125,.3);border-radius:20px;padding:4px 10px;flex-shrink:0;text-align:center">
+          <div style="font-size:10px;color:var(--green);font-weight:700">AHORRAS</div>
+          <div style="font-size:14px;font-weight:800;color:var(--green)">${fmt(p.ahorro)}</div>
         </div>`:'<div style="background:var(--surface2);border-radius:20px;padding:4px 10px;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">Mismo precio</div></div>'}
       </div>
-      <!-- Lista de tiendas -->
       <div style="display:flex;flex-direction:column;gap:6px">
-        ${tiendas.map((t,i)=>{
+        ${p.tiendas.map((t,i)=>{
           const esMejor=i===0;
-          const diff=tiendas.length>1?Math.round((t.avg-mejorTienda.avg)/mejorTienda.avg*100):0;
+          const diff=Math.round((t.precio-mejorTienda.precio)/mejorTienda.precio*100);
           return`<div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:${esMejor?'rgba(76,175,125,.12)':'var(--surface2)'};border:1.5px solid ${esMejor?'var(--green)':'var(--border)'}">
             <div style="font-size:18px;flex-shrink:0">${esMejor?'🏆':'🏪'}</div>
             <div style="flex:1;min-width:0">
               <div style="font-size:13px;font-weight:700;color:${esMejor?'var(--green)':'var(--text)'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.tienda}</div>
-              <div style="font-size:11px;color:var(--text3);margin-top:1px">${t.veces} compra${t.veces>1?'s':''} registrada${t.veces>1?'s':''}</div>
+              <div style="font-size:11px;color:var(--text3);margin-top:1px">${t.veces} compra${t.veces>1?'s':''}${t.fecha?' · últ. '+fechaCorta(t.fecha):''}</div>
             </div>
             <div style="text-align:right;flex-shrink:0">
-              <div style="font-size:15px;font-weight:800;color:${esMejor?'var(--green)':'var(--text)'}">${fmt(t.avg)}</div>
+              <div style="font-size:15px;font-weight:800;color:${esMejor?'var(--green)':'var(--text)'}">${fmt(t.precio)}</div>
               ${!esMejor&&diff>0?`<div style="font-size:10px;color:var(--red);font-weight:600">+${diff}% más caro</div>`:''}
               ${esMejor?'<div style="font-size:10px;color:var(--green);font-weight:600">Más barato ✓</div>':''}
             </div>
@@ -4816,7 +5524,6 @@ function renderTiendaBarata(){
     </div>`;
   }).join('');
 }
-
 // ═══════════════════════════════════════════════════════
 // ORDENAMIENTO DE MOVIMIENTOS
 // ═══════════════════════════════════════════════════════
@@ -4894,138 +5601,7 @@ function initEnterHandlers(){
 // ═══════════════════════════════════════════════════════
 // CALCULADORA DE INFLACIÓN PERSONAL
 // ═══════════════════════════════════════════════════════
-function renderInflacion(){
-  // Poblar selects con meses que tengan productos
-  const mesesConProds=[...new Set(S.products.flatMap(p=>p.entries.map(e=>monKey(e.date))))].sort();
-  const s1=document.getElementById('inf-m1'),s2=document.getElementById('inf-m2');
-  const v1=s1.value,v2=s2.value;
-  const opts=mesesConProds.map(m=>{
-    const[y,mo]=m.split('-');
-    return`<option value="${m}">${MONTHS[parseInt(mo)-1]} ${y}</option>`;
-  }).join('');
-  s1.innerHTML='<option value="">Mes base</option>'+opts;
-  s2.innerHTML='<option value="">Mes actual</option>'+opts;
-  if(v1)s1.value=v1; if(v2)s2.value=v2;
 
-  const m1=s1.value,m2=s2.value;
-  const canasta=document.getElementById('inf-canasta-table');
-  const empty=document.getElementById('inf-canasta-empty');
-
-  if(!m1||!m2||m1===m2){
-    canasta.style.display='none'; empty.style.display='block';
-    document.getElementById('inf-pct').textContent='—';
-    document.getElementById('inf-prods').textContent='0';
-    document.getElementById('inf-max-prod').textContent='—';
-    document.getElementById('inf-min-prod').textContent='—';
-    document.getElementById('inf-by-cat').innerHTML='<div class="empty" style="padding:20px"><div class="empty-ico">📊</div>Sin datos</div>';
-    return;
-  }
-
-  // Encontrar productos comprados en AMBOS meses
-  const canastaProd=S.products.map(p=>{
-    const e1=p.entries.filter(e=>monKey(e.date)===m1&&e.price>0);
-    const e2=p.entries.filter(e=>monKey(e.date)===m2&&e.price>0);
-    if(!e1.length||!e2.length)return null;
-    const p1=e1.reduce((s,e)=>s+e.price,0)/e1.length;
-    const p2=e2.reduce((s,e)=>s+e.price,0)/e2.length;
-    const cambio=Math.round((p2-p1)/p1*100);
-    const cambioAbs=p2-p1;
-    return{id:p.id,name:p.name,cat:p.cat,p1,p2,cambio,cambioAbs};
-  }).filter(Boolean).sort((a,b)=>b.cambio-a.cambio);
-
-  if(!canastaProd.length){
-    canasta.style.display='none';
-    empty.innerHTML='<div class="empty-ico">🧺</div>No hay productos comprados en ambos meses.<br><span style="font-size:12px">Necesitas comprar los mismos productos en los dos meses seleccionados.</span>';
-    empty.style.display='block';
-    document.getElementById('inf-pct').textContent='—';
-    document.getElementById('inf-prods').textContent='0';
-    return;
-  }
-
-  // Calcular inflación promedio ponderada
-  const totalP1=canastaProd.reduce((s,p)=>s+p.p1,0);
-  const totalP2=canastaProd.reduce((s,p)=>s+p.p2,0);
-  const inflacionTotal=Math.round((totalP2-totalP1)/totalP1*100*10)/10;
-  const [y1,mo1]=m1.split('-'), [y2,mo2]=m2.split('-');
-
-  // KPIs
-  const infEl=document.getElementById('inf-pct');
-  infEl.textContent=(inflacionTotal>0?'+':'')+inflacionTotal+'%';
-  infEl.className='kpi-val '+(inflacionTotal>5?'r':inflacionTotal>0?'a':'g');
-  document.getElementById('inf-periodo').textContent=`${MONTHS[parseInt(mo1)-1]} ${y1} → ${MONTHS[parseInt(mo2)-1]} ${y2}`;
-  document.getElementById('inf-prods').textContent=canastaProd.length;
-
-  const mayor=canastaProd[0];
-  const menor=canastaProd[canastaProd.length-1];
-  document.getElementById('inf-max-prod').textContent=mayor.name.length>15?mayor.name.slice(0,15)+'…':mayor.name;
-  document.getElementById('inf-max-pct').textContent=(mayor.cambio>0?'+':'')+mayor.cambio+'%';
-  document.getElementById('inf-min-prod').textContent=menor.name.length>15?menor.name.slice(0,15)+'…':menor.name;
-  document.getElementById('inf-min-pct').textContent=(menor.cambio>0?'+':'')+menor.cambio+'%';
-
-  // Tabla canasta
-  canasta.style.display='table'; empty.style.display='none';
-  document.getElementById('inf-tbody').innerHTML=canastaProd.map(p=>{
-    const color=p.cambio>10?'var(--red)':p.cambio>0?'var(--accent)':p.cambio<0?'var(--green)':'var(--text3)';
-    const co=S.categories.find(c=>c.name===p.cat);
-    const catColor=co?co.color:'#9A9590';
-    return`<tr>
-      <td>
-        <div style="font-weight:500">${p.name}</div>
-        <div><span class="pill" style="background:${catColor}22;color:${catColor};font-size:10px">${p.cat}</span></div>
-      </td>
-      <td style="text-align:right;color:var(--text2)">${fmt(p.p1)}</td>
-      <td style="text-align:right;font-weight:700">${fmt(p.p2)}</td>
-      <td style="text-align:right;font-weight:800;color:${color}">${p.cambio>0?'+':''}${p.cambio}%</td>
-    </tr>`;
-  }).join('');
-
-  document.getElementById('inf-tfoot').innerHTML=`<tr style="border-top:2px solid var(--border)">
-    <td style="font-weight:800;padding-top:10px">TOTAL CANASTA</td>
-    <td style="text-align:right;font-weight:700;padding-top:10px">${fmt(totalP1)}</td>
-    <td style="text-align:right;font-weight:700;padding-top:10px">${fmt(totalP2)}</td>
-    <td style="text-align:right;font-weight:800;color:${inflacionTotal>0?'var(--red)':'var(--green)'};padding-top:10px">${inflacionTotal>0?'+':''}${inflacionTotal}%</td>
-  </tr>`;
-
-  // Por categoría
-  const byCat={};
-  canastaProd.forEach(p=>{
-    if(!byCat[p.cat])byCat[p.cat]={nombre:p.cat,prods:[],p1:0,p2:0};
-    byCat[p.cat].prods.push(p);
-    byCat[p.cat].p1+=p.p1;
-    byCat[p.cat].p2+=p.p2;
-  });
-  const catArr=Object.values(byCat).map(c=>({...c,cambio:Math.round((c.p2-c.p1)/c.p1*100)})).sort((a,b)=>b.cambio-a.cambio);
-  const maxCambioAbs=Math.max(...catArr.map(c=>Math.abs(c.cambio)),1);
-
-  document.getElementById('inf-by-cat').innerHTML=catArr.map(c=>{
-    const co=S.categories.find(x=>x.name===c.nombre);
-    const color=c.cambio>10?'var(--red)':c.cambio>0?'var(--accent)':c.cambio<0?'var(--green)':'var(--text3)';
-    const barW=Math.round(Math.abs(c.cambio)/maxCambioAbs*100);
-    return`<div>
-      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
-        <span style="font-weight:600">${c.nombre} <span style="color:var(--text3);font-weight:400">(${c.prods.length} prods)</span></span>
-        <span style="font-weight:800;color:${color}">${c.cambio>0?'+':''}${c.cambio}%</span>
-      </div>
-      <div class="bbar-bg"><div class="bbar-fill" style="width:${barW}%;background:${color}"></div></div>
-    </div>`;
-  }).join('');
-
-  // Interpretación
-  const mesesDiff=Math.max(1,(new Date(m2+'-01')-new Date(m1+'-01'))/(1000*60*60*24*30));
-  const inflAnual=Math.round(inflacionTotal/mesesDiff*12*10)/10;
-  let texto='';
-  if(inflacionTotal>10) texto=`🔴 <strong>Inflación alta:</strong> Tus productos subieron ${inflacionTotal}% en este período. En términos anualizados equivale a <strong>${inflAnual}%</strong>. Las categorías más afectadas son ${catArr.filter(c=>c.cambio>0).slice(0,2).map(c=>c.nombre).join(' y ')}.`;
-  else if(inflacionTotal>3) texto=`🟡 <strong>Inflación moderada:</strong> Tus productos subieron ${inflacionTotal}%. Anualizado sería ${inflAnual}%. Revisa especialmente ${mayor.name} que subió ${mayor.cambio}%.`;
-  else if(inflacionTotal>0) texto=`🟢 <strong>Inflación baja:</strong> Solo ${inflacionTotal}% de aumento. Tus gastos del hogar están bien controlados en este período.`;
-  else if(inflacionTotal===0) texto=`✅ <strong>Precios estables:</strong> No hubo cambios significativos en tu canasta entre estos dos meses.`;
-  else texto=`🟢 <strong>Deflación:</strong> ¡Tus productos bajaron ${Math.abs(inflacionTotal)}%! Encontraste mejores precios o cambiaste de tienda. ${menor.name} fue el que más bajó (${menor.cambio}%).`;
-
-  document.getElementById('inf-interpretacion').innerHTML=texto+`<br><br><span style="color:var(--text3);font-size:12px">💡 Esta es tu inflación personal basada en TUS productos, no la del DANE que mide una canasta general.</span>`;
-}
-
-// ═══════════════════════════════════════════════════════
-// COMPARTIR APP
-// ═══════════════════════════════════════════════════════
 function compartirApp(){
   const url='https://salopezlo.github.io/casaia/';
   const msg=`🏠 *Casa·IA* — App de control de gastos del hogar con inteligencia artificial\n\n✅ Escanea facturas con IA\n✅ Registra gastos e ingresos\n✅ Gráficas y presupuesto mensual\n✅ Gratis y sin instalación\n\n👉 ${url}`;
@@ -5308,6 +5884,48 @@ function revisarNotificaciones(){
 }
 
 // ═══════════════════════════════════════════════════════
+// ═══ ONBOARDING ═══
+let obSlide = 0;
+const OB_TOTAL = 4;
+
+function initOnboarding() {
+  const yaVio = localStorage.getItem('casaia_onboarding_done');
+  if (yaVio) return;
+  // Mostrar slide 4 según si recibió promo o no
+  const esPromo = S.plan === 'premium' && S.premiumHasta;
+  const promoEl = document.getElementById('ob-promo-content');
+  const gratisEl = document.getElementById('ob-gratis-content');
+  if (promoEl) promoEl.style.display = esPromo ? 'block' : 'none';
+  if (gratisEl) gratisEl.style.display = esPromo ? 'none' : 'block';
+  const overlay = document.getElementById('onboarding-overlay');
+  if (overlay) overlay.style.display = 'flex';
+}
+
+function nextOnboarding() {
+  if (obSlide < OB_TOTAL - 1) {
+    const cur = document.getElementById('ob-' + obSlide);
+    if (cur) cur.style.display = 'none';
+    obSlide++;
+    const next = document.getElementById('ob-' + obSlide);
+    if (next) next.style.display = 'flex';
+    document.querySelectorAll('.ob-dot').forEach((d, i) => d.classList.toggle('active', i === obSlide));
+    if (obSlide === OB_TOTAL - 1) {
+      const btn = document.getElementById('ob-next');
+      const skip = document.getElementById('ob-skip');
+      if (btn) btn.textContent = '¡Empezar! 🚀';
+      if (skip) skip.style.display = 'none';
+    }
+  } else {
+    skipOnboarding();
+  }
+}
+
+function skipOnboarding() {
+  localStorage.setItem('casaia_onboarding_done', '1');
+  const overlay = document.getElementById('onboarding-overlay');
+  if (overlay) overlay.style.display = 'none';
+}
+
 // INIT
 // ═══════════════════════════════════════════════════════
 load();
@@ -5318,6 +5936,20 @@ S.transactions=S.transactions.map(t=>({...t,id:t.id||Date.now()+Math.random()}))
 S.recGastos=S.recGastos||[];
 S.recurrentes=S.recurrentes||[];
 S.metas=S.metas||[];
+// Defaults distribución 50/30/20 para usuarios existentes
+S.distribucion=S.distribucion||{necesidades:50,deseos:30,ahorro:20};
+S.gruposCat=S.gruposCat||{
+  'Alimentación':'necesidades','Aseo y limpieza':'necesidades',
+  'Servicios públicos':'necesidades','Salud':'necesidades',
+  'Transporte':'necesidades','Arriendo':'necesidades',
+  'Entretenimiento':'deseos','Ropa':'deseos','Tecnología':'deseos',
+  'Educación':'necesidades','Otros':'deseos'
+};
+// Cualquier categoría sin grupo asignado va a "deseos" por defecto
+S.categories.forEach(c=>{ if(!S.gruposCat[c.name]) S.gruposCat[c.name]='deseos'; });
+// Auto-registrar recurrentes cuya fecha ya llegó
+autoRegistrarRecurrentes();
+initOnboarding();
 
 // Migración: sincronizar gastos manuales existentes a S.products
 S.transactions.filter(t=>t.type==='gasto'&&t.source==='manual'&&t.desc).forEach(t=>{
@@ -5335,7 +5967,7 @@ S.transactions.filter(t=>t.type==='gasto'&&t.source==='manual'&&t.desc).forEach(
 });
 save();
 
-cargarDatosDemo();
+// cargarDatosDemo(); // DESACTIVADO — la app inicia limpia para usuarios nuevos
 document.documentElement.setAttribute('data-theme',S.config.theme||'dark');
 document.getElementById('i-date').value=todayStr();
 // Ocultar onboarding — ya no se necesita API key
@@ -5353,5 +5985,86 @@ renderResumen();
 renderFactList();
 setTimeout(checkInstallable, 2000);
 </script>
+<!-- ═══ ONBOARDING ═══ -->
+<div id="onboarding-overlay" style="display:none;position:fixed;inset:0;z-index:9999;background:var(--bg);flex-direction:column;overflow:hidden">
+
+  <!-- Slides -->
+  <div id="ob-slides" style="flex:1;overflow:hidden;position:relative">
+
+    <!-- Slide 1: Bienvenida -->
+    <div class="ob-slide" id="ob-0" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 32px;text-align:center">
+      <img src="icon.png" onerror="this.style.fontSize='72px';this.outerHTML='<div style='font-size:72px'>🦉</div>'" style="width:100px;height:100px;border-radius:24px;margin-bottom:24px">
+      <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;margin-bottom:12px;line-height:1.2">Bienvenido a<br>Casa·IA</div>
+      <div style="font-size:15px;color:var(--text2);line-height:1.6;max-width:300px">Tu asistente inteligente para controlar los gastos del hogar</div>
+    </div>
+
+    <!-- Slide 2: Escanea facturas -->
+    <div class="ob-slide" id="ob-1" style="position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:40px 32px;text-align:center">
+      <div style="font-size:72px;margin-bottom:24px">📸</div>
+      <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:12px">Escanea tus facturas</div>
+      <div style="font-size:14px;color:var(--text2);line-height:1.7;max-width:300px">
+        Toma una foto de cualquier factura o tiquete y la IA extrae automáticamente los productos, precios y categorías.<br><br>
+        <span style="color:var(--accent);font-weight:600">Sin escribir nada a mano.</span>
+      </div>
+    </div>
+
+    <!-- Slide 3: Controla tu presupuesto -->
+    <div class="ob-slide" id="ob-2" style="position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:40px 32px;text-align:center">
+      <div style="font-size:72px;margin-bottom:24px">📊</div>
+      <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:12px">Controla tu presupuesto</div>
+      <div style="font-size:14px;color:var(--text2);line-height:1.7;max-width:300px">
+        Ve cuánto gastas por categoría, compara meses, detecta qué productos subieron de precio y mantén tus finanzas bajo control.
+      </div>
+    </div>
+
+    <!-- Slide 4: Promo o bienvenida según plan -->
+    <div class="ob-slide" id="ob-3" style="position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:40px 32px;text-align:center">
+      <div id="ob-promo-content">
+        <div style="font-size:64px;margin-bottom:16px">🎉</div>
+        <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:8px">¡Oferta de lanzamiento!</div>
+        <div style="background:linear-gradient(135deg,var(--accent),#f0c040);border-radius:16px;padding:16px 24px;margin-bottom:16px;width:100%;max-width:300px">
+          <div style="font-size:13px;font-weight:700;color:#000;margin-bottom:4px">ERES UNO DE LOS PRIMEROS</div>
+          <div style="font-size:26px;font-weight:800;color:#000">1 MES PREMIUM GRATIS</div>
+        </div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.7;max-width:280px">
+          ✓ 15 escaneos por semana<br>
+          ✓ Cámara directa<br>
+          ✓ Sin anuncios<br>
+          ✓ Análisis IA ilimitado
+        </div>
+      </div>
+      <div id="ob-gratis-content" style="display:none">
+        <div style="font-size:64px;margin-bottom:16px">🚀</div>
+        <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:12px">¡Todo listo!</div>
+        <div style="font-size:14px;color:var(--text2);line-height:1.7;max-width:280px">
+          Empieza a escanear tus facturas y toma el control de tus gastos del hogar.<br><br>
+          <span style="color:var(--accent);font-weight:600">Ve videos para ganar escaneos gratis.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Dots indicadores -->
+  <div style="display:flex;justify-content:center;gap:8px;padding:16px 0">
+    <div class="ob-dot active" id="dot-0"></div>
+    <div class="ob-dot" id="dot-1"></div>
+    <div class="ob-dot" id="dot-2"></div>
+    <div class="ob-dot" id="dot-3"></div>
+  </div>
+
+  <!-- Botones navegación -->
+  <div style="padding:16px 24px 40px;display:flex;gap:10px">
+    <button id="ob-skip" class="btn btn-outline" style="flex:1" onclick="skipOnboarding()">Omitir</button>
+    <button id="ob-next" class="btn btn-accent" style="flex:2" onclick="nextOnboarding()">Siguiente →</button>
+  </div>
+
+</div>
+
+<style>
+.ob-dot { width:8px;height:8px;border-radius:50%;background:var(--border2);transition:all .3s; }
+.ob-dot.active { width:24px;border-radius:4px;background:var(--accent); }
+</style>
+
 </body>
 </html>
